@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "dockerComposeFile": "../docker/docker-compose.yaml",
+  "service": "app",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "settings": {
+      },
+      "extensions": [
+        "rebornix.ruby",
+        "groksrc.ruby",
+        "bung87.rails",
+        "castwide.solargraph",
+        "kaiwood.endwise",
+        "craigmaslowski.erb"
+      ]
+    }
+  }
+}
