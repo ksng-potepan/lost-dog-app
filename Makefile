@@ -17,3 +17,6 @@ up:
 
 down:
 	@cd docker && docker compose down
+
+exec:
+	@cd docker && docker compose exec app bash
