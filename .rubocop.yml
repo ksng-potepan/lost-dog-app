@@ -4,6 +4,8 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-factory_bot
 
 AllCops:
   # 除外するディレクトリ（自動生成されるファイル）
