@@ -13,7 +13,7 @@ new-app: build
 	@cp docker/.env.example docker/.env
 
 up:
-	@cd docker && docker compose up -d --build
+	@cd docker && docker compose up -d
 
 down:
 	@cd docker && docker compose down
