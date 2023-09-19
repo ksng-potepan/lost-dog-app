@@ -1,0 +1,50 @@
+<div class='header'>
+  <%= link_to image_tag('header-logo.png', class:'header-logo'), '/' %>
+  <%= link_to image_tag('header-icon.png', class:'header-icon'), '/' %>
+  <div class="header-menu">
+    <div class='ham-menu'>
+      <input type="checkbox" id='ham-button'>
+      <label for='ham-button' class='ham-btn'><span></span></label>
+      <div class='ham-item'>
+        <ul>
+          <li>
+            <%= link_to '/', class:'header-link' do %>
+              <%= image_tag 'login.png', class:'menu-logo' %>
+              <span class='header-item'>ログイン</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '/', class:'header-link' do %>
+              <%= image_tag 'new-account.png', class:'menu-logo' %>
+              <span class='header-item'>新規登録</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '/', class:'header-link' do %>
+              <%= image_tag 'lost-dog.png', class:'menu-logo' %>
+              <span class='header-item'>迷子犬</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '/', class:'header-link' do %>
+              <%= image_tag 'rescued-dog.png', class:'menu-logo' %>
+              <span class='header-item'>保護犬</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '/', class:'header-link' do %>
+              <%= image_tag 'temporarily-rescued.png', class:'menu-logo' %>
+              <span class='header-item'>一時お預かり</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '/', class:'header-link' do %>
+              <%= image_tag 'my-account.png', class:'menu-logo' %>
+              <span class='header-item'>マイページ</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
