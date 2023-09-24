@@ -246,7 +246,7 @@ ul {
 .devise-form {
   margin-left: 25%;
   margin-top: 30px;
-  width: 30%;
+  width: 40%;
   height: 400px;
   background-color: rgba(255, 248, 242, 0.311);
   border: solid 2px #7C96AB;
@@ -308,4 +308,30 @@ i::before {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   margin: 0 25px;
+}
+
+@media screen and (max-width:1024px) {
+  .devise-title {
+    font-size: 15px;
+  }
+
+  .devise-form {
+    margin-top: 5px;
+    margin-left: 80px;
+    width: 60%;
+    height: 374px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .devise-form {
+    margin-top: 70px;
+    margin-left: 10px;
+    width: 95%;
+    height: 450px;
+  }
+
+  button {
+    margin-top: 10px;
+  }
 }
