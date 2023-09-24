@@ -9,7 +9,7 @@
         <div class='ham-item'>
           <ul>
             <li>
-              <%= link_to destroy_user_session_path, class:'header-link' do %>
+              <%= link_to destroy_user_session_path, class:'header-link', data: { turbo_method: :delete } do %>
                 <%= image_tag 'login.png', class:'menu-logo' %>
                 <span class='header-item'>ログアウト</span>
               <% end %>
