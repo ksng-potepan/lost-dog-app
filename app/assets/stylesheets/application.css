@@ -42,6 +42,82 @@ ul {
   height: 100vh;
 }
 
+/* ---エラーメッセージ関連--- */
+.field_with_errors {
+  display: contents;
+}
+
+.error-messages {
+  position: fixed;
+  top: 100px;
+  left: 60%;
+  background-color: #edc6b1d3;
+  border: solid 2px #b75d5d;
+  border-radius: 10px;
+  padding: 20px;
+  width: 30%;
+}
+
+.notice {
+  background-color: rgba(22, 100, 218, 0.726);
+  width: 90%;
+  text-align: center;
+  padding: 5px 10px;
+  color: aliceblue;
+  position: fixed;
+  left: 18%;
+  z-index: 10;
+}
+
+.alert {
+  background-color: rgba(220, 20, 60, 0.726);
+  width: 90%;
+  text-align: center;
+  padding: 5px 10px;
+  color: aliceblue;
+  position: fixed;
+  left: 18%;
+  z-index: 10;
+}
+
+@media screen and (max-width:1024px) {
+  .error-messages {
+    position: fixed;
+    top: 100px;
+    left: 60%;
+    width: 40%;
+  }
+
+  .notice {
+    width: 95%;
+    left: 7%;
+  }
+
+  .alert {
+    width: 95%;
+    left: 7%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .error-messages {
+    position: fixed;
+    top: 420px;
+    left: 10%;
+    width: 80%;
+  }
+
+  .notice {
+    width: 80%;
+    left: 18%;
+  }
+
+  .alert {
+    width: 80%;
+    left: 18%;
+  }
+}
+
 /* ---header--- */
 .header {
   position: fixed;
@@ -339,5 +415,14 @@ i::before {
 
   button {
     margin-top: 10px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .devise-form {
+    margin-top: 70px;
+    margin-left: 5px;
+    width: 98%;
+    height: 450px;
   }
 }

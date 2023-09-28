@@ -86,5 +86,5 @@ gem "sentry-ruby", "~> 5.10"
 gem "sentry-rails", "~> 5.10"
 
 gem 'devise'
-gem 'rails-i18n'
 gem 'devise-i18n-views'
+gem 'rails-i18n'
