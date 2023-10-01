@@ -376,3 +376,61 @@ i::before {
     height: 450px;
   }
 }
+
+/* ---テーブル関連--- */
+.account-title {
+  margin-top: 10px;
+  margin-left: 30%;
+  font-size: 25px;
+}
+
+.account-table {
+  margin-left: 21%;
+  margin-top: 20px;
+  width: 40%;
+  height: 400px;
+  background-color: rgba(255, 248, 242, 0.311);
+  padding: 20px;
+  border: 2px solid #ed9f76;
+  border-radius: 20px;
+}
+
+.account-table th {
+  padding: 10px 20px;
+  width: 40%;
+  background-color: #EDC6B1;
+  border-radius: 20px;
+  border-bottom: solid 2px rgb(152, 161, 166);
+}
+
+.account-table td {
+  padding: 10px 20px;
+  border-bottom: solid 2px rgb(152, 161, 166);
+}
+
+@media screen and (max-width:1024px) {
+  .account-title {
+    margin-top: 65px;
+    margin-left: 18%;
+  }
+
+  .account-table {
+    margin-left: 5%;
+    width: 60%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .account-table {
+    width: 95%;
+    margin: auto;
+    padding: 1px;
+    font-size: 10px;
+  }
+
+  .account-title {
+    margin-top: 65px;
+    margin-left: 0;
+    text-align: center;
+  }
+}

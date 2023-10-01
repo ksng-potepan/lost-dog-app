@@ -1,0 +1,25 @@
+<div class="account-title">ー アカウント情報 ー</div>
+<table class="account-table", cellspacing="10">
+  <tr>
+    <th>アイコン：</th>
+    <td>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image, :size => '50x50' %>
+      <% else %>
+        <%= image_tag("default_user.png", :size => "50x50") %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>ユーザー名：</th>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス：</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>パスワード：</th>
+    <td>******</td>
+  </tr>
+</table>
