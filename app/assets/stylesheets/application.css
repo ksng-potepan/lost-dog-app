@@ -28,6 +28,7 @@ a,
 input,
 button {
   cursor: pointer;
+  text-decoration: none;
 }
 
 ol,
@@ -374,6 +375,57 @@ i::before {
     margin-left: 5px;
     width: 98%;
     height: 450px;
+  }
+}
+
+/* ---アカウントフォーム関連--- */
+.account-form {
+  margin-left: 25%;
+  margin-top: 30px;
+  width: 40%;
+  height: 500px;
+  background-color: rgba(255, 248, 242, 0.311);
+  border: 2px solid #ed9f76;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.trash-field {
+  margin-top: 20px;
+  margin-left: 45%;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+}
+
+.account-edit-btn {
+  margin-left: 22%;
+}
+
+@media screen and (max-width:1024px) {
+  .account-form {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+  }
+
+  .account-edit-btn {
+    margin-left: 5%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .account-form {
+    margin-top: 70px;
+    margin-left: 5px;
+    width: 98%;
+    height: 580px;
+  }
+
+  .trash-field {
+    margin-left: 35%;
   }
 }
 
