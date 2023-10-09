@@ -5,28 +5,18 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <i class="fa-solid fa-camera"></i>
-      <%= f.file_field :image %>
-    </div>
-
-    <div class="field">
-      <i class="fa-solid fa-user"></i>
-      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "input-form", placeholder: "ユーザー名" %>
-    </div>
-
-    <div class="field">
-      <i class="fa-solid fa-envelope"></i>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-form", placeholder: "メールアドレス" %>
-    </div>
-
-    <div class="field">
-      <i class="fa-solid fa-lock"></i>
+      <i class="fa-solid fa-key"></i>
       <%= f.password_field :password, autocomplete: "new-password", class: "input-form", placeholder: "新しいパスワード(６文字以上)" %>
     </div>
 
     <div class="field">
-      <i class="fa-solid fa-lock"></i>
+      <i class="fa-solid fa-key"></i>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-form", placeholder: "確認用パスワード" %>
+    </div>
+
+    <div class="field">
+      <i class="fa-solid fa-lock"></i>
+      <%= f.password_field :current_password, autocomplete: "current_password", class: "input-form", placeholder: "現在のパスワード" %>
     </div>
 
     <div class="actions">

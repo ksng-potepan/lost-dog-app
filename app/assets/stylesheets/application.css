@@ -383,7 +383,7 @@ i::before {
   margin-left: 25%;
   margin-top: 30px;
   width: 40%;
-  height: 500px;
+  height: 400px;
   background-color: rgba(255, 248, 242, 0.311);
   border: 2px solid #ed9f76;
   border-radius: 20px;
@@ -397,6 +397,10 @@ i::before {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-right: 20px;
+}
+
+.field-area {
+  margin-top: 30px;
 }
 
 .account-edit-btn {
@@ -421,7 +425,7 @@ i::before {
     margin-top: 70px;
     margin-left: 5px;
     width: 98%;
-    height: 580px;
+    height: 400px;
   }
 
   .trash-field {
@@ -430,16 +434,15 @@ i::before {
 }
 
 /* ---テーブル関連--- */
-.account-title {
-  margin-top: 10px;
-  margin-left: 30%;
+caption {
   font-size: 25px;
+  margin-bottom: 15px;
 }
 
 .account-table {
   margin-left: 21%;
   margin-top: 20px;
-  width: 40%;
+  width: 47%;
   height: 400px;
   background-color: rgba(255, 248, 242, 0.311);
   padding: 20px;
@@ -461,28 +464,21 @@ i::before {
 }
 
 @media screen and (max-width:1024px) {
-  .account-title {
-    margin-top: 65px;
-    margin-left: 18%;
-  }
-
   .account-table {
-    margin-left: 5%;
-    width: 60%;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
   }
 }
 
 @media screen and (max-width:600px) {
   .account-table {
+    margin-top: 70px;
     width: 95%;
-    margin: auto;
-    padding: 1px;
-    font-size: 10px;
   }
 
-  .account-title {
-    margin-top: 65px;
-    margin-left: 0;
-    text-align: center;
+  i::before {
+    display: none;
   }
 }

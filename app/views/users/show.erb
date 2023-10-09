@@ -1,6 +1,6 @@
 <% provide(:title, "マイページ") %>
-<div class="account-title">ー アカウント情報 ー</div>
 <table class="account-table", cellspacing="10">
+  <caption>ー アカウント情報 ー</caption>
   <tr>
     <th>アイコン：</th>
     <td>
@@ -21,9 +21,18 @@
   </tr>
   <tr>
     <th>パスワード：</th>
-    <td>******</td>
+    <td>
+      <%= link_to edit_user_registration_path do %>
+        <i class="fa-solid fa-pen">パスワードを変更</i>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>設定：</th>
+    <td>
+      <%= link_to edit_user_path(@user) do %>
+        <i class="fa-solid fa-pen">プロフィール編集</i>
+      <% end %>
+    </td>
   </tr>
 </table>
-<%= link_to edit_user_registration_path, class: "account-edit-btn" do %>
-  <i class="fa-solid fa-pen">アカウント情報を編集する</i>
-<% end %>

@@ -1,0 +1,27 @@
+<div class="account-form">
+  <h2 class="devise-title">ー 編集する ー</h2>
+
+    <%= form_with url: users_update_path, local:true, data: { turbo: false } do |f| %>
+    <div class="field-area">
+      <div class="field">
+        <i class="fa-solid fa-camera"></i>
+        <%= f.file_field :image %>
+      </div>
+
+      <div class="field">
+        <i class="fa-solid fa-user"></i>
+        <%= f.text_field :username, class: "input-form", placeholder: "ユーザー名", value: @user.username %>
+      </div>
+
+      <div class="field">
+        <i class="fa-solid fa-envelope"></i>
+        <%= f.email_field :email, class: "input-form", placeholder: "メールアドレス", value: @user.email %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "更新する" %>
+        <%= link_to "キャンセル", :back, class:'link-button' %>
+      </div>
+    </div>
+  <% end %>
+</div>
