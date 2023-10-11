@@ -12,10 +12,10 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update(username: params[:username], email: params[:email], image: params[:image])
     if @user.save
-      flash[:notice] = "更新しました"
+      flash[:notice] = t('flash.notices.update')
       redirect_to user_path(@user)
     else
-      flash.now[:alert] = "更新できませんでした"
+      flash.now[:alert] = t('flash.alerts.update_fail')
       render('users/edit')
     end
   end

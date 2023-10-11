@@ -24,5 +24,25 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.extend ControllerMacros, type: :controller
+
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, js: true, type: :system) do
+    driven_by :selenium_remote
+    host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
+  end
+end
+
+Capybara.server_host = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
+Capybara.server_port = 3000
+Capybara.javascript_driver = :selenium_chrome_headless
+
+Capybara.register_driver :selenium_remote do |app|
+  url = "http://chrome:4444/wd/hub"
+  opts = { desired_capabilities: :chrome, browser: :remote, url: }
+  Capybara::Selenium::Driver.new(app, opts)
 end

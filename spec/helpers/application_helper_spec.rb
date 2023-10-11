@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationHelper, type: :helper do
+RSpec.describe ApplicationHelper do
   describe '#full_title' do
     it '引数がnilの時に動的な表示がされること' do
       expect(full_title(nil)).to eq('wanwan LIFE')

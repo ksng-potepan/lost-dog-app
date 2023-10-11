@@ -62,6 +62,9 @@ Metrics/BlockNesting:
 Metrics/ClassLength:
   Enabled: false
 
+Metrics/ExampleLength:
+  Max: 10
+
 # 空メソッドの場合に、1行のスタイルにしない　NG例：def style1; end
 Style/EmptyMethod:
   EnforcedStyle: expanded
@@ -89,3 +92,6 @@ Style/FrozenStringLiteralComment:
 # メソッドパラメータ名の最小文字数を設定
 Naming/MethodParameterName:
   MinNameLength: 1
+
+RSpec/ContextWording:
+  Enabled: false

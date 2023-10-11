@@ -181,3 +181,10 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  flash:
+    notices:
+      update: 更新しました。
+      update_fail: 更新に失敗しました。
+  flash:
+    alerts:
+      update_fail: 更新に失敗しました。
