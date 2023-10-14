@@ -1,0 +1,38 @@
+<% provide(:title, "マイページ") %>
+<table class="account-table", cellspacing="10">
+  <caption>ー アカウント情報 ー</caption>
+  <tr>
+    <th>アイコン：</th>
+    <td>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image, :size => '50x50' %>
+      <% else %>
+        <%= image_tag("default_user.png", :size => "50x50") %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>ユーザー名：</th>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス：</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>パスワード：</th>
+    <td>
+      <%= link_to edit_user_registration_path do %>
+        <i class="fa-solid fa-pen">パスワードを変更</i>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>設定：</th>
+    <td>
+      <%= link_to edit_user_path(@user) do %>
+        <i class="fa-solid fa-pen">プロフィール編集</i>
+      <% end %>
+    </td>
+  </tr>
+</table>

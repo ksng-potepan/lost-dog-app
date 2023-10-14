@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'home#top'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  post 'users/update' => 'users#update'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root to: 'home#top'
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
+  resources :users, only: [:show, :edit, :update]
 end
