@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_01_121659) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_28_142318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_121659) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "adresses", force: :cascade do |t|
+    t.integer "adress_area", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ambles", force: :cascade do |t|
     t.string "name", null: false
     t.string "breed"
@@ -53,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_121659) do
     t.boolean "tag"
     t.boolean "chip"
     t.datetime "date", null: false
-    t.integer "prefecture", null: false
+    t.string "prefecture", null: false
     t.string "municipalities"
     t.string "area"
     t.text "situation"
