@@ -36,13 +36,6 @@ ul {
   list-style: none;
 }
 
-.main-wrapper {
-  position: fixed;
-  background-color: #BFCCB5;
-  width: 100%;
-  height: 100vh;
-}
-
 /* ---エラーメッセージ関連--- */
 .field_with_errors {
   display: contents;
@@ -66,6 +59,7 @@ ul {
   padding: 5px 10px;
   color: aliceblue;
   position: fixed;
+  top: 0;
   left: 18%;
   z-index: 10;
 }
@@ -77,6 +71,7 @@ ul {
   padding: 5px 10px;
   color: aliceblue;
   position: fixed;
+  top: 0;
   left: 18%;
   z-index: 10;
 }
@@ -430,6 +425,199 @@ i::before {
 
   .trash-field {
     margin-left: 35%;
+  }
+}
+
+/* ---インフォメーション--- */
+.board-information {
+  margin-left: 25%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 600px;
+  height: 650px;
+  background-color: rgba(255, 248, 242, 0.311);
+  border: 2px solid #7C96AB;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.guidance {
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.guidance-sub {
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 15px;
+  position: relative;
+  top: -15px;
+}
+
+.board-button {
+  background: #7C96AB;
+  border: solid 2px #576a79;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+@media screen and (max-width:1024px) {
+  .board-information {
+    margin-top: 80px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 650px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .board-information {
+    width: 90%;
+    height: 550px;
+  }
+
+  .guidance {
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: bold;
+    }
+
+  .guidance-sub {
+    font-size: 11px;
+    line-height: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+}
+
+/* ---掲示板フォーム関連--- */
+.board-title {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.board-form {
+  margin-left: 25%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 600px;
+  height: 1450px;
+  background-color: rgba(255, 248, 242, 0.311);
+  border: 2px solid #7C96AB;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.field-area {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.board-item {
+  border-top: 2px solid #e2e2e2;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.board-item-Label {
+  width: 100%;
+  max-width: 220px;
+  font-size: 17px;
+}
+
+.board-item-input {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  flex: 1;
+  width: 100%;
+  max-width: 300px;
+  background: #eaedf2;
+}
+
+.board-item-textarea {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  height: 100px;
+  flex: 1;
+  width: 100%;
+  max-width: 300px;
+  background: #eaedf2;
+  font-size: 15px;
+}
+
+.board-actions {
+  text-align: center;
+  margin-top: 15px;
+}
+
+@media screen and (max-width:1024px) {
+  .board-form {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 60px;
+    width: 580px;
+    height: 1200px;
+  }
+
+  .field-area {
+    margin-left: 0px;
+  }
+
+  .board-item-Label {
+    font-size: 15px;
+  }
+
+  input[type="text"] {
+    margin: 0 0;
+    font-size: 12px;
+  }
+
+  .board-item-textarea {
+    width: 100%;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .board-title {
+    font-size: 17px;
+  }
+
+  .board-form {
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    height: 1150px;
+  }
+
+  .field-area {
+    margin-left: 0px;
+  }
+
+  .board-item {
+    width: 100%;
+    font-size: 11px;
+  }
+
+  .board-item-Label {
+    font-size: 12px;
+    max-width: 100px;
+    margin-left: 6px;
+  }
+
+  input[type="submit"] {
+    font-size: 12px;
+  }
+
+  .link-button {
+    font-size: 10px;
   }
 }
 
