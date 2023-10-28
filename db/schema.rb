@@ -42,6 +42,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_121659) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "ambles", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "breed"
+    t.string "size"
+    t.string "gender"
+    t.string "color"
+    t.string "age"
+    t.text "features"
+    t.boolean "tag"
+    t.boolean "chip"
+    t.datetime "date", null: false
+    t.integer "prefecture", null: false
+    t.string "municipalities"
+    t.string "area"
+    t.text "situation"
+    t.text "notification"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "time"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email", default: "", null: false
