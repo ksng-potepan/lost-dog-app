@@ -6,4 +6,9 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   resources :users, only: [:show, :edit, :update]
+  resources :ambles do
+    collection do
+      get 'information'
+    end
+  end
 end
