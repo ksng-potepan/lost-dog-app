@@ -7,7 +7,7 @@ class AmblesController < ApplicationController
 
   def index
     @user = current_user
-    @ambles = Amble.all
+    @amble = Amble.all
   end
 
   def show
