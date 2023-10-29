@@ -54,8 +54,8 @@ class AmblesController < ApplicationController
   def destroy
     @amble = Amble.find(params[:id])
     @amble.destroy
-    flash[:notice] = t('flash.notices.destroy')
-    redirect_to ambles_url(@amble)
+    redirect_to ambles_path
+  end
   end
 
   private
