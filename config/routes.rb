@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :ambles do
     collection do
       get 'information'
+      get 'myamble'
     end
   end
 end

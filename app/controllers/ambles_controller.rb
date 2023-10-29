@@ -56,6 +56,10 @@ class AmblesController < ApplicationController
     @amble.destroy
     redirect_to ambles_path
   end
+
+  def myamble
+    @user = current_user
+    @amble = Amble.where(user_id: current_user.id)
   end
 
   private

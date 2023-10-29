@@ -36,3 +36,13 @@
     </td>
   </tr>
 </table>
+
+<div class="box71">
+  <div class="box-title">自分の投稿を見る</div>
+  <%= link_to myamble_ambles_path(@amble) do %>
+    <i class="fa-solid fa-magnifying-glass">迷子犬</i>
+  <% end %>
+  <%= link_to root_path do %>
+    <i class="fa-solid fa-house-chimney-medical">保護犬</i>
+  <% end %>
+</div>

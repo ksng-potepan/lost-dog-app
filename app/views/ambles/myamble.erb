@@ -1,0 +1,45 @@
+<div class="index">
+  <% @amble.each do |a| %>
+    <div class="amble-index">
+      <div class="amble-index-image">
+          <% if a.image.attached? %>
+            <%= image_tag a.image, :size => '150x150' %>
+          <% else %>
+            <%= image_tag("default_dog.png", :size => "150x150") %>
+          <% end %>
+      </div>
+
+      <div class="amble-show">
+        投稿日：</br>
+        <%= l a.created_at %></br>
+        <%= link_to "【詳細を見る】", amble_path(a) %>
+        <%= link_to "【編集する】", edit_amble_path(a) %>
+        <%= button_to amble_path(a), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
+          <i class="fa-solid fa-trash">投稿を削除</i>
+        <% end %>
+        <%= button_to amble_path(a), method: :delete, data: { turbo_confirm: "個人情報保護のため削除します。" } do %>
+          <i class="fa-solid fa-circle-check">解決しました</i>
+        <% end %>
+      </div>
+
+      <table class="amble-index-table">
+        <tr>
+          <th>愛犬の名前：</th>
+          <td><%= a.name %></td>
+        </tr>
+        <tr>
+          <th>迷子の日時：</th>
+          <td><%= l a.date %>|<%= a.time %></td>
+        </tr>
+        <tr>
+          <th>迷子の場所：</th>
+          <td><%= a.prefecture %>|<%= a.municipalities %>|<%= a.area %></td>
+        </tr>
+        <tr>
+          <th>迷子の状況：</th>
+          <td style="height: 150px;"><%= a.situation %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>
