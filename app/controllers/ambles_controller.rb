@@ -40,7 +40,7 @@ class AmblesController < ApplicationController
 
   def update
     @user = current_user
-    @amble = Amble.new(room_params)
+    @amble = Amble.find(params[:id])
     @amble.user_id = current_user.id
     if @amble.update(amble_params)
       flash[:notice] = t('flash.notices.update')

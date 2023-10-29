@@ -12,8 +12,12 @@
 
     <div class="amble-user">
       ー 飼い主様情報 ー</br>
-      <%= @user.username %>様</br>
-      連絡はこちら
+      <% if a.user_id == current_user.id %>
+        <i class="fa-solid fa-pen"><%= link_to "編集する", edit_amble_path(a) %></i>
+      <% else %>
+        <%= @user.username %>様</br>
+        <i class="fa-solid fa-envelope">連絡はこちら</i>
+      <% end %>
     </div>
 
     <table class="amble-table">
