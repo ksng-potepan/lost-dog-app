@@ -12,7 +12,7 @@ class AmblesController < ApplicationController
 
   def show
     @user = current_user
-    @amble = Amble.find(params[:id])
+    @amble = Amble.where(id: params[:id])
   end
 
   def new

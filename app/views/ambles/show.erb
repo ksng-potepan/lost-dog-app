@@ -1,0 +1,110 @@
+<% provide(:title, "迷子犬") %>
+<% @amble.each do |a| %>
+  <div class="amble-box">
+    <div class="amble-image">
+      <div class="box-title">愛犬『<%= a.name %>』</div>
+        <% if a.image.attached? %>
+          <%= image_tag a.image, :size => '250x200' %>
+        <% else %>
+          <%= image_tag("default_dog.png", :size => "250x200") %>
+        <% end %>
+    </div>
+
+    <div class="amble-user">
+      ー 飼い主様情報 ー</br>
+      <%= @user.username %>様</br>
+      連絡はこちら
+    </div>
+
+    <table class="amble-table">
+      <caption>迷子時の状況</caption>
+      <tr>
+        <th>日時：</th>
+        <td><%= l a.date %>|<%= a.time %></td>
+      </tr>
+      <tr>
+        <th>場所：</th>
+        <td><%= a.prefecture %>|<%= a.municipalities %>|<%= a.area %></td>
+      </tr>
+      <tr>
+        <th>届出済みの機関：</th>
+        <td><%= a.notification %></td>
+      </tr>
+      <tr>
+        <th>状況：</th>
+        <td style="height: 150px;"><%= a.situation %></td>
+      </tr>
+    </table>
+
+    <table class="amble-dog-table1", cellspacing="10">
+      <tr>
+        <th>犬の名前：</th>
+        <td><%= a.name %></td>
+      </tr>
+      <tr>
+        <th>性別：</th>
+        <td>
+          <% if a.gender == "male" %>
+            大型犬
+          <% elsif a.gender == "famale" %>
+            中型犬
+          <% else %>
+            小型犬
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>年齢：</th>
+        <td><%= a.age %></td>
+      </tr>
+      <tr>
+        <th>犬種：</th>
+        <td><%= a.breed %></td>
+      </tr>
+    </table>
+    <table class="amble-dog-table2", cellspacing="10">
+      <tr>
+        <th>系色：</th>
+        <td><%= a.color %></td>
+      </tr>
+      <tr>
+        <th>大きさ：</th>
+        <td>
+          <% if a.size == "large" %>
+            大型犬
+          <% elsif a.size == "medium" %>
+            中型犬
+          <% else %>
+            小型犬
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>鑑札札：</th>
+        <td>
+          <% if a.tag == true %>
+            付いてる可能性あり
+          <% else %>
+            なし
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>マイクロチップ：</th>
+        <td>
+          <% if a.chip == true %>
+            付いてる可能性あり
+          <% else %>
+            なし
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    <table class="amble-dog-table3", cellspacing="10">
+      <tr>
+        <th>特徴：</th>
+        <td><%= a.features %></td>
+      </tr>
+    </table>
+  </div>
+<% end %>
