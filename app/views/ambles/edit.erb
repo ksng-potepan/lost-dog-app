@@ -3,9 +3,11 @@
 
 
   <%= form_with model: @amble, local:true, data: { turbo: false } do |f| %>
+    <%= render 'layouts/error_messages', object: f.object %>
+
     <div class="field-area">
       <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-calendar-days">迷子になった日付け</i></p>
+        <p class="board-item-Label"><i class="fa-solid fa-calendar-days">迷子になった日付け<span class="asterisk">*</span></i></p>
         <%= f.date_field :date, class: "board-item-input", value: @amble.date.strftime("%Y-%m-%d") %>
       </div>
 
@@ -15,7 +17,7 @@
       </div>
 
       <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-location-dot">迷子になった場所</i></p>
+        <p class="board-item-Label"><i class="fa-solid fa-location-dot">迷子になった場所<span class="asterisk">*</span></i></p>
         <%= f.select :prefecture, Adress.adress_areas.keys, value: @amble.prefecture %>
       </div>
 
@@ -48,7 +50,7 @@
       </div>
 
       <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond"></i>犬の名前</i></p>
+        <p class="board-item-Label"><i class="fa-solid fa-diamond"></i>犬の名前<span class="asterisk">*</span></i></p>
         <%= f.text_field :name, class: "board-item-input", value: @amble.name %>
       </div>
 
@@ -58,7 +60,7 @@
       </div>
 
       <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">性別</i></p>
+        <p class="board-item-Label"><i class="fa-solid fa-diamond">性別<span class="asterisk">*</span></i></p>
         <%= f.radio_button :gender, :male %>
         <%= f.label :sex_male, "オス" %>
 
@@ -70,7 +72,7 @@
       </div>
 
       <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">大きさ</i></p>
+        <p class="board-item-Label"><i class="fa-solid fa-diamond">大きさ<span class="asterisk">*</span></i></p>
         <%= f.radio_button :size, :large %>
         <%= f.label :sex_large, "大型犬" %>
 

@@ -1,6 +1,14 @@
 ---
 ja:
   activerecord:
+    attributes:
+      amble:
+        date: "日付け"
+        name: "犬の名前"
+        size: "犬の大きさ"
+        gender: "犬の性別"
+        features: "犬の特徴"
+        situation: "迷子になった状況"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

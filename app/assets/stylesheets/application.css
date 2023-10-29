@@ -42,20 +42,36 @@ button {
   background: transparent;
 }
 
+.asterisk {
+  color: rgb(168, 6, 58);
+}
+
 /* ---エラーメッセージ関連--- */
 .field_with_errors {
   display: contents;
 }
 
-.error-messages {
-  position: fixed;
-  top: 100px;
-  left: 60%;
+.error-messages,
+.error {
+  position: absolute;
+  top: 10px;
+  left: 30%;
   background-color: #edc6b1d3;
   border: solid 2px #b75d5d;
   border-radius: 10px;
   padding: 20px;
-  width: 30%;
+  width: 35%;
+  z-index: 1;
+}
+
+@media screen and (max-width:600px) {
+  .error-messages,
+  .error {
+    top: 50px;
+    left: 5%;
+    width: 90%;
+    font-size: 12px;
+  }
 }
 
 .notice {
