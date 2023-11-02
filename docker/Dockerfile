@@ -14,6 +14,8 @@ WORKDIR /workspace
 
 FROM base AS development
 
+ENV TZ=Asia/Tokyo
+
 COPY Gemfile* .
 RUN bundle install
 
