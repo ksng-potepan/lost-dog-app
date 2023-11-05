@@ -46,6 +46,11 @@ button {
   color: rgb(168, 6, 58);
 }
 
+.title {
+  margin-top: 60px;
+  text-align: center;
+}
+
 /* ---エラーメッセージ関連--- */
 .field_with_errors {
   display: contents;
