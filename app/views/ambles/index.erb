@@ -34,7 +34,8 @@
       <div class="amble-show">
         投稿日：</br>
         <%= l a.created_at %></br>
-        <%= link_to "詳細はこちら▶︎", amble_path(a) %>
+        <%= link_to a.name, amble_path(a) %>
+        <%= link_to 'の詳細はこちら', amble_path(a) %>
       </div>
 
       <table class="amble-index-table">
