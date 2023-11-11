@@ -12,4 +12,11 @@ Rails.application.routes.draw do
       get 'myamble'
     end
   end
+  resources :protects do
+    collection do
+      get 'information'
+      get 'myprotect'
+      get 'trandferred'
+    end
+  end
 end
