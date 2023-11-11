@@ -20,3 +20,6 @@ down:
 
 exec:
 	@cd docker && docker compose exec app bash
+
+exec-db:
+	@cd docker && docker compose exec db psql -U hoge -d hoge

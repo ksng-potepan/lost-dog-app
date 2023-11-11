@@ -62,6 +62,6 @@ class ProtectsController < ApplicationController
 
   def protect_params
     params.require(:protect).permit(:name, :breed, :size, :gender, :color, :age, :features, :tag, :chip, :date, :time,
-                                  :prefecture, :municipalities, :area, :situation, :notification, :trandferred, :location, :image)
+                                  :prefecture, :municipalities, :area, :situation, :notification, :transferred, :location, :image)
   end
 end

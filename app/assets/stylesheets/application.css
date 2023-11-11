@@ -540,6 +540,18 @@ i::before {
   padding: 20px;
 }
 
+.protect-board-form {
+  margin-left: 25%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 600px;
+  height: 1700px;
+  background-color: rgba(255, 248, 242, 0.311);
+  border: 2px solid #f1b291;
+  border-radius: 20px;
+  padding: 20px;
+}
+
 .field-area {
   margin-top: 30px;
   margin-left: 20px;
@@ -594,6 +606,14 @@ i::before {
     height: 1200px;
   }
 
+  .protect-board-form {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 60px;
+    width: 580px;
+    height: 1450px;
+  }
+
   .field-area {
     margin-left: 0px;
   }
@@ -623,6 +643,13 @@ i::before {
     margin-left: auto;
     width: 90%;
     height: 1150px;
+  }
+
+  .protect-board-form {
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    height: 1350px;
   }
 
   .field-area {

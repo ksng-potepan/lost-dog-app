@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_11_172919) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_12_071505) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_11_172919) do
     t.text "area"
     t.text "situation", null: false
     t.text "notification"
-    t.boolean "trandferred"
+    t.boolean "transferred", default: false
     t.text "location"
     t.integer "user_id"
     t.datetime "created_at", null: false

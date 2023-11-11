@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'information'
       get 'myprotect'
-      get 'trandferred'
+      get 'transferred'
     end
   end
 end
