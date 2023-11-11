@@ -9,6 +9,12 @@ ja:
         gender: "犬の性別"
         features: "犬の特徴"
         situation: "迷子になった状況"
+      protect:
+        date: "日付け"
+        size: "犬の大きさ"
+        gender: "犬の性別"
+        features: "犬の特徴"
+        situation: "迷子になった状況"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
