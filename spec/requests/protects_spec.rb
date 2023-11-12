@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Protects' do
   let(:user) { create(:user) }
   let(:protect) { create(:protect, user:) }
-  let(:trandferred_protect) { create(:trandferred_protect, user:) }
+  let(:transferred_protect) { create(:transferred_protect, user:) }
   let(:params) do
     {
       id: protect.id,
@@ -187,26 +187,34 @@ RSpec.describe 'Protects' do
       it '名前と一致する投稿が表示されること' do
         params[:search] = 'Protect'
         get '/protects'
-        expect(response.body).to include protect.name
+        within('.index') do
+          expect(response.body).to include protect.name
+        end
       end
 
       it '都道府県と一致する投稿が表示されること' do
         params[:prefecture] = '北海道'
         get '/protects'
-        expect(response.body).to include protect.prefecture
+        within('.index') do
+          expect(response.body).to include protect.prefecture
+        end
       end
 
       it 'サイズと一致する投稿が表示されること' do
         params[:size] = '小型犬'
         get '/protects'
-        expect(response.body).to include protect.size
+        within('.index') do
+          expect(response.body).to include protect.size
+        end
       end
 
       it '日付で検索した場合、検索条件に一致する投稿が表示されること' do
         params[:start_date] = '2000/01/01'
         params[:end_date] = '2000/12//31'
         get '/protects'
-        expect(response.body).to include protect.date.strftime("%Y年%m月%d日")
+        within('.index') do
+          expect(response.body).to include protect.date.strftime("%Y年%m月%d日")
+        end
       end
     end
 
@@ -258,34 +266,42 @@ RSpec.describe 'Protects' do
     context '検索した条件と一致する場合' do
       it '名前と一致する投稿が表示されること' do
         params[:search] = 'ferred'
-        get '/protects'
-        expect(response.body).to include trandferred_protect.name
+        get '/protects/transferred'
+        within('.index') do
+          expect(response.body).to include transferred_protect.name
+        end
       end
 
       it '都道府県と一致する投稿が表示されること' do
         params[:prefecture] = '東京都'
-        get '/protects'
-        expect(response.body).to include trandferred_protect.prefecture
+        get '/protects/transferred'
+        within('.index') do
+          expect(response.body).to include transferred_protect.prefecture
+        end
       end
 
       it 'サイズと一致する投稿が表示されること' do
         params[:size] = '小型犬'
-        get '/protects'
-        expect(response.body).to include trandferred_protect.size
+        get '/protects/transferred'
+        within('.index') do
+          expect(response.body).to include transferred_protect.size
+        end
       end
 
       it '日付で検索した場合、検索条件に一致する投稿が表示されること' do
         params[:start_date] = '2000/01/01'
         params[:end_date] = '2000/12/31'
-        get '/protects'
-        expect(response.body).to include trandferred_protect.date.strftime("%Y年%m月%d日")
+        get '/protects/transferred'
+        within('.index') do
+          expect(response.body).to include transferred_protect.date.strftime("%Y年%m月%d日")
+        end
       end
     end
 
     context '検索した条件と一致しない場合' do
       it '名前と一致しない投稿が表示されないこと' do
         params[:search] = 'Protect'
-        get '/protects'
+        get '/protects/transferred'
         within('.index') do
           expect(response.body).not_to include('猫ちゃん')
         end
@@ -293,7 +309,7 @@ RSpec.describe 'Protects' do
 
       it '都道府県と一致しない投稿が表示されないこと' do
         params[:prefecture] = '北海道'
-        get '/protects'
+        get '/protects/transferred'
         within('.index') do
           expect(response.body).not_to include('大阪府')
         end
@@ -301,7 +317,7 @@ RSpec.describe 'Protects' do
 
       it 'サイズと一致しない投稿が表示されないこと' do
         params[:size] = '小型犬'
-        get '/protects'
+        get '/protects/transferred'
         within('.index') do
           expect(response.body).not_to include('大型犬')
         end
@@ -310,7 +326,7 @@ RSpec.describe 'Protects' do
       it '日付で検索した場合、検索条件に一致する投稿が表示されること' do
         params[:start_date] = '2000/01/01'
         params[:end_date] = '2000/12//31'
-        get '/protects'
+        get '/protects/transferred'
         within('.index') do
           expect(response.body).not_to include('2001年11月01日')
         end
