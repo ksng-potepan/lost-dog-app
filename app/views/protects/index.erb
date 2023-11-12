@@ -33,8 +33,9 @@
 
       <div class="amble-show">
         投稿日：</br>
-        <%= link_to protect.created_at.strftime("%Y年%m月%d日"), protect_path(protect) %>
-        <%= link_to 'の詳細はこちら', protect_path(protect) %>
+        <%= l protect.created_at %></br>
+        <%= link_to protect.user.username, protect_path(protect) %>
+        <%= link_to '様が投稿した詳細はこちら', protect_path(protect) %>
       </div>
 
       <table class="amble-index-table">
