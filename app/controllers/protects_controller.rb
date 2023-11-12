@@ -72,6 +72,18 @@ class ProtectsController < ApplicationController
     @protect = Protect.where(user_id: current_user.id)
   end
 
+  def transferred
+    @user = current_user
+    @protect = Protect.where(transferred: true)
+    if params[:search].present?
+      @protect = @protect.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?', "%#{params[:search]}%",
+                                "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+    @protect = @protect.where(prefecture: params[:prefecture]) if params[:prefecture].present?
+    @protect = @protect.where(size: params[:size]) if params[:size].present?
+    return unless params[:start_date].present? && params[:end_date].present?
+
+    @protect = @protect.where(date: params[:start_date]..params[:end_date])
   end
 
   private
