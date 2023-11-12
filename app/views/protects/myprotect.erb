@@ -1,0 +1,46 @@
+<h2 class="title">ー 自分の投稿一覧 ー</h2>
+<div class="index">
+  <% @protect.each do |p| %>
+    <div class="amble-index">
+      <div class="amble-index-image">
+          <% if p.image.attached? %>
+            <%= image_tag p.image, :size => '150x150' %>
+          <% else %>
+            <%= image_tag("default_dog.png", :size => "150x150") %>
+          <% end %>
+      </div>
+
+      <div class="amble-show">
+        投稿日：</br>
+        <%= l p.created_at %></br>
+        <%= link_to "【詳細を見る】", protect_path(p) %>
+        <%= link_to "【編集する】", edit_protect_path(p) %>
+        <%= button_to protect_path(p), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
+          <i class="fa-solid fa-trash">投稿を削除</i>
+        <% end %>
+        <%= button_to protect_path(p), method: :delete, data: { turbo_confirm: "個人情報保護のため削除します。" } do %>
+          <i class="fa-solid fa-circle-check">解決しました</i>
+        <% end %>
+      </div>
+
+      <table class="amble-index-table">
+        <tr>
+          <th>名前：</th>
+          <td><%= p.name %></td>
+        </tr>
+        <tr>
+          <th>保護日時：</th>
+          <td><%= l p.date %>|<%= p.time %></td>
+        </tr>
+        <tr>
+          <th>保護場所：</th>
+          <td><%= p.prefecture %>|<%= p.municipalities %>|<%= p.area %></td>
+        </tr>
+        <tr>
+          <th>保護状況：</th>
+          <td style="height: 150px;"><%= p.situation %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>

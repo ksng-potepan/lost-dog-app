@@ -1,6 +1,20 @@
 ---
 ja:
   activerecord:
+    attributes:
+      amble:
+        date: "日付け"
+        name: "犬の名前"
+        size: "犬の大きさ"
+        gender: "犬の性別"
+        features: "犬の特徴"
+        situation: "迷子になった状況"
+      protect:
+        date: "日付け"
+        size: "犬の大きさ"
+        gender: "犬の性別"
+        features: "犬の特徴"
+        situation: "迷子になった状況"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -177,14 +191,15 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      default: "%Y年%m月%d日"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
   flash:
     notices:
+      create: 新規作成しました。
       update: 更新しました。
-      update_fail: 更新に失敗しました。
-  flash:
+      destroy: 投稿を削除しました。
     alerts:
       update_fail: 更新に失敗しました。
+      create_fail: 新規作成に失敗しました。

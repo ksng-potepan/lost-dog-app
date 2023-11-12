@@ -1,0 +1,61 @@
+<div class="search">
+  <h2><i class="fa-solid fa-magnifying-glass">投稿を検索する</i></h2>
+  <%= form_tag({controller:"protects",action:"index"}, method: :get) do %>
+    <ul>
+      <li><%= text_field_tag :search, "", placeholder: "キーワード検索" %></li>
+      <li>都道府県を選択：<%= select_tag :prefecture, options_for_select(Adress.adress_areas.keys), include_blank: true %></li>
+      <li>日付けを選択：<%= date_field_tag :start_date, "", placeholder: "開始日時", value: params[:start_date] %>〜
+      <%= date_field_tag :end_date, "", value: Time.now.to_date %></li>
+      <li>大きさ：
+      <%= radio_button_tag :size, :large %>
+      <%= label :sex_large, "大型犬" %>
+      <%= radio_button_tag :size, :medium %>
+      <%= label :sex_medium, "中型犬" %>
+      <%= radio_button_tag :size, :small %>
+      <%= label :sex_small, "小型犬" %></li>
+      <%= submit_tag '検索する' %>
+  <% end %>
+  <%= link_to "リセット", protects_path, class:'link-button' %>
+</div>
+
+<h2 class="total">合計犬数：<%= @protect.count %>件が見つかりました。</h2>
+
+<div class="index">
+  <% @protect.each do |protect| %>
+    <div class="amble-index">
+      <div class="amble-index-image">
+          <% if protect.image.attached? %>
+            <%= image_tag protect.image, :size => '150x150' %>
+          <% else %>
+            <%= image_tag("default_dog.png", :size => "150x150") %>
+          <% end %>
+      </div>
+
+      <div class="amble-show">
+        投稿日：</br>
+        <%= l protect.created_at %></br>
+        <%= link_to protect.user.username, protect_path(protect) %>
+        <%= link_to '様が投稿した詳細はこちら', protect_path(protect) %>
+      </div>
+
+      <table class="amble-index-table">
+        <tr>
+          <th>名前：</th>
+          <td><%= protect.name %></td>
+        </tr>
+        <tr>
+          <th>保護日時：</th>
+          <td><%= l protect.date %>|<%= protect.time %></td>
+        </tr>
+        <tr>
+          <th>保護場所：</th>
+          <td><%= protect.prefecture %>|<%= protect.municipalities %>|<%= protect.area %></td>
+        </tr>
+        <tr>
+          <th>保護状況：</th>
+          <td style="height: 150px;"><%= protect.situation %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>
