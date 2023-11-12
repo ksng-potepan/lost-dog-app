@@ -2,7 +2,7 @@ class Protect < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :date, :prefecture, :situation, presence: true
+  validates :date, :size, :gender, :prefecture, :situation, presence: true
   validates :features, :situation, length: { maximum: 50 }
 
   validate :date_before_start

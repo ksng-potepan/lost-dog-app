@@ -7,7 +7,16 @@ class ProtectsController < ApplicationController
 
   def index
     @user = current_user
-    @protects = Protect.all
+    @protect = Protect.all
+    if params[:search].present?
+      @protect = @protect.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?', "%#{params[:search]}%",
+                                "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+    @protect = @protect.where(prefecture: params[:prefecture]) if params[:prefecture].present?
+    @protect = @protect.where(size: params[:size]) if params[:size].present?
+    return unless params[:start_date].present? && params[:end_date].present?
+
+    @protect = @protect.where(date: params[:start_date]..params[:end_date])
   end
 
   def show
@@ -69,6 +78,7 @@ class ProtectsController < ApplicationController
 
   def protect_params
     params.require(:protect).permit(:name, :breed, :size, :gender, :color, :age, :features, :tag, :chip, :date, :time,
-                                  :prefecture, :municipalities, :area, :situation, :notification, :transferred, :location, :image)
+                                    :prefecture, :municipalities, :area, :situation, :notification, :transferred,
+                                    :location, :image)
   end
 end
