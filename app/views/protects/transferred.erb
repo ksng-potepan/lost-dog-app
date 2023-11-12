@@ -33,16 +33,11 @@
 
       <div class="amble-show">
         投稿日：</br>
-        <%= l a.created_at %></br>
-        <%= link_to a.name, protect_path(a) %>
+        <%= link_to a.created_at.strftime("%Y年%m月%d日"), protect_path(a) %>
         <%= link_to 'の詳細はこちら', protect_path(a) %>
       </div>
 
       <table class="amble-index-table">
-        <tr>
-          <th>愛犬の名前：</th>
-          <td><%= a.name %></td>
-        </tr>
         <tr>
           <th>迷子の日時：</th>
           <td><%= l a.date %>|<%= a.time %></td>
@@ -52,8 +47,8 @@
           <td><%= a.prefecture %>|<%= a.municipalities %>|<%= a.area %></td>
         </tr>
         <tr>
-          <th>迷子の状況：</th>
-          <td style="height: 150px;"><%= a.situation %></td>
+          <th>預けている</br>場所・予定</th>
+          <td style="height: 150px;"><%= a.location %></td>
         </tr>
       </table>
     </div>

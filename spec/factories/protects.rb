@@ -51,7 +51,7 @@ FactoryBot.define do
     features       { "破天荒" }
     tag            { true }
     chip           { true }
-    date           { "2000/11/11" }
+    date           { "2000/11/01" }
     time           { "11:11" }
     prefecture     { "東京都" }
     municipalities { "渋谷区" }
