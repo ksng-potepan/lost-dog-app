@@ -58,6 +58,11 @@ class ProtectsController < ApplicationController
     redirect_to protects_url
   end
 
+  def myprotect
+    @user = current_user
+    @protect = Protect.where(user_id: current_user.id)
+  end
+
   end
 
   private
