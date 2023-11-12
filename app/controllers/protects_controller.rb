@@ -12,7 +12,7 @@ class ProtectsController < ApplicationController
 
   def show
     @user = current_user
-    @protect = Protect.find(params[:id])
+    @protect = Protect.where(id: params[:id])
   end
 
   def new
