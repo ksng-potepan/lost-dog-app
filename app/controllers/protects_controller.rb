@@ -40,7 +40,7 @@ class ProtectsController < ApplicationController
 
   def update
     @user = current_user
-    @protect = Protect.new(room_params)
+    @protect = Protect.find(params[:id])
     @protect.user_id = current_user.id
     if @protect.update(protect_params)
       flash[:notice] = t('flash.notices.update')
