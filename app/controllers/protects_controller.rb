@@ -55,7 +55,9 @@ class ProtectsController < ApplicationController
     @protect = Protect.find(params[:id])
     @protect.destroy
     flash[:notice] = t('flash.notices.destroy')
-    redirect_to protects_url(@protect)
+    redirect_to protects_url
+  end
+
   end
 
   private
