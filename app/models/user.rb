@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :ambles, dependent: :destroy
   has_many :protecs, dependent: :destroy
+  has_many :entries, dependent: :destroy
+  has_many :messages, dependent: :destroy
 end
