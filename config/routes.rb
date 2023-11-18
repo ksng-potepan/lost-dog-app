@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   resources :users, only: [:show, :edit, :update]
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :index, :show]
+
   resources :ambles do
     collection do
       get 'information'
