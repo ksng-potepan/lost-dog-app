@@ -15,34 +15,68 @@
     <th>ユーザー名：</th>
     <td><%= @user.username %></td>
   </tr>
-  <tr>
-    <th>メールアドレス：</th>
-    <td><%= @user.email %></td>
-  </tr>
-  <tr>
-    <th>パスワード：</th>
-    <td>
-      <%= link_to edit_user_registration_path do %>
-        <i class="fa-solid fa-pen">パスワードを変更</i>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>設定：</th>
-    <td>
-      <%= link_to edit_user_path(@user) do %>
-        <i class="fa-solid fa-pen">プロフィール編集</i>
-      <% end %>
-    </td>
-  </tr>
+  <% if @user.id == current_user.id %>
+    <tr>
+      <th>メールアドレス：</th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>パスワード：</th>
+      <td>
+        <%= link_to edit_user_registration_path do %>
+          <i class="fa-solid fa-pen">パスワードを変更</i>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>設定：</th>
+      <td>
+        <%= link_to edit_user_path(@user) do %>
+          <i class="fa-solid fa-pen">プロフィール編集</i>
+        <% end %>
+      </td>
+    </tr>
+  <% else %>
+    <tr>
+      <th>メールアドレス：</th>
+      <td><%= @user.email %></td>
+    </tr>
+  <% end %>
 </table>
 
-<div class="box71">
-  <div class="box-title">自分の投稿を見る</div>
-  <%= link_to myamble_ambles_path(@amble) do %>
-    <i class="fa-solid fa-magnifying-glass">迷子犬</i>
-  <% end %>
-  <%= link_to myprotect_protects_path(@protect) do %>
-    <i class="fa-solid fa-house-chimney-medical">保護犬</i>
-  <% end %>
-</div>
+<% if @user.id == current_user.id %>
+  <div class="box71">
+    <div class="box-title">自分の投稿を見る</div>
+    <%= link_to myamble_ambles_path(@amble) do %>
+      <i class="fa-solid fa-magnifying-glass">迷子犬</i>
+    <% end %>
+    <%= link_to myprotect_protects_path(@protect) do %>
+      <i class="fa-solid fa-house-chimney-medical">保護犬</i>
+    <% end %>
+  </div>
+<% else %>
+  <div class="box71">
+    <div class="box-title"><%= @user.username %>の投稿を見る</div>
+    <%= link_to myamble_ambles_path(@amble) do %>
+      <i class="fa-solid fa-magnifying-glass">迷子犬</i>
+    <% end %>
+    <%= link_to myprotect_protects_path(@protect) do %>
+      <i class="fa-solid fa-house-chimney-medical">保護犬</i>
+    <% end %>
+  </div>
+  <div class="box71">
+    <div class="box-title">ダイレクトメッセージ</div>
+    <% if @is_room == true %>
+      <%= link_to room_path(@room_id), class:'dm-btn' do %>
+        <i class="fa-solid fa-envelope-open"></i>連絡をする
+      <% end %>
+    <% else %>
+      <%= form_for @room, data: { turbo: false } do |f| %>
+        <%= fields_for @entry do |e| %>
+          <%= e.hidden_field :user_id, value: @user.id %>
+        <% end %>
+        <button type="submit" class="dm-btn"><i class="fa-regular fa-envelope"></i>連絡をする</button>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
