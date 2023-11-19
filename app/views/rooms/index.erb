@@ -1,0 +1,14 @@
+<div class="dm-index">
+  <div class="dm-head-index">
+    <h2 class="dm-name-index">トーク一覧</h2>
+  </div>
+
+  <% @another_entries.each do |entry| %>
+    <div class="box23">
+      <%= link_to room_path(entry.room) do %>
+          <div class="entry-name"><%= entry.user.username %></div>
+          <%= Message.find_by(id: entry.room.message_ids.last)&.message %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
