@@ -38,6 +38,12 @@
                 <span class='header-item'>マイページ</span>
               <% end %>
             </li>
+            <li>
+              <%= link_to rooms_path(@room), class:'header-link' do %>
+                <%= image_tag 'dm.png', class:'menu-logo' %>
+                <span class='header-item'>DM</span>
+              <% end %>
+            </li>
           </ul>
         </div>
       </div>
