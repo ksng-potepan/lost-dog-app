@@ -70,6 +70,11 @@ class AmblesController < ApplicationController
     @amble = Amble.where(user_id: current_user.id)
   end
 
+  def list
+    @user = current_user
+    @amble = Amble.where(user_id: params[:id])
+  end
+
   private
 
   def amble_params

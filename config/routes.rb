@@ -14,12 +14,18 @@ Rails.application.routes.draw do
       get 'information'
       get 'myamble'
     end
+    member do
+      get 'list'
+    end
   end
   resources :protects do
     collection do
       get 'information'
       get 'myprotect'
       get 'transferred'
+    end
+    member do
+      get 'list'
     end
   end
 end

@@ -57,10 +57,10 @@
 <% else %>
   <div class="box71">
     <div class="box-title"><%= @user.username %>の投稿を見る</div>
-    <%= link_to myamble_ambles_path(@amble) do %>
+    <%= link_to list_amble_path do %>
       <i class="fa-solid fa-magnifying-glass">迷子犬</i>
     <% end %>
-    <%= link_to myprotect_protects_path(@protect) do %>
+    <%= link_to list_protect_path do %>
       <i class="fa-solid fa-house-chimney-medical">保護犬</i>
     <% end %>
   </div>
