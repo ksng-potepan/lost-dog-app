@@ -1224,7 +1224,7 @@ caption {
   height: 650px;
   background-color: #F8EDE3;
   border: 3px solid #85586F;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: -1px 1px 13px 0px rgba(72, 66, 66, 0.6);
 }
 
@@ -1237,7 +1237,6 @@ caption {
   background-color: #F8EDE3;
   line-height: 50px;
   z-index: 10;
-  border-radius: 4px;
 }
 
 .dm-name {
@@ -1296,14 +1295,13 @@ caption {
 
 .dm-area {
   position: fixed;
-  top: 610px;
+  top: 612px;
   width: 594px;
-  height: 50px;
+  height: 65px;
   padding-left: 100px;
   border-top: 2px solid #85586F;
   background-color: #F8EDE3;
   z-index: 10;
-  border-radius: 4px;
 }
 
 .box23 {
@@ -1333,6 +1331,14 @@ caption {
   border: 3px solid #85586F;
   border-radius: 10px;
   box-shadow: -1px 1px 13px 0px rgba(72, 66, 66, 0.6);
+}
+
+.dm-form::-webkit-scrollbar {
+  display: none;
+}
+
+.dm-index::-webkit-scrollbar {
+  display: none;
 }
 
 .dm-head-index {

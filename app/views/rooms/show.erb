@@ -1,6 +1,6 @@
 <div class="dm-form">
   <div class="dm-head">
-    <%= link_to rooms_path(@room), class:'header-link' do %>
+    <%= link_to rooms_path(@room), class:'header-link', id: 'rooms' do %>
       <i class="fa-solid fa-arrow-left"></i>
     <% end %>
     <% @entries.each do |e| %>
@@ -28,7 +28,7 @@
     <%= form_with model: @message, local:true, data: { turbo: false } do |f| %>
       <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field" %>
       <%= f.hidden_field :room_id, value: @room.id %>
-      <%= button_tag :type => "submit" do %>
+      <%= button_tag :type => "submit", name: "送信" do %>
         <i class="fa-regular fa-paper-plane"></i>
       <% end %>
     <% end %>
