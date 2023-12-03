@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users' do
   let(:user) { create(:user) }
+  let(:other_user) { create(:other_user) }
 
   describe 'GET /users/sign_up' do
     it '新規登録画面の表示に成功すること' do
@@ -107,6 +108,17 @@ RSpec.describe 'Users' do
 
     it 'メールアドレスが表示されていること' do
       expect(response.body).to include user.email
+    end
+
+    it 'ダイレクトメッセージが表示されていないこと' do
+      expect(response.body).not_to include "ダイレクトメッセージ"
+    end
+
+    it '異なるユーザーであればダイレクトメッセージが表示されていること' do
+      sign_out user
+      sign_in other_user
+      get user_path(user.id)
+      expect(response.body).to include "ダイレクトメッセージ"
     end
   end
 

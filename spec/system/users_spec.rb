@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users' do
   let(:user) { create(:user) }
+  let(:other_user) { create(:other_user) }
 
   describe 'ユーザー新規登録について' do
     before do
@@ -196,6 +197,67 @@ RSpec.describe 'Users' do
         within('.header-menu') do
           expect(page).to have_content 'ログイン'
         end
+      end
+    end
+  end
+
+  describe 'マイページについて' do
+    context 'current_userがサインインしている場合' do
+      before do
+        sign_in user
+        visit user_path(user)
+      end
+
+      it 'プロフィール編集先のリンクに遷移すること' do
+        within('.account-table') do
+          click_link 'プロフィール編集'
+          expect(page).to have_current_path edit_user_path(user), ignore_query: true
+        end
+      end
+
+      it '自分が投稿した迷子犬のリンクに遷移すること' do
+        within('.box71') do
+          click_link '迷子犬'
+          expect(page).to have_current_path myamble_ambles_path, ignore_query: true
+        end
+      end
+
+      it '自分が投稿した保護犬のリンクに遷移すること' do
+        within('.box71') do
+          click_link '保護犬'
+          expect(page).to have_current_path myprotect_protects_path, ignore_query: true
+        end
+      end
+
+      it 'ダイレクトメッセージの表示がないこと' do
+        expect(page).not_to have_content 'ダイレクトメッセージ'
+      end
+    end
+
+    context 'other_userがサインインしている場合' do
+      before do
+        sign_in other_user
+        visit user_path(user)
+      end
+
+      it 'プロフィール編集先のリンクがないこと' do
+        within('.account-table') do
+          expect(page).not_to have_content 'プロフィール編集'
+        end
+      end
+
+      it 'userが投稿した迷子犬のリンクに遷移すること' do
+        click_link '迷子犬'
+        expect(page).to have_current_path list_amble_path(user), ignore_query: true
+      end
+
+      it 'userが投稿した保護犬のリンクに遷移すること' do
+        click_link '保護犬'
+        expect(page).to have_current_path list_protect_path(user), ignore_query: true
+      end
+
+      it 'ダイレクトメッセージの表示があること' do
+        expect(page).to have_content '連絡をする'
       end
     end
   end

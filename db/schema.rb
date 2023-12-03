@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_071505) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_18_071228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_071505) do
     t.string "time"
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "protects", force: :cascade do |t|
     t.string "name"
     t.string "breed"
@@ -89,6 +104,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_071505) do
     t.text "notification"
     t.boolean "transferred", default: false
     t.text "location"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

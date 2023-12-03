@@ -1,0 +1,36 @@
+<div class="dm-form">
+  <div class="dm-head">
+    <%= link_to rooms_path(@room), class:'header-link', id: 'rooms' do %>
+      <i class="fa-solid fa-arrow-left"></i>
+    <% end %>
+    <% @entries.each do |e| %>
+      <% if @my_user != e.user.id %>
+        <h2 class="dm-name"><%= link_to "#{e.user.username}さん", user_path(e.user.id) %></h2>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="dm-message">
+    <% @messages.each do |m| %>
+      <% if m.user_id == current_user.id %>
+        <div class="balloon_r">
+          <p class="says"><%= m.message %></p>
+        </div>
+      <% else %>
+        <div class="balloon_l">
+          <div class="says"><p><%= m.message %></p></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="dm-area">
+    <%= form_with model: @message, local:true, data: { turbo: false } do |f| %>
+      <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= button_tag :type => "submit", name: "送信" do %>
+        <i class="fa-regular fa-paper-plane"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>

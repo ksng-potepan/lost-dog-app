@@ -22,7 +22,9 @@
         <% end %>
       <% else %>
         <%= a.user.username %>様</br>
-        <i class="fa-solid fa-envelope">連絡はこちら</i>
+        <%= link_to user_path(a.user_id) do %>
+          <i class="fa-solid fa-envelope"></i>連絡をする
+        <% end %>
       <% end %>
     </div>
 

@@ -72,6 +72,11 @@ class ProtectsController < ApplicationController
     @protect = Protect.where(user_id: current_user.id)
   end
 
+  def list
+    @user = current_user
+    @protect = Protect.where(user_id: params[:id])
+  end
+
   def transferred
     @user = current_user
     @protect = Protect.where(transferred: true)
