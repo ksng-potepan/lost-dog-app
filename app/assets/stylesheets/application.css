@@ -1108,7 +1108,6 @@ caption {
 
 .box71 {
   width: 200px;
-  height: 130px;
   position: relative;
   top: -380px;
   left: 70%;
@@ -1531,3 +1530,79 @@ caption {
   }
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 10% auto;
+  width: 500px;
+  overflow: auto;
+  padding: 20px;
+  word-wrap: break-word;
+  box-shadow: 0 10px 20px #ccc;
+}
+
+.modal-image {
+  margin: 15px;
+  object-fit: contain;
+  float: left;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+.modal-header {
+  background: lightblue;
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modalClose:hover {
+  cursor: pointer;
+}
+
+.sighting-map-index {
+  margin-top: 20px;
+  margin-left: 20%;
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width:1024px) {
+  .sighting-map-index {
+    margin-top: 100px;
+    margin-left: 6%;
+  }
+
+  .modal-content {
+    margin: 20% 35%;
+  }
+}
+
+@media screen and (max-width:750px) {
+  .modal-content {
+    margin: 25% auto;
+    width: 300px;
+  }
+}

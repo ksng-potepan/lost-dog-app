@@ -5,6 +5,11 @@ class SightingsController < ApplicationController
     @user = current_user
   end
 
+  def index
+    @user = current_user
+    @sighting = Sighting.all
+  end
+
   def new
     @user = current_user
     @sighting = Sighting.new
@@ -21,6 +26,12 @@ class SightingsController < ApplicationController
       flash.now[:alert] = t('flash.alerts.create_fail')
       render :new
     end
+  end
+
+  def destroy
+    @sighting = Sighting.find(params[:id])
+    @sighting.destroy
+    redirect_to sightings_path
   end
 
   private
