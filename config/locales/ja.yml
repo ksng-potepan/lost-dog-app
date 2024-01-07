@@ -15,6 +15,9 @@ ja:
         gender: "犬の性別"
         features: "犬の特徴"
         situation: "迷子になった状況"
+      sighting:
+        date: "日付け"
+        area: "迷子になった場所"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

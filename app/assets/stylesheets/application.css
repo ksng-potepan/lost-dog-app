@@ -1441,3 +1441,93 @@ caption {
     display: block;
   }
 }
+
+/* ---目撃情報関連--- */
+.sighting-form {
+  float: right;
+  width: 400px;
+  height: 500px;
+  margin-top: 80px;
+  margin-right: 15px;
+  border-radius: 10px;
+  border: 4px solid rgba(225, 225, 225, 0);
+  position: relative;
+  background: #98b4ca;
+  box-shadow: inset 0 0 0 2px #fff, 0px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.sighting-item {
+  border-bottom: 2px solid #624646;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.sighting-item-Label {
+  width: 80px;
+  max-width: 220px;
+  font-size: 15px;
+  display: inline-block;
+}
+
+.sighting-item-input {
+  height: 25px;
+  width: 100%;
+}
+
+.sighting-item-textarea {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  height: 60px;
+  flex: 1;
+  width: 100%;
+  max-width: 300px;
+  background: #eaedf2;
+  font-size: 15px;
+}
+
+.sighting-map {
+  margin-top: 20px;
+  margin-left: 20%;
+  margin-bottom: 50px;
+}
+
+#map {
+  height: 500px;
+  width: 50%;
+}
+
+@media screen and (max-width:1024px) {
+  .sighting-map {
+    margin-top: 60px;
+    margin-left: 6%;
+  }
+
+  #map {
+    height: 400px;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width:750px) {
+  .sighting-form {
+    float: none;
+    position: relative;
+    top: 550px;
+  }
+
+  .sighting-map {
+    position: relative;
+    top: -550px;
+  }
+
+  #map {
+    height: 350px;
+    width: 350px;
+  }
+}
+
