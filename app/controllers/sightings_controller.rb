@@ -34,6 +34,16 @@ class SightingsController < ApplicationController
     redirect_to sightings_path
   end
 
+  def mysighting
+    @user = current_user
+    @sighting = Sighting.where(user_id: current_user.id)
+  end
+
+  def list
+    @user = current_user
+    @sighting = Sighting.where(user_id: params[:id])
+  end
+
   private
 
   def sighting_params
