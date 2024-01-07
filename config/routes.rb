@@ -9,6 +9,15 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :index, :show]
 
+  resources :sightings do
+    collection do
+      get 'information'
+      get 'mysighting'
+    end
+    member do
+      get 'list'
+    end
+  end
   resources :ambles do
     collection do
       get 'information'
