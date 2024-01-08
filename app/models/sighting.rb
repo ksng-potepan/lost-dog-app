@@ -2,7 +2,8 @@ class Sighting < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :area, :date, presence: true
+  validates :lat, numericality: { greater_than: 0 }
+  validates :area, presence: true
   validates :situation, length: { maximum: 100 }
   validate :date_before_start
 
