@@ -22,7 +22,7 @@
         <p><%= sighting.situation %></p>
         <p>
           <% if sighting.user_id == current_user.id %>
-            <%= button_to sighting_path(sighting), method: :delete do %>
+            <%= button_to sighting_path(sighting), method: :delete, data: { turbo: false } do %>
               <i class="fa-solid fa-trash">投稿を削除</i>
             <% end %>
           <% else %>
