@@ -1,0 +1,106 @@
+<div class="sighting-form">
+  <h2 class="board-title">ー 目撃情報 ー</h2>
+  <%= form_with model: @sighting, local:true, data: { turbo: false } do |f| %>
+    <%= render 'layouts/error_sightings', object: f.object %>
+
+    <div class="field-area">
+      <div class="sighting-item">
+        <p class="sighting-item-Label">場所<span class="asterisk">*</span></i></p>
+        <%= f.text_field :area, class: "sighting-item-input", placeholder: "〇〇公園、〇〇駅付近など", value: @sighting.area %>
+      </div>
+
+      <div class="sighting-item">
+        <p class="sighting-item-Label">日付け<span class="asterisk">*</span></i></p>
+        <%= f.date_field :date, class: "sighting-item-input", value: @sighting.date %>
+      </div>
+
+      <div class="sighting-item">
+        <p class="sighting-item-Label">時間</p>
+        <%= f.text_field :time, class: "sighting-item-input", placeholder: "00:00、何時ごろなど", value: @sighting.time %>
+      </div>
+
+      <div class="sighting-item">
+        <p class="sighting-item-Label">特徴や状況</p>
+        <%= f.text_area :situation, class: "sighting-item-textarea", placeholder: "１００文字以内で記入してください", value: @sighting.situation %>
+      </div>
+
+      <div class="sighting-item">
+        <p class="sighting-item-Label">犬の写真</p>
+        <%= f.file_field :image %>
+      </div>
+
+      <%= f.hidden_field :lat,:value =>"緯度", id: :lat %>
+      <%= f.hidden_field :lng,:value =>"経度", id: :lng %>
+
+      <div class="board-actions">
+        <%= f.submit "登録する" %>
+        <%= link_to "記入をキャンセルする", root_path, class:'link-button' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="sighting-map">
+  <h2>Map</h2>
+
+  <input id="address" type="textbox">
+  <input type="button" value="検索" onclick="codeAddress()">
+  <p>検索をしてマーカーを立ててください。<p>
+  <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+  <div id='map'></div>
+</div>
+
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: 35.6803997, lng:139.7690174},  //東京
+    zoom: 15,
+  });
+}
+
+//検索後のマップ作成
+let geocoder
+let aft
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+        //マーカーが複数できないようにする
+        if (aft == true){
+            marker.setMap(null);
+        }
+
+        //新しくマーカーを作成する
+        map.setCenter(results[0].geometry.location);
+            marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            draggable: true	// ドラッグ可能にする
+        });
+
+        //二度目以降か判断
+        aft = true
+
+        //検索した時に緯度経度を入力する
+        document.getElementById('lat').value = results[0].geometry.location.lat();
+        document.getElementById('lng').value = results[0].geometry.location.lng();
+
+        // マーカーのドロップ（ドラッグ終了）時のイベント
+        google.maps.event.addListener( marker, 'dragend', function(ev){
+            // イベントの引数evの、プロパティ.latLngが緯度経度
+            document.getElementById('lat').value = ev.latLng.lat();
+            document.getElementById('lng').value = ev.latLng.lng();
+        });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAP_API']%>&callback=initMap" async defer></script>

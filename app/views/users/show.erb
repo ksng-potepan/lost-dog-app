@@ -53,6 +53,9 @@
     <%= link_to myprotect_protects_path(@protect) do %>
       <i class="fa-solid fa-house-chimney-medical">保護犬</i>
     <% end %>
+    <%= link_to mysighting_sightings_path(@sighting) do %>
+      <i class="fa-solid fa-eye">目撃情報</i>
+    <% end %>
   </div>
 <% else %>
   <div class="box71">
@@ -62,6 +65,9 @@
     <% end %>
     <%= link_to list_protect_path do %>
       <i class="fa-solid fa-house-chimney-medical">保護犬</i>
+    <% end %>
+    <%= link_to list_sighting_path do %>
+      <i class="fa-solid fa-eye">目撃情報</i>
     <% end %>
   </div>
   <div class="box71">

@@ -21,15 +21,21 @@
               <% end %>
             </li>
             <li>
-              <%= link_to '/', class:'header-link' do %>
+              <%= link_to protects_path, class:'header-link' do %>
                 <%= image_tag 'rescued-dog.png', class:'menu-logo' %>
                 <span class='header-item'>保護しました</span>
               <% end %>
             </li>
             <li>
-              <%= link_to '/', class:'header-link' do %>
+              <%= link_to transferred_protects_path, class:'header-link' do %>
                 <%= image_tag 'temporarily-rescued.png', class:'menu-logo' %>
                 <span class='header-item'>一時お預かり</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to sightings_path, class:'header-link' do %>
+                <%= image_tag 'sightings.png', class:'menu-logo' %>
+                <span class='header-item'>目撃情報</span>
               <% end %>
             </li>
             <li>
@@ -68,21 +74,27 @@
               <% end %>
             </li>
             <li>
-              <%= link_to '/', class:'header-link' do %>
+              <%= link_to ambles_path, class:'header-link' do %>
                 <%= image_tag 'lost-dog.png', class:'menu-logo' %>
                 <span class='header-item'>探しています</span>
               <% end %>
             </li>
             <li>
-              <%= link_to '/', class:'header-link' do %>
+              <%= link_to protects_path, class:'header-link' do %>
                 <%= image_tag 'rescued-dog.png', class:'menu-logo' %>
                 <span class='header-item'>保護しました</span>
               <% end %>
             </li>
             <li>
-              <%= link_to '/', class:'header-link' do %>
+              <%= link_to transferred_protects_path, class:'header-link' do %>
                 <%= image_tag 'temporarily-rescued.png', class:'menu-logo' %>
                 <span class='header-item'>一時お預かり</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to sightings_path, class:'header-link' do %>
+                <%= image_tag 'sightings.png', class:'menu-logo' %>
+                <span class='header-item'>目撃情報</span>
               <% end %>
             </li>
           </ul>
