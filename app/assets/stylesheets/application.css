@@ -133,6 +133,15 @@ button {
   }
 }
 
+/* ---top-logo--- */
+.top-logo {
+  position: fixed;
+  top: 50px;
+  left: 20%;
+  width: 550px;
+}
+
+
 /* ---header--- */
 .header {
   position: fixed;
