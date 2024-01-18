@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   post 'users/update' => 'users#update'
+  get  "information"  => "home#information"
 
   root to: 'home#top'
   devise_for :users, controllers: {
