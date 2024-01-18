@@ -1,11 +1,11 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * This is a manifest file that'll be compiled into appliinfo-linkion.css, which will include all the files
  * listed below.
  *
  * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * You're free to add appliinfo-linkion-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
@@ -135,16 +135,102 @@ button {
 
 /* ---top-logo--- */
 .top-logo {
-  position: fixed;
-  top: 50px;
-  left: 20%;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translate(-50%, -50%);
   width: 550px;
 }
 
+h1 {
+  position: absolute;
+  top: 15%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  width: 255px;
+  margin-left: 20px;
+  padding-top: 3px;
+  padding-left: 20px;
+  border-top: #ffec47 solid 1px;
+  font-size: 25px;
+}
+
+h1:before {
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid #fdee6b;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+h1:after {
+  border-top: 30px solid #fdee6b;
+  border-left: 30px solid transparent;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+
+.top-new {
+  position: absolute;
+  top: 46%;
+  left: 82%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+}
+
+.top-new ul {
+  margin-top: 25px;
+  margin-left: 25px;
+  width: 250px;
+  border-top: solid #ffec47 1px;
+  border-bottom: solid #ffec47 1px;
+  padding: 0 0.5em;
+  box-shadow: 0px 2px 5px 0px #e5dada;
+}
+
+.top-new ul li {
+  line-height: 1.5;
+  padding: 5px 0;
+}
+
+@media screen and (max-width:1024px) {
+  .top-logo {
+    left: 50%;
+  }
+
+  .top-new {
+    top: 130%;
+    left: 50%;
+    padding-bottom: 30px;
+  }
+
+  h1 {
+    top: 97%;
+    left: 48%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .top-logo {
+    width: 500px;
+  }
+
+  h1 {
+    left: 46%;
+  }
+}
+
 .information-link {
-  position: fixed;
-  top: 550px;
-  left: 31%;
+  position: absolute;
+  top: 75%;
+  left: 45%;
+  transform: translate(-50%, -50%);
   z-index: 10;
 }
 
@@ -249,7 +335,11 @@ button {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+  }
+
+  .information-link {
+    left: 50%;
+  }
 
   .info-amble-link {
     top: 70%;
@@ -286,6 +376,10 @@ button {
 }
 
 @media screen and (max-width:600px) {
+  .information-link {
+    width: 300px;
+  }
+
   .info-amble-link {
     top: 70%;
     transform: translate(-50%, -50%);
