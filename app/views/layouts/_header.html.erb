@@ -50,6 +50,11 @@
                 <span class='header-item'>DM</span>
               <% end %>
             </li>
+            <li>
+            <%= link_to information_path, class:'header-link' do %>
+              <i class="fa-solid fa-pen"></i>投稿する
+            <% end %>
+            </li>
           </ul>
         </div>
       </div>
@@ -96,6 +101,11 @@
                 <%= image_tag 'sightings.png', class:'menu-logo' %>
                 <span class='header-item'>目撃情報</span>
               <% end %>
+            </li>
+            <li>
+            <%= link_to information_path, class:'header-link' do %>
+              <i class="fa-solid fa-pen"></i>投稿する
+            <% end %>
             </li>
           </ul>
         </div>

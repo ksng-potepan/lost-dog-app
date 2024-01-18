@@ -44,6 +44,10 @@ class SightingsController < ApplicationController
     @sighting = Sighting.where(user_id: params[:id])
   end
 
+  def topic
+    @sighting = Sighting.order(created_at: :desc).limit(3)
+  end
+
   private
 
   def sighting_params
