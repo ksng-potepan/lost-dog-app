@@ -1,24 +1,67 @@
-# README
+# 迷子犬掲示板「ドッグル」
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+このwebサイトは、迷子犬の情報共有を目的とした掲示板です。  
+飼い犬が迷子になったり、迷子犬を保護したり、目撃した情報を共有できます。  
+DM機能を備えているのでユーザー同士のやり取りが可能です。  
 
-Things you may want to cover:
+<img width="491" alt="トップロゴ" src="https://github.com/ksng-potepan/lost-dog-app/assets/125693644/018ad6ae-0f3a-48ba-bec0-6666f38e8b8e">
 
-* Ruby version
+## サイトへの想い
+現在、迷子犬の情報共有には、複数のサイトに情報を登録する必要があり、手間がかかってしまいます。  
+また、サイトによって情報が偏ってしまい、探しにくくなってしまうという課題があります。  
+迷子犬の情報共有を円滑にし早期発見することを目指したいという思いで作成しました。
 
-* System dependencies
+目撃情報をマップで表示することで、迷子犬の周辺の情報を簡単に確認できるようにしています。  
+また、保護できない場合の連絡先を記載することで、速やかに迎えに行けることを促します。
 
-* Configuration
+今後も機能の拡充やサービスの改善に取り組んで、迷子犬の情報共有といえば **「ドッグル」** になるよう実現を目指します。
 
-* Database creation
+## 使用技術
+- Ruby 3.2.2p53
+- Rails 7.0.7.2
+- PostgreSQL 1.5.4
+- Fly.io
+- Docker
+- GitHub Actions
+- RSpec
+- Capybara
+- Rubocop
+- Maps JavaScript API
 
-* Database initialization
 
-* How to run the test suite
+### 構図
+![迷子犬システム構成図](https://github.com/ksng-potepan/lost-dog-app/assets/125693644/0958ee65-8356-4122-9471-90342b78ef1e)
 
-* Services (job queues, cache servers, search engines, etc.)
+### ER図
+![迷子犬ER図](https://github.com/ksng-potepan/lost-dog-app/assets/125693644/4e40bcb7-6232-4d0c-a0ea-f137908dafa7)
 
-* Deployment instructions
+## 機能一覧
+#### ユーザー(deviseを採用)
+- 新規登録
+- サインイン/サインアウト
+- プロフィールやパスワードの編集
 
-* ...
+ ゲストログイン機能はつけていません。  
+ 新規登録の段階を踏んでもらうことにより、曖昧な情報をアップされないことを目的とします。
+
+#### 掲示板
+- 探している人/保護した人の情報を投稿
+- 投稿の編集
+- 一覧表示
+- 検索機能
+
+ 一時お預かりの機能を追加しました。  
+ 長期的にお預かりができない保護者の方でも、近所の人の協力で、殺処分を避けることができます。
+
+#### 目撃情報
+- 目撃した犬の情報を投稿
+- マップでの一覧表示
+
+#### DM機能
+
+## 今後実装していくこと
+- AI画像検索
+- 掲示板の並べ替え機能
+- DMの通知機能
+- DM内の画像や動画の添付
+- 画像複数投稿機能
