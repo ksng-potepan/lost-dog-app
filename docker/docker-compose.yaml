@@ -15,9 +15,18 @@ services:
       - "3000:3000"
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:?}:${POSTGRES_PASSWORD:?}@db:5432/${POSTGRES_DB:?}
+      SELENIUM_DRIVER_URL: http://selenium_chrome:4444/wd/hub
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+    platform: linux/x86_64
+    networks:
+      ktg-net:
+
+  selenium_chrome:
+    image: seleniarm/standalone-chromium
+    networks:
+      ktg-net:
+
 
   db:
     image: postgres:15.4-alpine
@@ -36,12 +45,17 @@ services:
       timeout: 10s
       retries: 3
       start_period: 5s
+    networks:
+      ktg-net:
 
   adminer:
     image: adminer
     restart: always
     ports:
       - "8080:8080"
+
+networks:
+  ktg-net:
 
 volumes:
   pgdata:

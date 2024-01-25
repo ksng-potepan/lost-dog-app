@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     sessions:      'users/sessions',
     registrations: "users/registrations"
   }
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   resources :users, only: [:show, :edit, :update]
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :index, :show]
