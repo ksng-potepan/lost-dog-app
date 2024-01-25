@@ -187,4 +187,21 @@ RSpec.describe 'Users' do
       end
     end
   end
+
+  describe 'DELETE /users' do
+    before do
+      sign_in user
+    end
+
+    it 'アカウントが削除されること' do
+      expect do
+        delete user_registration_path
+      end.to change(User, :count).by -1
+    end
+
+    it 'リダイレクトすること' do
+      delete user_registration_path
+      expect(response).to redirect_to root_path
+    end
+  end
 end

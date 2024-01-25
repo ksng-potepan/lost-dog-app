@@ -23,18 +23,11 @@
     <tr>
       <th>パスワード：</th>
       <td>
-        <%= link_to edit_user_registration_path do %>
-          <i class="fa-solid fa-pen">パスワードを変更</i>
-        <% end %>
-      </td>
+        <%= link_to "パスワードを変更する", edit_user_registration_path %></td>
     </tr>
     <tr>
       <th>設定：</th>
-      <td>
-        <%= link_to edit_user_path(@user) do %>
-          <i class="fa-solid fa-pen">プロフィール編集</i>
-        <% end %>
-      </td>
+      <td><%= link_to "プロフィール編集する", edit_user_path(@user) %></td>
     </tr>
   <% else %>
     <tr>

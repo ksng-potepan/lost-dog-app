@@ -261,4 +261,20 @@ RSpec.describe 'Users' do
       end
     end
   end
+
+  describe 'アカウント削除について' do
+    before do
+      sign_in user
+      visit edit_user_registration_path
+      click_on 'アカウントを削除'
+    end
+
+    it '通知メッセージが表示されること' do
+      expect(page).to have_content 'ユーザーを削除しました。'
+    end
+
+    it 'root_pathに遷移すること' do
+      expect(page).to have_current_path root_path
+    end
+  end
 end

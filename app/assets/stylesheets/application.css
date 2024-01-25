@@ -701,7 +701,7 @@ i::before {
   margin-left: 25%;
   margin-top: 30px;
   width: 40%;
-  height: 400px;
+  height: 450px;
   background-color: rgba(255, 248, 242, 0.311);
   border: 2px solid #ed9f76;
   border-radius: 20px;
@@ -712,9 +712,7 @@ i::before {
   margin-top: 20px;
   margin-left: 45%;
   border-radius: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 20px;
+  width: 150px;
 }
 
 .field-area {
@@ -744,6 +742,11 @@ i::before {
     margin-left: 5px;
     width: 98%;
     height: 400px;
+  }
+
+  .account-table th,
+  .account-table td {
+    font-size: 12px;
   }
 
   .trash-field {
@@ -915,11 +918,6 @@ i::before {
 
   .board-item-Label {
     font-size: 15px;
-  }
-
-  input[type="text"] {
-    margin: 0 0;
-    font-size: 12px;
   }
 
   .board-item-textarea {

@@ -204,6 +204,7 @@ ja:
       create: 新規作成しました。
       update: 更新しました。
       destroy: 投稿を削除しました。
+      delete: ユーザーを削除しました。
     alerts:
       update_fail: 更新に失敗しました。
       create_fail: 新規作成に失敗しました。

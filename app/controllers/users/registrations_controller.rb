@@ -25,9 +25,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    @user = current_user
+    @user.delete
+    flash[:notice] = t('flash.notices.delete')
+    redirect_to :root
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
