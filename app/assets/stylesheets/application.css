@@ -56,27 +56,12 @@ button {
   display: contents;
 }
 
-.error-messages,
-.error {
-  position: absolute;
-  top: 10px;
-  left: 30%;
-  background-color: #edc6b1d3;
-  border: solid 2px #b75d5d;
-  border-radius: 10px;
-  padding: 20px;
-  width: 35%;
-  z-index: 1;
-}
-
-@media screen and (max-width:600px) {
-  .error-messages,
-  .error {
-    top: 50px;
-    left: 5%;
-    width: 90%;
-    font-size: 12px;
-  }
+.error-message {
+  position: relative;
+  top: -10px;
+  left: 80px;
+  color: #da3e3e;
+  font-size: 12px;
 }
 
 .notice {
@@ -104,13 +89,6 @@ button {
 }
 
 @media screen and (max-width:1024px) {
-  .error-messages {
-    position: fixed;
-    top: 100px;
-    left: 70%;
-    width: 30%;
-  }
-
   .notice {
     width: 100%;
     top: 50px;
@@ -125,11 +103,9 @@ button {
 }
 
 @media screen and (max-width:600px) {
-  .error-messages {
-    position: fixed;
-    top: 420px;
-    left: 10%;
-    width: 80%;
+  .error-message {
+    left: 60px;
+    font-size: 12px;
   }
 }
 
@@ -594,7 +570,7 @@ h1:after {
   margin-left: 25%;
   margin-top: 30px;
   width: 40%;
-  height: 400px;
+  height: 500px;
   background-color: rgba(255, 248, 242, 0.311);
   border: solid 2px #7C96AB;
   border-radius: 20px;
@@ -603,6 +579,24 @@ h1:after {
 
 .input-form {
   width: 70%;
+}
+
+.new_user {
+  margin-top: 30px;
+}
+
+.field {
+  height: 80px;
+}
+
+.Form-Item-Label-Required {
+  border-radius: 6px;
+  padding: 5px;
+  display: inline-block;
+  text-align: center;
+  background: #5bc8ac;
+  color: #fff;
+  font-size: 12px;
 }
 
 input[type="text"],
@@ -615,7 +609,6 @@ input[type="password"] {
   border: solid 1px #e0e0e0;
   border-radius: 5px;
   padding: 8px;
-  font-size: 15px;
 }
 
 input[type="text"]:focus,
@@ -625,6 +618,7 @@ input[type="password"]:focus {
 }
 
 .actions {
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -675,10 +669,30 @@ i::before {
 
 @media screen and (max-width:600px) {
   .devise-form {
-    margin-top: 70px;
-    margin-left: 5px;
+    padding: 20px 5px;
     width: 98%;
-    height: 450px;
+    height: 500px;
+  }
+
+  .devise-title {
+    font-size: 17px;
+  }
+
+  .required {
+    left: 5%;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+  padding: 8px 1px;
+  }
+
+  .Form-Item-Label-Required {
+    border-radius: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 10px;
   }
 }
 

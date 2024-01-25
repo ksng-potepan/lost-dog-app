@@ -2,27 +2,40 @@
 <div class='devise-form'>
   <h2 class='devise-title'>ー 新規アカウント作成 ー</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), local:true, data: { turbo: false }) do |f| %>
+    <% if @user.errors.any? %>
+    <% end %>
 
     <div class="field">
-      <i class="fa-solid fa-user"></i>
+      <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-user"></i>
       <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "input-form", placeholder: "ユーザー名" %>
+      <% if @user.errors.include?(:username) %>
+        <p class="error-message"><%= @user.errors.full_messages_for(:username).first %>
+      <% end %>
     </div>
 
     <div class="field">
-      <i class="fa-solid fa-envelope"></i>
+      <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-envelope"></i>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-form", placeholder: "メールアドレス" %>
+      <% if @user.errors.include?(:email) %>
+        <p class="error-message"><%= @user.errors.full_messages_for(:email).first %>
+      <% end %>
     </div>
 
     <div class="field">
-      <i class="fa-solid fa-key"></i>
+      <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-key"></i>
       <%= f.password_field :password, autocomplete: "new-password", class: "input-form", placeholder: "パスワード" %>
+      <% if @user.errors.include?(:password) %>
+        <p class="error-message"><%= @user.errors.full_messages_for(:password).first %>
+      <% end %>
     </div>
 
     <div class="field">
-      <i class="fa-solid fa-lock"></i>
+      <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-lock"></i>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-form", placeholder: "確認用パスワード" %>
+      <% if @user.errors.include?(:password_confirmation) %>
+        <p class="error-message"><%= @user.errors.full_messages_for(:password_confirmation).first %>
+      <% end %>
     </div>
 
     <div class="actions">
