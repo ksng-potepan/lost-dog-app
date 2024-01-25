@@ -59,7 +59,7 @@ RSpec.describe 'Users' do
   describe 'POST /users/sign_in' do
     it '有効なユーザーでログインに成功すること' do
       post user_session_path, params: { user: { email: user.email, password: user.password } }
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to user_path(user)
     end
 
     it '無効なユーザーでログインに失敗すること' do

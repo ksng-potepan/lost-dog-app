@@ -75,8 +75,8 @@ RSpec.describe 'Users' do
         expect(page).to have_content 'ログインしました。'
       end
 
-      it 'root_pathに遷移すること' do
-        expect(page).to have_current_path root_path
+      it 'user_path(user)に遷移すること' do
+        expect(page).to have_current_path user_path(user)
       end
 
       it 'ヘッダー内にログアウトリンクがあること' do
@@ -116,15 +116,15 @@ RSpec.describe 'Users' do
       end
 
       it '正常に編集できる場合' do
-        fill_in '新しいパスワード(６文字以上)', with: '111111'
+        fill_in '新しいパスワード', with: '111111'
         fill_in '確認用パスワード', with: '111111'
         fill_in '現在のパスワード', with: user.password
         click_button '更新する'
-        expect(page).to have_current_path(root_path)
+        expect(page).to have_current_path(user_path(user))
       end
 
       it '新しいパスワードが未記入で失敗する場合' do
-        fill_in '新しいパスワード(６文字以上)', with: nil
+        fill_in '新しいパスワード', with: nil
         fill_in '確認用パスワード', with: '111111'
         fill_in '現在のパスワード', with: user.password
         click_button '更新する'
@@ -132,7 +132,7 @@ RSpec.describe 'Users' do
       end
 
       it '現在のパスワードに正しくない値が記入され失敗する場合' do
-        fill_in '新しいパスワード(６文字以上)', with: '111111'
+        fill_in '新しいパスワード', with: '111111'
         fill_in '確認用パスワード', with: '111111'
         fill_in '現在のパスワード', with: '111222'
         click_button '更新する'
