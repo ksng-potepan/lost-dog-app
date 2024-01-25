@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
     @current_entry = Entry.where(user_id: current_user.id)
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(username: params[:username], email: params[:email], image: params[:image])
+    @user.update(user_params)
     if @user.save
       flash[:notice] = t('flash.notices.update')
       redirect_to user_path(@user)
@@ -34,5 +35,11 @@ class UsersController < ApplicationController
       flash.now[:alert] = t('flash.alerts.update_fail')
       render('users/edit')
     end
+  end
+
+  private
+
+  def user_params
+    params.permit(:username, :email, :image)
   end
 end
