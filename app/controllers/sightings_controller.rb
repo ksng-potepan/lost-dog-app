@@ -10,6 +10,11 @@ class SightingsController < ApplicationController
     @sighting = Sighting.all
   end
 
+  def show
+    @user = current_user
+    @sighting = Sighting.find(params[:id])
+  end
+
   def new
     @user = current_user
     @sighting = Sighting.new

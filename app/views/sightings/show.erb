@@ -1,0 +1,59 @@
+<div class="sighting-map-index">
+  <h2>ー 目撃情報マップ ー</h2>
+  <div id='map'></div>
+</div>
+
+<div class="sighting-show">
+  <div class="modal-header">
+    <h2>目撃情報の詳細</h2>
+  </div>
+  <div class="modal-body">
+    <div class="modal-image">
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image, :size => '200x200' %>
+      <% else %>
+        <%= image_tag("default_user.png", :size => "200x200") %>
+      <% end %>
+    </div>
+    <h3>日時：</h3>
+    <p><%= l @sighting.date %></p>
+    <p><%= @sighting.time %></p>
+    <h3>場所：</h3>
+    <p><%= @sighting.area %></p>
+    <h3>状況：</h3>
+    <p><%= @sighting.situation %></p>
+    <p>
+      <% if @sighting.user_id == current_user.id %>
+        <%= button_to @sighting_path, method: :delete, data: { turbo: false } do %>
+          <i class="fa-solid fa-trash">投稿を削除</i>
+        <% end %>
+      <% else %>
+        <%= @sighting.user.username %>様
+        <%= link_to user_path(@sighting.user_id) do %>
+          <i class="fa-solid fa-envelope"></i>連絡をする
+        <% end %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<!-- js部分 -->
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: <%= @sighting.lat %>, lng: <%= @sighting.lng %>},
+    zoom: 15,
+  });
+
+    marker = new google.maps.Marker({
+    position:  {lat: <%= @sighting.lat %>, lng: <%= @sighting.lng %>},
+    map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAP_API']%>&callback=initMap" async defer></script>

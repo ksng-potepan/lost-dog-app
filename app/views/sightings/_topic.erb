@@ -6,6 +6,9 @@
         <li>日時：<%= l sighting.date %></li>
         <li>時間：<%= sighting.time %></li>
         <li>場所：<%= sighting.area %></li>
+        <li>
+          <%= link_to "詳細を見る", sighting_path(sighting.id) %>
+        </li>
       </ul>
     <% end %>
   <% else %>

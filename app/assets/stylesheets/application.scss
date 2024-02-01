@@ -134,30 +134,10 @@ h1 {
   margin-left: 20px;
   padding-top: 3px;
   padding-left: 20px;
-  border-top: #ffec47 solid 1px;
+  /* border-top: #ffec47 solid 1px; */
   font-size: 25px;
 }
 
-h1:before {
-  border-bottom: 30px solid transparent;
-  border-left: 30px solid #fdee6b;
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
-h1:after {
-  border-top: 30px solid #fdee6b;
-  border-left: 30px solid transparent;
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-}
 
 .top-new {
   position: absolute;
@@ -168,7 +148,6 @@ h1:after {
 }
 
 .top-new ul {
-  margin-top: 25px;
   margin-left: 25px;
   width: 250px;
   border-top: solid #ffec47 1px;
@@ -179,7 +158,7 @@ h1:after {
 
 .top-new ul li {
   line-height: 1.5;
-  padding: 5px 0;
+  padding: 3px 0;
 }
 
 .sighting-nil {
@@ -1848,6 +1827,18 @@ caption {
   width: 50%;
 }
 
+.sighting-show {
+  background-color: #f4f4f4;
+  width: 500px;
+  overflow: auto;
+  padding: 20px;
+  word-wrap: break-word;
+  box-shadow: 0 10px 20px #ccc;
+  position: relative;
+  top: -500px;
+  margin-left: 61%;
+}
+
 @media screen and (max-width:1024px) {
   .sighting-map {
     margin-top: 60px;
@@ -1857,6 +1848,11 @@ caption {
   #map {
     height: 400px;
     width: 40%;
+  }
+
+  .sighting-show {
+    top: -450px;
+    margin-left: 45%;
   }
 }
 
@@ -1875,6 +1871,13 @@ caption {
   #map {
     height: 350px;
     width: 350px;
+  }
+
+  .sighting-show {
+    top: 0;
+    margin-left: 10%;
+    margin-bottom: 10%;
+    width: 300px;
   }
 }
 
