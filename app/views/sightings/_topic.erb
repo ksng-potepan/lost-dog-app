@@ -1,10 +1,14 @@
 <h1><i class="fa-solid fa-location-dot" ></i>新着目撃情報</h1>
 <div class="top-new">
-  <% @sightings.each do |sighting| %>
-    <ul>
-      <li>日時：<%= l sighting.date %></li>
-      <li>時間：<%= sighting.time %></li>
-      <li>場所：<%= sighting.area %></li>
-    </ul>
+  <% if @sightings.present? %>
+    <% @sightings.each do |sighting| %>
+      <ul>
+        <li>日時：<%= l sighting.date %></li>
+        <li>時間：<%= sighting.time %></li>
+        <li>場所：<%= sighting.area %></li>
+      </ul>
+    <% end %>
+  <% else %>
+    <h2 class="sighting-nil"><i class="fa-solid fa-house-signal"></i>目撃情報０件</h2>
   <% end %>
 </div>
