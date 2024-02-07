@@ -194,10 +194,32 @@ RSpec.describe 'Ambles' do
         expect(response.body).to include amble.prefecture
       end
 
+      it '市町村と一致する投稿が表示されること' do
+        params[:search] = '渋谷区'
+        get '/ambles'
+        expect(response.body).to include amble.municipalities
+      end
+
+      it '迷子になった付近と一致する投稿が表示されること' do
+        params[:search] = '渋谷駅前'
+        get '/ambles'
+        expect(response.body).to include amble.area
+      end
+
       it 'サイズと一致する投稿が表示されること' do
         params[:size] = '小型犬'
         get '/ambles'
-        expect(response.body).to include amble.size
+        within('.index') do
+          expect(response.body).to include amble.size
+        end
+      end
+
+      it '性別と一致する投稿が表示されること' do
+        params[:size] = '不明'
+        get '/ambles'
+        within('.index') do
+          expect(response.body).to include amble.gender
+        end
       end
 
       it '日付で検索した場合、検索条件に一致するアムブルが表示されること' do
@@ -225,6 +247,18 @@ RSpec.describe 'Ambles' do
         end
       end
 
+      it '市町村と一致しない投稿が表示されないこと' do
+        params[:search] = '渋谷区'
+        get '/ambles'
+        expect(response.body).not_to include('大阪市')
+      end
+
+      it '迷子になった付近と一致しない投稿が表示されないこと' do
+        params[:search] = '渋谷駅前'
+        get '/ambles'
+        expect(response.body).not_to include('梅田駅前')
+      end
+
       it 'サイズと一致しない投稿が表示されないこと' do
         params[:size] = '小型犬'
         get '/ambles'
@@ -233,7 +267,15 @@ RSpec.describe 'Ambles' do
         end
       end
 
-      it '日付で検索した場合、検索条件に一致するアムブルが表示されること' do
+      it '性別と一致しない投稿が表示されないこと' do
+        params[:gender] = '不明'
+        get '/ambles'
+        within('.index') do
+          expect(response.body).not_to include('オス')
+        end
+      end
+
+      it '日付で検索した場合、検索条件に一致するアムブルが表示されないこと' do
         params[:start_date] = '2000/01/01'
         params[:end_date] = '2000/12//31'
         get '/ambles'
