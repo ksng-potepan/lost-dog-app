@@ -110,15 +110,15 @@ RSpec.describe 'Users' do
       expect(response.body).to include user.email
     end
 
-    it 'ダイレクトメッセージが表示されていないこと' do
-      expect(response.body).not_to include "ダイレクトメッセージ"
+    it 'メッセージが表示されていないこと' do
+      expect(response.body).not_to include "メッセージ"
     end
 
-    it '異なるユーザーであればダイレクトメッセージが表示されていること' do
+    it '異なるユーザーであればメッセージが表示されていること' do
       sign_out user
       sign_in other_user
       get user_path(user.id)
-      expect(response.body).to include "ダイレクトメッセージ"
+      expect(response.body).to include "メッセージ"
     end
   end
 
@@ -196,7 +196,7 @@ RSpec.describe 'Users' do
     it 'アカウントが削除されること' do
       expect do
         delete user_registration_path
-      end.to change(User, :count).by -1
+      end.to change(User, :count).by(-1)
     end
 
     it 'リダイレクトすること' do

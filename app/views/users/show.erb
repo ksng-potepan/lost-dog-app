@@ -1,11 +1,10 @@
-<% provide(:title, "#{@user.username} の マイページ") %>
 <table class="account-table", cellspacing="10">
   <caption>ー アカウント情報 ー</caption>
   <tr>
     <th>アイコン：</th>
     <td>
-      <% if @user.image.attached? %>
-        <%= image_tag @user.image, :size => '50x50' %>
+      <% if @target_user.image.attached? %>
+        <%= image_tag @target_user.image, :size => '50x50' %>
       <% else %>
         <%= image_tag("default_user.png", :size => "50x50") %>
       <% end %>
@@ -13,9 +12,10 @@
   </tr>
   <tr>
     <th>ユーザー名：</th>
-    <td><%= @user.username %></td>
+    <td><%= @target_user.username %></td>
   </tr>
-  <% if @user.id == current_user.id %>
+  <% if @target_user.id == @user.id %>
+    <% provide(:title, "#{@user.username} の マイページ") %>
     <tr>
       <th>メールアドレス：</th>
       <td><%= @user.email %></td>
@@ -30,14 +30,28 @@
       <td><%= link_to "プロフィール編集する", edit_user_path(@user) %></td>
     </tr>
   <% else %>
+    <% provide(:title, "#{@target_user.username} の マイページ") %>
     <tr>
-      <th>メールアドレス：</th>
-      <td><%= @user.email %></td>
+      <th>メッセージ：</th>
+      <td>
+        <% if @is_room == true %>
+          <%= link_to room_path(@room_id), class:'' do %>
+            <i class="fa-solid fa-envelope-open"></i>連絡をする
+          <% end %>
+        <% else %>
+          <%= form_for @room, data: { turbo: false } do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @target_user.id %>
+            <% end %>
+            <button type="submit" class=""><i class="fa-regular fa-envelope"></i>連絡をする</button>
+          <% end %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
 
-<% if @user.id == current_user.id %>
+<% if @target_user.id == current_user.id %>
   <div class="box71">
     <div class="box-title">自分の投稿を見る</div>
     <%= link_to myamble_ambles_path(@amble) do %>
@@ -52,7 +66,7 @@
   </div>
 <% else %>
   <div class="box71">
-    <div class="box-title"><%= @user.username %>の投稿を見る</div>
+    <div class="box-title"><%= @target_user.username %>の投稿</div>
     <%= link_to list_amble_path do %>
       <i class="fa-solid fa-magnifying-glass">迷子犬</i>
     <% end %>
@@ -61,21 +75,6 @@
     <% end %>
     <%= link_to list_sighting_path do %>
       <i class="fa-solid fa-eye">目撃情報</i>
-    <% end %>
-  </div>
-  <div class="box71">
-    <div class="box-title">ダイレクトメッセージ</div>
-    <% if @is_room == true %>
-      <%= link_to room_path(@room_id), class:'dm-btn' do %>
-        <i class="fa-solid fa-envelope-open"></i>連絡をする
-      <% end %>
-    <% else %>
-      <%= form_for @room, data: { turbo: false } do |f| %>
-        <%= fields_for @entry do |e| %>
-          <%= e.hidden_field :user_id, value: @user.id %>
-        <% end %>
-        <button type="submit" class="dm-btn"><i class="fa-regular fa-envelope"></i>連絡をする</button>
-      <% end %>
     <% end %>
   </div>
 <% end %>
