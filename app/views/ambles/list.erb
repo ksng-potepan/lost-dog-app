@@ -1,6 +1,7 @@
 <h2 class="title">ー 投稿一覧 ー</h2>
 <div class="index">
   <% @amble.each do |a| %>
+    <% provide(:title, "#{a.user.username} の 迷子犬一覧") %>
     <div class="amble-index">
       <div class="amble-index-image">
           <% if a.image.attached? %>

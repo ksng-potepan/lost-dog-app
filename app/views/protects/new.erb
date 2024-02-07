@@ -1,3 +1,4 @@
+<% provide(:title, "新規投稿 保護犬") %>
 <%= form_with model: @protect, local:true, data: { turbo: false } do |f| %>
   <% if @protect.errors.any? %>
   <% end %>

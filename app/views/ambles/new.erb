@@ -1,3 +1,4 @@
+<% provide(:title, "新規投稿 迷子犬") %>
 <%= form_with model: @amble, local:true, data: { turbo: false } do |f| %>
   <% if @amble.errors.any? %>
   <% end %>

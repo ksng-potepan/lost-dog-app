@@ -1,6 +1,7 @@
 <h2 class="title">ー 自分の投稿一覧 ー</h2>
 <div class="index">
   <% @protect.each do |p| %>
+    <% provide(:title, "#{p.user.username} の 保護犬一覧") %>
     <div class="amble-index">
       <div class="amble-index-image">
           <% if p.image.attached? %>
