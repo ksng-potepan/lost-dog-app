@@ -250,4 +250,42 @@ RSpec.describe 'Protects' do
       expect(Protect.where(transferred: false).count).to eq(0)
     end
   end
+
+  describe 'ステップフォーム', js: true do
+    before do
+      visit new_protect_path
+    end
+
+    it 'フォームが表示されていることを確認' do
+      expect(page).to have_css('#form_protect')
+    end
+
+    it '一つ目の「次へ」ボタンをクリックでフォームが進むこと' do
+      find_by_id('first-next').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('-1400px')
+    end
+
+    it '二つ目の「次へ」ボタンをクリックでフォームが進むこと' do
+      find_by_id('first-next').click
+      find_by_id('second-next').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('-2800px')
+    end
+
+    it '一つ目の「戻る」ボタンをクリックでファームが戻ること' do
+      find_by_id('first-next').click
+      find_by_id('first-back').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('0px')
+    end
+
+    it '二つ目の「戻る」ボタンをクリックでファームが戻ること' do
+      find_by_id('first-next').click
+      find_by_id('second-next').click
+      find_by_id('second-back').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('-1400px')
+    end
+  end
 end

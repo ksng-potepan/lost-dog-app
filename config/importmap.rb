@@ -8,3 +8,6 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "passwords/new", preload: false
 pin "passwords/edit", preload: false
 pin "passwords/session", preload: false
+pin "layouts/hamburger", preload: false
+pin "ambles/new", preload: false
+pin "protects/new", preload: false

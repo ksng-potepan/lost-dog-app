@@ -855,6 +855,63 @@ input[type="submit"] {
 }
 
 /* ---掲示板フォーム関連--- */
+div.form_area {
+  display: block;
+  width: 300%;
+  position: fixed;
+}
+
+div.form_area .col {
+  float: left;
+  width: calc(100%/3);
+}
+
+.property {
+  width: 45%;
+  background: #ffffff00;
+  border-radius: 10px;
+}
+
+.personal {
+  width: 45%;
+  background: #ffffff00;
+  border-radius: 10px;
+}
+
+.btndesign {
+  background: #7C96AB;
+  border: solid 2px #576a79;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin: 10px;
+  border-radius: 10px;
+  position: relative;
+  top: -70px;
+  left: 60%;
+}
+
+.back {
+  position: relative;
+  top: -650px;
+  cursor: pointer;
+}
+
+.protect-back {
+  position: relative;
+  top: 60px;
+  cursor: pointer;
+    width: 100px;
+}
+
+.second-back {
+  position: relative;
+  top: 88px;
+  cursor: pointer;
+  width: 100px;
+}
+
 .board-title {
   text-align: center;
   margin: 30px 0;
@@ -862,10 +919,9 @@ input[type="submit"] {
 
 .board-form {
   margin-left: 25%;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 3px;
   width: 600px;
-  height: 1450px;
+  height: 750px;
   background-color: rgba(255, 248, 242, 0.311);
   border: 2px solid #7C96AB;
   border-radius: 20px;
@@ -874,10 +930,9 @@ input[type="submit"] {
 
 .protect-board-form {
   margin-left: 25%;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 3px;
   width: 600px;
-  height: 1700px;
+  height: 750px;
   background-color: rgba(255, 248, 242, 0.311);
   border: 2px solid #f1b291;
   border-radius: 20px;
@@ -929,13 +984,49 @@ input[type="submit"] {
   margin-top: 15px;
 }
 
+.transferred {
+  font-size: 18px;
+  line-height: 35px;
+  margin-left: 20px;
+  margin-bottom: 60px;
+  width: 490px;
+}
+
+.transferred-sub {
+  font-size: 12px;
+  line-height: 20px;
+  margin-top: 15px;
+  margin-left: 15px;
+  position: relative;
+  top: -15px;
+}
+
 @media screen and (max-width:1024px) {
   .board-form {
     margin-right: auto;
     margin-left: auto;
     margin-top: 60px;
     width: 580px;
-    height: 1200px;
+    height: 680px;
+  }
+
+  .board-title{
+    margin: 0;
+  }
+
+  .btndesign {
+    top: -58px;
+    left: 70%;
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .protect-back {
+    top: 30px;
+  }
+
+  .second-back {
+    top: 58px;
   }
 
   .protect-board-form {
@@ -943,7 +1034,7 @@ input[type="submit"] {
     margin-left: auto;
     margin-top: 60px;
     width: 580px;
-    height: 1450px;
+    height: 680px;
   }
 
   .field-area {
@@ -968,19 +1059,52 @@ input[type="submit"] {
   .board-form {
     margin-right: auto;
     margin-left: auto;
+    padding: 0 20px;
     width: 90%;
-    height: 1150px;
+    height: 600px;
+  }
+
+  .board-item-input {
+    font-size: 10px;
+  }
+
+  .back {
+    top: -570px;
+    font-size: 13px;
+  }
+
+  .protect-back {
+    font-size: 13px;
+  }
+
+  .second-back {
+    top: 42px;
+    font-size: 13px;
+  }
+
+  .transferred {
+    font-size: 11px;
+    margin-left: 0;
+  }
+
+  .transferred-sub {
+    font-size: 10px;
   }
 
   .protect-board-form {
     margin-right: auto;
     margin-left: auto;
     width: 90%;
-    height: 1350px;
+    height: 600px;
+    padding: 0 20px;
   }
 
   .field-area {
-    margin-left: 0px;
+    margin: 0px;
+  }
+
+  .board-title {
+  margin: 10px 0;
   }
 
   .board-item {
@@ -989,7 +1113,7 @@ input[type="submit"] {
   }
 
   .board-item-Label {
-    font-size: 12px;
+    font-size: 10px;
     max-width: 100px;
     margin-left: 6px;
   }

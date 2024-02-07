@@ -236,4 +236,27 @@ RSpec.describe 'Ambles' do
       expect(page).not_to have_content other_amble.name
     end
   end
+
+  describe 'ステップフォーム', js: true do
+    before do
+      visit new_amble_path
+    end
+
+    it 'フォームが表示されていることを確認' do
+      expect(page).to have_css('#form_amble')
+    end
+
+    it '「次へ」ボタンをクリックでフォームが進むこと' do
+      find_by_id('form_next').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('-1400px')
+    end
+
+    it '「戻る」ボタンをクリックでファームが戻ること' do
+      find_by_id('form_next').click
+      find_by_id('back').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('0px')
+    end
+  end
 end
