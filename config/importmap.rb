@@ -9,5 +9,5 @@ pin "passwords/new", preload: false
 pin "passwords/edit", preload: false
 pin "passwords/session", preload: false
 pin "layouts/hamburger", preload: false
-pin "ambles/new", preload: false
-pin "protects/new", preload: false
+pin "ambles/step-form", preload: false
+pin "protects/step-form", preload: false

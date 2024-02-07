@@ -1,129 +1,163 @@
 <% provide(:title, "保護犬を編集") %>
-<div class="protect-board-form">
-  <h2 class="board-title">ー 保護時の情報 ー</h2>
-
-
-  <%= form_with model: @protect, local:true, data: { turbo: false } do |f| %>
-    <%= render 'layouts/error_protects', object: f.object %>
-
-    <div class="field-area">
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-calendar-days">保護した日付け<span class="asterisk">*</span></i></p>
-        <%= f.date_field :date, class: "board-item-input", value: @protect.date %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-calendar-days">保護した時間</i></p>
-        <%= f.text_field :time, class: "board-item-input", placeholder: "00:00、何時ごろなど", value: @protect.time %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-location-dot">保護した場所<span class="asterisk">*</span></i></p>
-        <%= f.select :prefecture, Adress.adress_areas.keys, value: @protect.prefecture %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-location-dot">市町村</i></p>
-        <%= f.text_field :municipalities, class: "board-item-input", placeholder: "地番は入力しないでください。", value: @protect.municipalities %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-street-view">保護した付近</i></p>
-        <%= f.text_field :area, class: "board-item-input", placeholder: "〇〇公園、〇〇駅", value: @protect.area %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-tree">保護した状況<span class="asterisk">*</span></i></p>
-        <%= f.text_area :situation, class: "board-item-textarea", placeholder: "５０文字以内で記入してください", value: @protect.situation %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-flag">届出済みの機関</i></p>
-        <%= f.text_field :notification, class: "board-item-input", placeholder: "保健所・警察署・愛護センターなど", value: @protect.notification %>
-      </div>
-
-      <h2 class="board-title">ー 犬の情報 ー<i class="fa-solid fa-dog"></i></h2>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond"></i>犬の写真</i></p>
-        <i class="fa-solid fa-camera"></i>
-        <%= f.file_field :image %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">犬の名前</i></p>
-        <%= f.text_field :name, class: "board-item-input", placeholder: "不明であれば空欄", value: @protect.name %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">犬種</i></p>
-        <%= f.text_field :breed, class: "board-item-input", placeholder: "空欄または似た犬種", value: @protect.breed %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">性別<span class="asterisk">*</span></i></p>
-        <%= f.radio_button :gender, :male %>
-        <%= f.label :sex_male, "オス" %>
-
-        <%= f.radio_button :gender, :famale %>
-        <%= f.label :sex_famale, "メス" %>
-
-        <%= f.radio_button :gender, :unknown %>
-        <%= f.label :sex_unknown, "不明" %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">大きさ<span class="asterisk">*</span></i></p>
-        <%= f.radio_button :size, :large %>
-        <%= f.label :sex_large, "大型犬" %>
-
-        <%= f.radio_button :size, :medium %>
-        <%= f.label :sex_medium, "中型犬" %>
-
-        <%= f.radio_button :size, :small %>
-        <%= f.label :sex_small, "小型犬" %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">毛色</i></p>
-        <%= f.text_field :color, class: "board-item-input", placeholder: "空欄または近しい色", value: @protect.color %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">年齢</i></p>
-        <%= f.text_field :age, class: "board-item-input", placeholder: "〇〇才または小犬/成犬など", value: @protect.age %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">犬の特徴</i></p>
-        <%= f.text_area :features, class: "board-item-textarea", placeholder: "５０文字以内で記入してください", value: @protect.features %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">鑑札札(首輪など)</i></p>
-        <%= f.select :tag, [['なし',0],['付いている',1]], { include_blank: true, selected: 0 } %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">マイクロチップ</i></p>
-        <%= f.select :chip, [['なし',0],['確認済み',1]], { include_blank: true, selected: 0 } %>
-      </div>
-
-      <h2 class="board-title">ー 長期のお預かりが難しい方へ ー</h2>
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">保護の意思</i></p>
-        <%= f.select :transferred, [['見つかるまで預かる',0],['長期は難しいです',1]], { include_blank: true, selected: 0 } %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">預ける予定や場所</i></p>
-        <%= f.text_area :location, class: "board-item-textarea", placeholder: "知り合い宅や機関など", value: @protect.location %>
-      </div>
-
-      <div class="board-actions">
-        <%= f.submit "登録する" %>
-        <%= link_to "記入をキャンセルする", :back, class:'link-button' %>
-      </div>
-    </div>
+<%= form_with model: @protect, local:true, data: { turbo: false } do |f| %>
+  <% if @protect.errors.any? %>
   <% end %>
-</div>
+  <div class="form_area" id="form_protect">
+    <section class="property col">
+      <div class="protect-board-form">
+        <h2 class="board-title">ー 情報を編集する ー</h2>
+        <div class="field-area">
+          <div class="board-item">
+            <p class="board-item-Label">保護した日付け<span class="asterisk">*</span></p>
+            <%= f.date_field :date, class: "board-item-input", value: @protect.date.strftime("%Y-%m-%d") %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">保護した時間</p>
+            <%= f.text_field :time, class: "board-item-input", placeholder: "00:00、何時ごろなど", value: @protect.time %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">保護した場所<span class="asterisk">*</span></p>
+            <%= f.select :prefecture, Adress.adress_areas.keys, value: @protect.prefecture %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">市町村</p>
+            <%= f.text_field :municipalities, class: "board-item-input", placeholder: "地番は入力しないでください。", value: @protect.municipalities %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">保護した付近</p>
+            <%= f.text_field :area, class: "board-item-input", placeholder: "〇〇公園、〇〇駅", value: @protect.area %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">保護した状況<span class="asterisk">*</span></p>
+            <%= f.text_area :situation, class: "board-item-textarea", placeholder: "５０文字以内で記入してください", value: @protect.situation %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">届出済みの機関</p>
+            <%= f.text_field :notification, class: "board-item-input", placeholder: "保健所・警察署・愛護センターなど", value: @protect.notification %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">鑑札札(首輪など)</p>
+            <%= f.select :tag, [['なし',0],['付いている',1]], { include_blank: true, selected: 0 }, class: "board-item-input" %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">マイクロチップ</p>
+            <%= f.select :chip, [['なし',0],['確認済み',1]], { include_blank: true, selected: 0 }, class: "board-item-input" %>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btndesign" id="first-next">次へ</button>
+    </section>
+
+    <section class="personal col hidden">
+      <div class="protect-board-form">
+        <h2 class="board-title">ー 犬の情報 ー</h2>
+        <div class="field-area">
+
+          <div class="board-item">
+            <p class="board-item-Label">犬の写真</p>
+            <%= f.file_field :image %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">犬の名前</p>
+            <%= f.text_field :name, class: "board-item-input", placeholder: "不明であれば空欄", value: @protect.name %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">犬種</p>
+            <%= f.text_field :breed, class: "board-item-input", placeholder: "空欄または似た犬種", value: @protect.breed %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">性別<span class="asterisk">*</span></p>
+            <%= f.radio_button :gender, :male %>
+            <%= f.label :sex_male, "オス" %>
+
+            <%= f.radio_button :gender, :famale %>
+            <%= f.label :sex_famale, "メス" %>
+
+            <%= f.radio_button :gender, :unknown %>
+            <%= f.label :sex_unknown, "不明" %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">大きさ<span class="asterisk">*</span></p>
+            <%= f.radio_button :size, :large %>
+            <%= f.label :sex_large, "大型犬" %>
+
+            <%= f.radio_button :size, :medium %>
+            <%= f.label :sex_medium, "中型犬" %>
+
+            <%= f.radio_button :size, :small %>
+            <%= f.label :sex_small, "小型犬" %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">毛色</p>
+            <%= f.text_field :color, class: "board-item-input", placeholder: "空欄または近しい色", value: @protect.color %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">年齢</p>
+            <%= f.text_field :age, class: "board-item-input", placeholder: "〇〇才または小犬/成犬など", value: @protect.age %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">犬の特徴</p>
+            <%= f.text_area :features, class: "board-item-textarea", placeholder: "５０文字以内で記入してください", value: @protect.features %>
+          </div>
+        </div>
+        <p class="protect-back" id="first-back"><i class="fa-solid fa-reply"></i>戻る</p>
+      </div>
+      <button type="button" class="btndesign" id="second-next">次へ</button>
+    </section>
+
+    <section class="personal col hidden">
+      <div class="protect-board-form">
+        <h2 class="board-title">ー 長期のお預かりが難しい方へ ー</h2>
+        <div class="field-area">
+          <div class="transferred">
+            ・保健所に届ける場合、殺処分までの期間が設けられます。<br>
+            ・環境により、健康や命に危険が及ぶ可能性があります。<br>
+            <div class="transferred-sub">
+              ・犬が十分な運動や休息を取れない。<br>
+              ・犬が適切な食事を与えられない。<br>
+              ・犬が安全に過ごせる環境ではない。など<br>
+            </div>
+            <h3>
+              預ける先が、犬の健康や命を守ってくれる場所か<br>
+              どうか慎重に検討してください。
+            </h3>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">保護の意思</p>
+            <%= f.select :transferred, [['見つかるまで預かる',0],['長期は難しいです',1]], { include_blank: true, selected: 0 }, class: "board-item-input" %>
+          </div>
+
+          <div class="board-item">
+            <p class="board-item-Label">預ける予定や場所</p>
+            <%= f.text_area :location, class: "board-item-textarea", placeholder: "知り合い宅や機関など", value: @protect.location %>
+          </div>
+        </div>
+        <div class="board-actions">
+          <%= f.submit "登録する" %>
+          <%= link_to "記入をキャンセルする", root_path, class:'link-button' %>
+        </div>
+        <p class="second-back" id="second-back"><i class="fa-solid fa-reply"></i>戻る</p>
+      </div>
+    </section>
+  </div>
+<% end %>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "protects/step-form" %>
+<% end %>
