@@ -137,21 +137,14 @@ RSpec.describe 'Ambles' do
 
     context '自分の投稿の場合' do
       it '編集先のリンクに遷移すること' do
-        within('.amble-user') do
+        within('.board-user') do
           click_link '編集する'
           expect(page).to have_current_path edit_amble_path(amble), ignore_query: true
         end
       end
 
-      it '解決したリンクで削除しambles_pathに遷移すること' do
-        within('.amble-user') do
-          click_on '解決しました'
-          expect(page).to have_current_path ambles_path, ignore_query: true
-        end
-      end
-
       it '削除できambles_pathに遷移すること' do
-        within('.amble-user') do
+        within('.board-user') do
           click_on '投稿を削除'
           expect(page).to have_current_path ambles_path, ignore_query: true
         end
@@ -165,13 +158,13 @@ RSpec.describe 'Ambles' do
       end
 
       it '投稿した人のユーザー名が表示されていること' do
-        within('.amble-user') do
+        within('.board-user') do
           expect(page).to have_content amble.user.username
         end
       end
 
       it '編集先のリンクが表示されないこと' do
-        within('.amble-user') do
+        within('.board-user') do
           expect(page).not_to have_link '編集する'
         end
       end

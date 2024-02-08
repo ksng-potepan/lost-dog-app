@@ -39,9 +39,8 @@ RSpec.configure do |config|
       browser: :remote,
       url: ENV.fetch('SELENIUM_DRIVER_URL')
     }
+    Capybara.server_host = '0.0.0.0'
+    Capybara.server_port = '9999'
+    Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:#{Capybara.server_port}"
   end
 end
-
-Capybara.server_host = '0.0.0.0'
-Capybara.server_port = '9999'
-Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:#{Capybara.server_port}"

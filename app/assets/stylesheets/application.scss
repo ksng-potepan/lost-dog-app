@@ -1445,6 +1445,223 @@ caption {
   }
 }
 
+/* --- board-show --- */
+.board-box {
+  position: fixed;
+  top: 30px;
+  left: 300px;
+  width: 600px;
+  height: 670px;
+}
+
+.board-image {
+  position: fixed;
+  top: 30px;
+  left: 300px;
+  width: 600px;
+  z-index: 10;
+}
+
+.board-image-tag {
+  position: relative;
+  top: 120px;
+  left: 370px;
+}
+
+.board-name {
+  position: relative;
+  top: 30px;
+  left: 50px;
+  z-index: 20;
+}
+
+.board-user {
+  position: relative;
+  top: 215px;
+  left: 340px;
+  width: 200px;
+  padding: 10px;
+  z-index: 20;
+  font-size: 13px;
+  line-height: 35px;
+}
+
+.board-situation {
+  position: relative;
+  top: -4px;
+  left: 80px;
+  width: 200px;
+  height: 230px;
+  line-height: 37px;
+  z-index: 20;
+  font-size: 13px;
+}
+
+.board-situation li:nth-child(3) {
+  position: absolute;
+  top: 76px;
+  left: 63px;
+}
+
+.board-situation li:nth-child(4) {
+  position: absolute;
+  top: 120px;
+}
+
+.board-features {
+  position: relative;
+  top: 62px;
+  left: 100px;
+  width: 450px;
+  height: 130px;
+  font-size: 12px;
+  text-align: left;
+  z-index: 20;
+  line-height: 26px;
+}
+
+.board-features li {
+  position: absolute;
+}
+
+.board-features li:nth-child(2) {
+  left: 260px;
+}
+
+.board-features li:nth-child(3) {
+  top: 24px;
+}
+
+.board-features li:nth-child(4) {
+  top: 25px;
+  left: 320px;
+}
+
+.board-features li:nth-child(5) {
+  top: 51px;
+}
+
+.board-features li:nth-child(6) {
+  top: 51px;
+  left: 230px;
+  width: 180px;
+  word-break: break-all;
+}
+
+.board-features li:nth-child(7) {
+  top: 76px;
+}
+
+@media screen and (max-width:1024px) {
+  .board-box {
+    top: 70px;
+    left: 9%;
+  }
+
+  .board-image {
+    top: 70px;
+    left: 9%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .board-box {
+    width: 350px;
+    height: 390px;
+    left: 4%;
+  }
+
+  .board-image {
+    width: 350px;
+    left: 4%;
+  }
+
+  .board-image-tag {
+    top: 50px;
+    left: 190px;
+  }
+
+  .board-name {
+    top: -30px;
+  }
+
+  .board-user {
+    top: 72px;
+    left: 190px;
+    width: 138px;
+    height: 60px;
+    padding: 5px;
+    font-size: 8px;
+    line-height: 20px;
+  }
+
+  .board-btn {
+    font-size: 8px;
+  }
+
+  i::before {
+    float: left;
+  }
+
+  .board-situation {
+    top: -61px;
+    left: 50px;
+    width: 130px;
+    height: 230px;
+    line-height: 20px;
+    font-size: 7px;
+  }
+
+  .board-situation li:nth-child(3) {
+    top: 43px;
+    left: 30px;
+  }
+
+  .board-situation li:nth-child(4) {
+    top: 65px;
+    width: 110px;
+  }
+
+  .board-features {
+    top: -120px;
+    left: 55px;
+    width: 260px;
+    height: 75px;
+    font-size: 8px;
+    z-index: 20;
+    line-height: 14px;
+  }
+
+  .board-features li:nth-child(2) {
+    top: 0px;
+    left: 160px;
+  }
+
+  .board-features li:nth-child(3) {
+    top: 15px;
+  }
+
+  .board-features li:nth-child(4) {
+    top: 14px;
+    left: 190px;
+  }
+
+  .board-features li:nth-child(5) {
+    top: 29px;
+  }
+
+  .board-features li:nth-child(6) {
+    top: 29px;
+    left: 140px;
+    width: 120px;
+  }
+
+  .board-features li:nth-child(7) {
+    position: fixed;
+    top: 412px;
+  }
+}
+
 .index {
   margin-left: 25%;
   margin-right: 10%;
@@ -1610,7 +1827,7 @@ caption {
 
 /* ---search--- */
 .search {
-  width: 45%;
+  width: 500px;
   margin: 2em auto;
   padding: 2em;
   position: relative;
@@ -1642,7 +1859,6 @@ caption {
 @media screen and (max-width:1024px) {
   .search {
     margin-top: 70px;
-    width: 75%;
     font-size: 14px;
   }
 

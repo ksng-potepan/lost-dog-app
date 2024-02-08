@@ -93,7 +93,7 @@ RSpec.describe 'Protects' do
     end
 
     it '性別が表示されていること' do
-      expect(response.body).to include protect.gender
+      expect(Capybara.string(response.body)).to be_has_css '.fa-genderless'
     end
 
     it '大きさが表示されていること' do
