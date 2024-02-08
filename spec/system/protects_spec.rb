@@ -58,21 +58,19 @@ RSpec.describe 'Protects' do
       it '日付けが未記入なこと' do
         fill_in 'protect_date', with: nil
         select protect.prefecture, from: 'protect_prefecture'
-        fill_in 'protect_name', with: protect.name
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けを入力してください'
+        expect(page).to have_content '日付を入力してください'
       end
 
       it '今日の日付より未来の日付を入力した場合、エラーメッセージが表示されること' do
         fill_in 'protect_date', with: (Time.zone.today + 1).to_s
         select protect.prefecture, from: 'protect_prefecture'
-        fill_in 'protect_name', with: protect.name
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
     end
   end
@@ -86,7 +84,6 @@ RSpec.describe 'Protects' do
       before do
         fill_in "protect_date", with: protect.date
         select protect.prefecture, from: 'protect_prefecture'
-        fill_in 'protect_name', with: 'Protect-dog'
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
         click_button '登録する'
@@ -115,11 +112,10 @@ RSpec.describe 'Protects' do
       it '今日の日付より未来の日付を入力した場合、エラーメッセージが表示されること' do
         fill_in 'protect_date', with: (Time.zone.today + 1).to_s
         select protect.prefecture, from: 'protect_prefecture'
-        fill_in 'protect_name', with: protect.name
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
     end
   end

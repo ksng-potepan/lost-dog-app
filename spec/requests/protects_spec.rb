@@ -59,7 +59,7 @@ RSpec.describe 'Protects' do
 
       it 'エラーが表示されること' do
         post protects_path, params: { protect: attributes_for(:protect, date: '') }
-        expect(response.body).to include '日付けを入力してください'
+        expect(response.body).to include '日付を入力してください'
       end
     end
   end

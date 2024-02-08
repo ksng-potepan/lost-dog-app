@@ -36,7 +36,7 @@ RSpec.describe 'Sightings' do
         fill_in "sighting_date", with: nil
         find_by_id('lat', visible: false).set(sighting.lat)
         click_button '登録する'
-        expect(page).to have_content '日付けを入力してください'
+        expect(page).to have_content '日付を入力してください'
       end
 
       it '今日の日付より未来の日付を入力した場合、エラーメッセージが表示されること' do
@@ -44,7 +44,7 @@ RSpec.describe 'Sightings' do
         fill_in 'sighting_date', with: (Time.zone.today + 1).to_s
         find_by_id('lat', visible: false).set(sighting.lat)
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
 
       it 'マップにピンを刺さない事により経度が０なこと' do

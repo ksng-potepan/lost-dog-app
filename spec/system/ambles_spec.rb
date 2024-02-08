@@ -62,7 +62,7 @@ RSpec.describe 'Ambles' do
         choose 'amble_gender_unknown'
         choose 'amble_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けを入力してください'
+        expect(page).to have_content '日付を入力してください'
       end
 
       it '今日の日付より未来の日付を入力した場合、エラーメッセージが表示されること' do
@@ -72,7 +72,7 @@ RSpec.describe 'Ambles' do
         choose 'amble_gender_unknown'
         choose 'amble_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
     end
   end
@@ -119,7 +119,7 @@ RSpec.describe 'Ambles' do
         choose 'amble_gender_unknown'
         choose 'amble_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
     end
   end
@@ -233,6 +233,7 @@ RSpec.describe 'Ambles' do
   describe 'ステップフォーム', js: true do
     before do
       visit new_amble_path
+      sleep 10
     end
 
     it 'フォームが表示されていることを確認' do

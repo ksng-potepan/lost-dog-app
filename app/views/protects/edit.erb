@@ -4,52 +4,114 @@
   <% end %>
   <div class="form_area" id="form_protect">
     <section class="property col">
-      <div class="protect-board-form">
+      <div class="board-form">
         <h2 class="board-title">ー 情報を編集する ー</h2>
         <div class="field-area">
           <div class="board-item">
-            <p class="board-item-Label">保護した日付け<span class="asterisk">*</span></p>
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-calendar-days"></i>
             <%= f.date_field :date, class: "board-item-input", value: @protect.date.strftime("%Y-%m-%d") %>
+            <div class="message">
+              <a href="#">
+                <% if @protect.errors.include?(:date) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @protect.errors.full_messages_for(:date).first %></span>
+                <% else %>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span class="remark">今日を含む前の日付を入力してください</span>
+                <% end %>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">保護した時間</p>
-            <%= f.text_field :time, class: "board-item-input", placeholder: "00:00、何時ごろなど", value: @protect.time %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-clock"></i>
+            <%= f.text_field :time, class: "board-item-input", placeholder: "時間", value: @protect.time %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">00:00、何時ごろなど</span>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">保護した場所<span class="asterisk">*</span></p>
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-location-dot"></i>
             <%= f.select :prefecture, Adress.adress_areas.keys, value: @protect.prefecture %>
+            <div class="message">
+              <a href="#">
+                <% if @protect.errors.include?(:prefecture) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @protect.errors.full_messages_for(:prefecture).first %></span>
+                <% end %>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">市町村</p>
-            <%= f.text_field :municipalities, class: "board-item-input", placeholder: "地番は入力しないでください。", value: @protect.municipalities %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-location-dot"></i>
+            <%= f.text_field :municipalities, class: "board-item-input", placeholder: "市区町村", value: @protect.municipalities %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">地番は入力しないでください</span>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">保護した付近</p>
-            <%= f.text_field :area, class: "board-item-input", placeholder: "〇〇公園、〇〇駅", value: @protect.area %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-location-dot"></i>
+            <%= f.text_field :area, class: "board-item-input", placeholder: "保護した付近", value: @protect.area %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">〇〇公園、〇〇駅など</span>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">保護した状況<span class="asterisk">*</span></p>
-            <%= f.text_area :situation, class: "board-item-textarea", placeholder: "５０文字以内で記入してください", value: @protect.situation %>
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_area :situation, class: "board-item-textarea", placeholder: "保護した状況", value: @protect.situation %>
+            <div class="message">
+              <a href="#">
+                <% if @protect.errors.include?(:situation) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @protect.errors.full_messages_for(:situation).first %></span>
+                <% else %>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span class="remark">５０文字以内で記入してください</span>
+                <% end %>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">届出済みの機関</p>
-            <%= f.text_field :notification, class: "board-item-input", placeholder: "保健所・警察署・愛護センターなど", value: @protect.notification %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-bell"></i>
+            <%= f.text_field :notification, class: "board-item-input", placeholder: "届出済みの機関", value: @protect.notification %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">保健所・警察署・愛護センターなど</span>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-bell"></i>
             <p class="board-item-Label">鑑札札(首輪など)</p>
-            <%= f.select :tag, [['なし',0],['付いている',1]], { include_blank: true, selected: 0 }, class: "board-item-input" %>
+            <%= f.select :tag, [['なし',0],['付いてる可能性あり',1]], { include_blank: true, selected: 0 }, class: "board-item-select" %>
           </div>
 
           <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-bell"></i>
             <p class="board-item-Label">マイクロチップ</p>
-            <%= f.select :chip, [['なし',0],['確認済み',1]], { include_blank: true, selected: 0 }, class: "board-item-input" %>
+            <%= f.select :chip, [['なし',0],['付いてる可能性あり',1]], { include_blank: true, selected: 0 }, class: "board-item-select" %>
           </div>
         </div>
       </div>
@@ -57,27 +119,29 @@
     </section>
 
     <section class="personal col hidden">
-      <div class="protect-board-form">
+      <div class="board-form">
         <h2 class="board-title">ー 犬の情報 ー</h2>
         <div class="field-area">
 
           <div class="board-item">
-            <p class="board-item-Label">犬の写真</p>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-regular fa-image"></i>
+            <p class="board-Label">写真</p>
             <%= f.file_field :image %>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">犬の名前</p>
-            <%= f.text_field :name, class: "board-item-input", placeholder: "不明であれば空欄", value: @protect.name %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_field :breed, class: "board-item-input", placeholder: "名前", value: @protect.name %>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">犬種</p>
-            <%= f.text_field :breed, class: "board-item-input", placeholder: "空欄または似た犬種", value: @protect.breed %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_field :breed, class: "board-item-input", placeholder: "犬種", value: @protect.breed %>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">性別<span class="asterisk">*</span></p>
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-paw"></i>
+            <p class="board-Label">性別</p>
             <%= f.radio_button :gender, :male %>
             <%= f.label :sex_male, "オス" %>
 
@@ -86,10 +150,21 @@
 
             <%= f.radio_button :gender, :unknown %>
             <%= f.label :sex_unknown, "不明" %>
+            <div class="message">
+              <a href="#">
+                <% if @protect.errors.include?(:gender) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @protect.errors.full_messages_for(:gender).first %></span>
+                <% end %>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">大きさ<span class="asterisk">*</span></p>
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-paw"></i>
+            <p class="board-Label">大きさ</p>
             <%= f.radio_button :size, :large %>
             <%= f.label :sex_large, "大型犬" %>
 
@@ -98,21 +173,50 @@
 
             <%= f.radio_button :size, :small %>
             <%= f.label :sex_small, "小型犬" %>
+            <div class="message">
+              <a href="#">
+                <% if @protect.errors.include?(:size) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @protect.errors.full_messages_for(:size).first %></span>
+                <% end %>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">毛色</p>
-            <%= f.text_field :color, class: "board-item-input", placeholder: "空欄または近しい色", value: @protect.color %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_field :color, class: "board-item-input", placeholder: "毛色", value: @protect.color %>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">年齢</p>
-            <%= f.text_field :age, class: "board-item-input", placeholder: "〇〇才または小犬/成犬など", value: @protect.age %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_field :age, class: "board-item-input", placeholder: "年齢", value: @protect.age %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">〇〇才または小犬/成犬など"></span>
+              </a>
+            </div>
           </div>
 
           <div class="board-item">
-            <p class="board-item-Label">犬の特徴</p>
-            <%= f.text_area :features, class: "board-item-textarea", placeholder: "５０文字以内で記入してください", value: @protect.features %>
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_area :features, class: "board-item-textarea", placeholder: "犬の特徴", value: @protect.features %>
+            <div class="message">
+              <a href="#">
+                <% if @protect.errors.include?(:features) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @protect.errors.full_messages_for(:features).first %></span>
+                <% else %>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span class="remark">５０文字以内で記入してください</span>
+                <% end %>
+              </a>
+            </div>
           </div>
         </div>
         <p class="protect-back" id="first-back"><i class="fa-solid fa-reply"></i>戻る</p>
@@ -121,7 +225,7 @@
     </section>
 
     <section class="personal col hidden">
-      <div class="protect-board-form">
+      <div class="board-form">
         <h2 class="board-title">ー 長期のお預かりが難しい方へ ー</h2>
         <div class="field-area">
           <div class="transferred">

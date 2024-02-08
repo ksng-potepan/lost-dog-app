@@ -10,27 +10,48 @@
       <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-key"></i>
       <%= f.password_field :password, id: "password", autocomplete: "new-password", class: "input-password", placeholder: "新しいパスワード" %>
       <i id="eye" class="fa-solid fa-eye-slash"></i>
-      <% if @user.errors.include?(:password) %>
-        <p class="error-message"><%= @user.errors.full_messages_for(:password).first %>
-      <% end %>
+      <div class="message">
+        <a href="#">
+          <% if @user.errors.include?(:password) %>
+            <div class='i-red'>
+              <i class="fa-solid fa-circle-exclamation i-red"></i>
+            </div>
+            <span class="remark error-message"><%= @user.errors.full_messages_for(:password).first %></span>
+          <% end %>
+        </a>
+      </div>
     </div>
 
     <div class="field">
       <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-lock"></i>
       <%= f.password_field :password_confirmation, id: "password-confirmation", autocomplete: "new-password", class: "input-password", placeholder: "確認用パスワード" %>
       <i id="eye-confirmation" class="fa-solid fa-eye-slash"></i>
-      <% if @user.errors.include?(:password_confirmation) %>
-        <p class="error-message"><%= @user.errors.full_messages_for(:password_confirmation).first %>
-      <% end %>
+      <div class="message">
+        <a href="#">
+          <% if @user.errors.include?(:password_confirmation) %>
+            <div class='i-red'>
+              <i class="fa-solid fa-circle-exclamation i-red"></i>
+            </div>
+            <span class="remark error-message"><%= @user.errors.full_messages_for(:password_confirmation).first %></span>
+          <% end %>
+        </a>
+      </div>
     </div>
 
     <div class="field">
       <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-lock"></i>
       <%= f.password_field :current_password, id: "password-current", autocomplete: "current_password", class: "input-password", placeholder: "現在のパスワード" %>
       <i id="eye-current" class="fa-solid fa-eye-slash"></i>
-      <% if @user.errors.include?(:current_password) %>
-        <p class="error-message"><%= @user.errors.full_messages_for(:current_password).first %>
-      <% end %>
+      <div class="message">
+        <a href="#">
+          <% if @user.errors.include?(:current_password) %>
+            <div class='i-red'>
+              <i class="fa-solid fa-circle-exclamation i-red"></i>
+            </div>
+            <span class="remark error-message"><%= @user.errors.full_messages_for(:current_password).first %></span>
+          <% end %>
+        </a>
+      </div>
     </div>
 
     <div class="actions">

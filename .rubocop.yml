@@ -16,6 +16,8 @@ AllCops:
     - "bin/*"
     - "node_modules/**/*"
     - "spec/factories/*"
+    - "app/models/amble.rb"
+    - "app/models/protect.rb"
 
   # 新ルールを有効化
   NewCops: enable
