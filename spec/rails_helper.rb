@@ -35,12 +35,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each, js: true, type: :system) do
-    driven_by :selenium, using: :headless_chrome, options: {
-      browser: :remote,
-      url: ENV.fetch('SELENIUM_DRIVER_URL')
-    }
-    Capybara.server_host = '0.0.0.0'
-    Capybara.server_port = '9999'
-    Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:#{Capybara.server_port}"
+    driven_by :selenium_chrome_headless
   end
 end
