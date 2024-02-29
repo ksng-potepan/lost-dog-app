@@ -210,3 +210,4 @@ ja:
     alerts:
       update_fail: 更新に失敗しました。
       create_fail: 新規作成に失敗しました。
+      delete: ゲストユーザーは削除できません。
