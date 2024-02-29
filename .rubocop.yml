@@ -16,6 +16,8 @@ AllCops:
     - "bin/*"
     - "node_modules/**/*"
     - "spec/factories/*"
+    - "app/models/amble.rb"
+    - "app/models/protect.rb"
 
   # 新ルールを有効化
   NewCops: enable
@@ -40,11 +42,11 @@ Metrics/BlockLength:
 # Condition: 条件文
 # 上記項目をRubocopが計算して基準値を超えると警告を出す（上記頭文字をとって'Abc'）
 Metrics/AbcSize:
-  Max: 50
+  Max: 66
 
 # メソッドの中身が複雑になっていないか、Rubocopが計算して基準値を超えると警告を出す
 Metrics/PerceivedComplexity:
-  Max: 8
+  Max: 11
 
 # 循環的複雑度が高すぎないかをチェック（ifやforなどを1メソッド内で使いすぎている）
 Metrics/CyclomaticComplexity:

@@ -1,121 +1,80 @@
-<% provide(:title, "保護犬") %>
+<% provide(:title, "#{@protect.name} の詳細") %>
 <% @protect.each do |p| %>
-  <div class="amble-box">
-    <div class="amble-image">
+  <div class="board-box">
+    <%= image_tag '保護犬.png', class: 'board-image' %>
+    <div class="board-image-tag">
       <% if p.image.attached? %>
-        <%= image_tag p.image, :size => '250x200' %>
+        <%= image_tag p.image, :size => '150x100' %>
       <% else %>
-        <%= image_tag("default_dog.png", :size => "250x200") %>
+        <%= image_tag("default_dog.png", :size => "150x100") %>
       <% end %>
     </div>
 
-    <div class="amble-user">
-      ー 投稿様情報 ー</br>
+    <div class="board-name">
+      <% if p.name.present? %>
+        <%= p.name %>
+      <% else %>
+        不明
+      <% end %>
+
+      <% if p.gender == "male" %>
+        <i class="fa-solid fa-mars"></i>
+      <% elsif p.gender == "famale" %>
+        <i class="fa-solid fa-venus"></i>
+      <% else %>
+        <i class="fa-solid fa-genderless"></i>
+      <% end %>
+    </div>
+
+    <div class="board-user">
       <% if p.user_id == current_user.id %>
         <i class="fa-solid fa-pen"><%= link_to "編集する", edit_protect_path(p) %></i>
-        <%= button_to protect_path(p), method: :delete do %>
-          <i class="fa-solid fa-circle-check">解決しました</i>
-        <% end %>
-        <%= button_to protect_path(p), method: :delete do %>
+        <%= button_to protect_path(p), method: :delete, class: "board-btn" do %>
           <i class="fa-solid fa-trash">投稿を削除</i>
         <% end %>
       <% else %>
         <%= p.user.username %>様</br>
-        <%= link_to user_path(p.user_id) do %>
+        <%= link_to user_path(p.user_id), class: "board-btn" do %>
           <i class="fa-solid fa-envelope"></i>連絡をする
         <% end %>
       <% end %>
     </div>
 
-    <table class="amble-table">
-      <caption>保護時の状況</caption>
-      <tr>
-        <th>日時：</th>
-        <td><%= l p.date %>|<%= p.time %></td>
-      </tr>
-      <tr>
-        <th>場所：</th>
-        <td><%= p.prefecture %>|<%= p.municipalities %>|<%= p.area %></td>
-      </tr>
-      <tr>
-        <th>届出済みの機関：</th>
-        <td><%= p.notification %></td>
-      </tr>
-      <tr>
-        <th>状況：</th>
-        <td style="height: 150px;"><%= p.situation %></td>
-      </tr>
-    </table>
+    <ul class="board-situation">
+      <li><%= l p.date %><%= p.time %></li>
+      <li><%= p.prefecture %><%= p.municipalities %><%= p.area %></li>
+      <li><%= p.notification %></li>
+      <li><%= p.situation %></li>
+    </ul>
 
-    <table class="amble-dog-table1", cellspacing="10">
-      <tr>
-        <th>犬の名前：</th>
-        <td><%= p.name %></td>
-      </tr>
-      <tr>
-        <th>性別：</th>
-        <td>
-          <% if p.gender == "male" %>
-            オス
-          <% elsif p.gender == "famale" %>
-            メス
-          <% else %>
-            不明
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>年齢：</th>
-        <td><%= p.age %></td>
-      </tr>
-      <tr>
-        <th>犬種：</th>
-        <td><%= p.breed %></td>
-      </tr>
-    </table>
-    <table class="amble-dog-table2", cellspacing="10">
-      <tr>
-        <th>系色：</th>
-        <td><%= p.color %></td>
-      </tr>
-      <tr>
-        <th>大きさ：</th>
-        <td>
-          <% if p.size == "large" %>
-            大型犬
-          <% elsif p.size == "medium" %>
-            中型犬
-          <% else %>
-            小型犬
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>鑑札札：</th>
-        <td>
-          <% if p.tag == true %>
-            確認済み
-          <% else %>
-            なし
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>マイクロチップ：</th>
-        <td>
-          <% if p.chip == true %>
-            確認済み
-          <% else %>
-            なし
-          <% end %>
-        </td>
-      </tr>
-    </table>
-    <table class="amble-dog-table3", cellspacing="10">
-      <tr>
-        <th>特徴：</th>
-        <td><%= p.features %></td>
-      </tr>
-    </table>
+    <ul class="board-features">
+      <li><%= p.age %></li>
+      <li>
+        <% if p.tag == true %>
+          確認済み
+        <% else %>
+          なし
+        <% end %>
+      </li>
+      <li><%= p.breed %></li>
+      <li>
+        <% if p.chip == true %>
+          確認済み
+        <% else %>
+          なし
+        <% end %>
+      </li>
+      <li><%= p.color %></li>
+      <li><%= p.features %></li>
+      <li>
+        <% if p.size == "large" %>
+          大型犬
+        <% elsif p.size == "medium" %>
+          中型犬
+        <% else %>
+          小型犬
+        <% end %>
+      </li>
+    </ul>
   </div>
 <% end %>

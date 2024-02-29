@@ -36,7 +36,7 @@ RSpec.describe 'Sightings' do
         fill_in "sighting_date", with: nil
         find_by_id('lat', visible: false).set(sighting.lat)
         click_button '登録する'
-        expect(page).to have_content '日付けを入力してください'
+        expect(page).to have_content '日付を入力してください'
       end
 
       it '今日の日付より未来の日付を入力した場合、エラーメッセージが表示されること' do
@@ -44,7 +44,7 @@ RSpec.describe 'Sightings' do
         fill_in 'sighting_date', with: (Time.zone.today + 1).to_s
         find_by_id('lat', visible: false).set(sighting.lat)
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
 
       it 'マップにピンを刺さない事により経度が０なこと' do
@@ -66,19 +66,9 @@ RSpec.describe 'Sightings' do
       expect(page).to have_content "目撃情報マップ"
     end
 
-    # TODO: capybaraを実行したときにJSが機能していない
-    # it 'マップが表示されること' do
-    #   expect(page).to have_css("#map")
-    # end
-
-    # it 'マップのピンが表示されること' do
-    # end
-
-    # it 'ピンをクリックするとinfowindowが表示されること' do
-    # end
-
-    # it "詳細を見るをクリックするとmodalが表示されること" do
-    # end
+    it 'マップが表示されること' do
+      expect(page).to have_css("#map")
+    end
 
     it '日付けが正常に表示されること' do
       first(".modal") do
@@ -96,6 +86,36 @@ RSpec.describe 'Sightings' do
       first(".modal") do
         expect(page).to have_content sighting.situation
       end
+    end
+  end
+
+  describe '投稿詳細ページ' do
+    before do
+      visit sighting_path(sighting)
+    end
+
+    it '目撃情報マップの文言が正常に表示されること' do
+      expect(page).to have_content "目撃情報マップ"
+    end
+
+    it 'マップが表示されること' do
+      expect(page).to have_css("#map")
+    end
+
+    it '日付けが正常に表示されること' do
+      expect(page).to have_content sighting.date.strftime("%Y年%m月%d日")
+    end
+
+    it '場所が正常に表示されること' do
+      expect(page).to have_content sighting.area
+    end
+
+    it '状況が正常に表示されること' do
+      expect(page).to have_content sighting.situation
+    end
+
+    it '削除ボタンがあること' do
+      expect(page).to have_button '投稿を削除'
     end
   end
 end

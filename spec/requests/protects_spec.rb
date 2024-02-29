@@ -59,7 +59,7 @@ RSpec.describe 'Protects' do
 
       it 'エラーが表示されること' do
         post protects_path, params: { protect: attributes_for(:protect, date: '') }
-        expect(response.body).to include '日付けを入力してください'
+        expect(response.body).to include '日付を入力してください'
       end
     end
   end
@@ -93,7 +93,7 @@ RSpec.describe 'Protects' do
     end
 
     it '性別が表示されていること' do
-      expect(response.body).to include protect.gender
+      expect(Capybara.string(response.body)).to be_has_css '.fa-genderless'
     end
 
     it '大きさが表示されていること' do
@@ -200,6 +200,18 @@ RSpec.describe 'Protects' do
         end
       end
 
+      it '市町村と一致する投稿が表示されること' do
+        params[:search] = '札幌市'
+        get '/protects'
+        expect(response.body).to include protect.municipalities
+      end
+
+      it '迷子になった付近と一致する投稿が表示されること' do
+        params[:search] = '札幌駅前'
+        get '/protects'
+        expect(response.body).to include protect.area
+      end
+
       it 'サイズと一致する投稿が表示されること' do
         params[:size] = '小型犬'
         get '/protects'
@@ -233,6 +245,18 @@ RSpec.describe 'Protects' do
         within('.index') do
           expect(response.body).not_to include('大阪府')
         end
+      end
+
+      it '市町村と一致しない投稿が表示されないこと' do
+        params[:search] = '札幌市'
+        get '/protects'
+        expect(response.body).not_to include('大阪市')
+      end
+
+      it '迷子になった付近と一致しない投稿が表示されないこと' do
+        params[:search] = '札幌駅前'
+        get '/protects'
+        expect(response.body).not_to include('梅田駅前')
       end
 
       it 'サイズと一致しない投稿が表示されないこと' do
@@ -280,6 +304,18 @@ RSpec.describe 'Protects' do
         end
       end
 
+      it '市町村と一致する投稿が表示されること' do
+        params[:search] = '札幌市'
+        get '/protects'
+        expect(response.body).to include protect.municipalities
+      end
+
+      it '迷子になった付近と一致する投稿が表示されること' do
+        params[:search] = '札幌駅前'
+        get '/protects'
+        expect(response.body).to include protect.area
+      end
+
       it 'サイズと一致する投稿が表示されること' do
         params[:size] = '小型犬'
         get '/protects/transferred'
@@ -313,6 +349,18 @@ RSpec.describe 'Protects' do
         within('.index') do
           expect(response.body).not_to include('大阪府')
         end
+      end
+
+      it '市町村と一致しない投稿が表示されないこと' do
+        params[:search] = '札幌市'
+        get '/protects'
+        expect(response.body).not_to include('大阪市')
+      end
+
+      it '迷子になった付近と一致しない投稿が表示されないこと' do
+        params[:search] = '札幌駅前'
+        get '/protects'
+        expect(response.body).not_to include('梅田駅前')
       end
 
       it 'サイズと一致しない投稿が表示されないこと' do

@@ -12,7 +12,7 @@ RSpec.describe Sighting do
     it "latの入力値が文字列の場合無効であること" do
       sighting.lat = "ハチ公"
       sighting.valid?
-      expect(sighting.errors[:lat]).to include("マーカーを立ててください")
+      expect(sighting.errors[:lat]).to include("を立ててください")
     end
 
     it "latの入力値が0の場合無効であること" do

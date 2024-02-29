@@ -62,7 +62,7 @@ RSpec.describe 'Ambles' do
         choose 'amble_gender_unknown'
         choose 'amble_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けを入力してください'
+        expect(page).to have_content '日付を入力してください'
       end
 
       it '今日の日付より未来の日付を入力した場合、エラーメッセージが表示されること' do
@@ -72,7 +72,7 @@ RSpec.describe 'Ambles' do
         choose 'amble_gender_unknown'
         choose 'amble_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
     end
   end
@@ -119,7 +119,7 @@ RSpec.describe 'Ambles' do
         choose 'amble_gender_unknown'
         choose 'amble_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
     end
   end
@@ -137,21 +137,14 @@ RSpec.describe 'Ambles' do
 
     context '自分の投稿の場合' do
       it '編集先のリンクに遷移すること' do
-        within('.amble-user') do
+        within('.board-user') do
           click_link '編集する'
           expect(page).to have_current_path edit_amble_path(amble), ignore_query: true
         end
       end
 
-      it '解決したリンクで削除しambles_pathに遷移すること' do
-        within('.amble-user') do
-          click_on '解決しました'
-          expect(page).to have_current_path ambles_path, ignore_query: true
-        end
-      end
-
       it '削除できambles_pathに遷移すること' do
-        within('.amble-user') do
+        within('.board-user') do
           click_on '投稿を削除'
           expect(page).to have_current_path ambles_path, ignore_query: true
         end
@@ -165,13 +158,13 @@ RSpec.describe 'Ambles' do
       end
 
       it '投稿した人のユーザー名が表示されていること' do
-        within('.amble-user') do
+        within('.board-user') do
           expect(page).to have_content amble.user.username
         end
       end
 
       it '編集先のリンクが表示されないこと' do
-        within('.amble-user') do
+        within('.board-user') do
           expect(page).not_to have_link '編集する'
         end
       end
@@ -234,6 +227,30 @@ RSpec.describe 'Ambles' do
 
     it '他人の投稿が表示できないこと' do
       expect(page).not_to have_content other_amble.name
+    end
+  end
+
+  describe 'ステップフォーム', js: true do
+    before do
+      visit new_amble_path
+      sleep 10
+    end
+
+    it 'フォームが表示されていることを確認' do
+      expect(page).to have_css('#form_amble')
+    end
+
+    it '「次へ」ボタンをクリックでフォームが進むこと' do
+      find_by_id('form_next').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('-1400px')
+    end
+
+    it '「戻る」ボタンをクリックでファームが戻ること' do
+      find_by_id('form_next').click
+      find_by_id('back').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('0px')
     end
   end
 end

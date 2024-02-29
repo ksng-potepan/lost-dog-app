@@ -48,7 +48,7 @@ RSpec.describe 'Sightings' do
 
       it 'エラーが表示されること' do
         post sightings_path, params: { sighting: attributes_for(:sighting, area: '') }
-        expect(response.body).to include '迷子になった場所を入力してください'
+        expect(response.body).to include '場所を入力してください'
       end
     end
   end

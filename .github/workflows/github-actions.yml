@@ -16,6 +16,8 @@ jobs:
           POSTGRES_PASSWORD: pq_pass
           POSTGRES_DB: pq_db
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      selenium_chrome:
+        image: seleniarm/standalone-chromium
 
     steps:
       - name: Checkout code
@@ -33,6 +35,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Chrome Install
+        run: sudo apt-get install google-chrome-stable
+
       - name: Bundler and gem install
         run: |
           gem install bundler

@@ -1,4 +1,5 @@
 <% @sighting.each do |sighting|%>
+  <% provide(:title, "#{sighting.user.username} の 目撃情報一覧") %>
   <div id="easyModal<%= sighting.id %>" class="modal">
     <div class="modal-content">
       <div class="modal-header">

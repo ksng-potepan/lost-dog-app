@@ -58,21 +58,19 @@ RSpec.describe 'Protects' do
       it '日付けが未記入なこと' do
         fill_in 'protect_date', with: nil
         select protect.prefecture, from: 'protect_prefecture'
-        fill_in 'protect_name', with: protect.name
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けを入力してください'
+        expect(page).to have_content '日付を入力してください'
       end
 
       it '今日の日付より未来の日付を入力した場合、エラーメッセージが表示されること' do
         fill_in 'protect_date', with: (Time.zone.today + 1).to_s
         select protect.prefecture, from: 'protect_prefecture'
-        fill_in 'protect_name', with: protect.name
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
     end
   end
@@ -86,7 +84,6 @@ RSpec.describe 'Protects' do
       before do
         fill_in "protect_date", with: protect.date
         select protect.prefecture, from: 'protect_prefecture'
-        fill_in 'protect_name', with: 'Protect-dog'
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
         click_button '登録する'
@@ -115,11 +112,10 @@ RSpec.describe 'Protects' do
       it '今日の日付より未来の日付を入力した場合、エラーメッセージが表示されること' do
         fill_in 'protect_date', with: (Time.zone.today + 1).to_s
         select protect.prefecture, from: 'protect_prefecture'
-        fill_in 'protect_name', with: protect.name
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
         click_button '登録する'
-        expect(page).to have_content '日付けは今日を含む前の日付を登録してください。'
+        expect(page).to have_content '日付は今日を含む前の日付を登録してください。'
       end
     end
   end
@@ -137,21 +133,14 @@ RSpec.describe 'Protects' do
 
     context '自分の投稿の場合' do
       it '編集先のリンクに遷移すること' do
-        within('.amble-user') do
+        within('.board-user') do
           click_link '編集する'
           expect(page).to have_current_path edit_protect_path(protect), ignore_query: true
         end
       end
 
-      it '解決したリンクで削除しprotects_pathに遷移すること' do
-        within('.amble-user') do
-          click_on '解決しました'
-          expect(page).to have_current_path protects_path, ignore_query: true
-        end
-      end
-
       it '削除できprotects_pathに遷移すること' do
-        within('.amble-user') do
+        within('.board-user') do
           click_on '投稿を削除'
           expect(page).to have_current_path protects_path, ignore_query: true
         end
@@ -165,13 +154,13 @@ RSpec.describe 'Protects' do
       end
 
       it '投稿した人のユーザー名が表示されていること' do
-        within('.amble-user') do
+        within('.board-user') do
           expect(page).to have_content protect.user.username
         end
       end
 
       it '編集先のリンクが表示されないこと' do
-        within('.amble-user') do
+        within('.board-user') do
           expect(page).not_to have_link '編集する'
         end
       end
@@ -248,6 +237,44 @@ RSpec.describe 'Protects' do
 
     it 'falseの投稿が表示されないこと' do
       expect(Protect.where(transferred: false).count).to eq(0)
+    end
+  end
+
+  describe 'ステップフォーム', js: true do
+    before do
+      visit new_protect_path
+    end
+
+    it 'フォームが表示されていることを確認' do
+      expect(page).to have_css('#form_protect')
+    end
+
+    it '一つ目の「次へ」ボタンをクリックでフォームが進むこと' do
+      find_by_id('first-next').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('-1400px')
+    end
+
+    it '二つ目の「次へ」ボタンをクリックでフォームが進むこと' do
+      find_by_id('first-next').click
+      find_by_id('second-next').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('-2800px')
+    end
+
+    it '一つ目の「戻る」ボタンをクリックでファームが戻ること' do
+      find_by_id('first-next').click
+      find_by_id('first-back').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('0px')
+    end
+
+    it '二つ目の「戻る」ボタンをクリックでファームが戻ること' do
+      find_by_id('first-next').click
+      find_by_id('second-next').click
+      find_by_id('second-back').click
+      element = find('.form_area').native.css_value('margin-left')
+      expect(element).to eq('-1400px')
     end
   end
 end

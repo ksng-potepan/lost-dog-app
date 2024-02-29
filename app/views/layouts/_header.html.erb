@@ -3,113 +3,120 @@
   <%= link_to image_tag('header-icon.png', class:'header-icon'), '/' %>
   <% if user_signed_in? %>
     <div class="header-menu">
-      <div class='ham-menu'>
-        <input type="checkbox" id='ham-button'>
-        <label for='ham-button' class='ham-btn'><span></span></label>
+      <button type="button" class="hamburger"><span></span></button>
+      <div class="ham-menu">
         <div class='ham-item'>
-          <ul>
-            <li>
-              <%= link_to destroy_user_session_path, class:'header-link', data: { turbo_method: :delete } do %>
-                <%= image_tag 'login.png', class:'menu-logo' %>
-                <span class='header-item'>ログアウト</span>
+          <nav class="nav">
+            <ul>
+              <li>
+                <%= link_to destroy_user_session_path, class:'header-link', data: { turbo_method: :delete } do %>
+                  <%= image_tag 'login.png', class:'menu-logo' %>
+                  <span class='nav-item'>ログアウト</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to ambles_path, class:'header-link' do %>
+                  <%= image_tag 'lost-dog.png', class:'menu-logo' %>
+                  <span class='nav-item'>探しています</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to protects_path, class:'header-link' do %>
+                  <%= image_tag 'rescued-dog.png', class:'menu-logo' %>
+                  <span class='nav-item'>保護しました</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to transferred_protects_path, class:'header-link' do %>
+                  <%= image_tag 'temporarily-rescued.png', class:'menu-logo' %>
+                  <span class='nav-item'>一時お預かり</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to sightings_path, class:'header-link' do %>
+                  <%= image_tag 'sightings.png', class:'menu-logo' %>
+                  <span class='nav-item'>目撃情報</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to user_path(@user), class:'header-link' do %>
+                  <%= image_tag 'my-account.png', class:'menu-logo' %>
+                  <span class='nav-item'>マイページ</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to rooms_path(@room), class:'header-link' do %>
+                  <%= image_tag 'dm.png', class:'menu-logo' %>
+                  <span class='nav-item'>DM</span>
+                <% end %>
+              </li>
+              <li>
+              <%= link_to information_path, class:'header-link' do %>
+                <i class="fa-solid fa-pen"></i>投稿する
               <% end %>
-            </li>
-            <li>
-              <%= link_to ambles_path, class:'header-link' do %>
-                <%= image_tag 'lost-dog.png', class:'menu-logo' %>
-                <span class='header-item'>探しています</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to protects_path, class:'header-link' do %>
-                <%= image_tag 'rescued-dog.png', class:'menu-logo' %>
-                <span class='header-item'>保護しました</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to transferred_protects_path, class:'header-link' do %>
-                <%= image_tag 'temporarily-rescued.png', class:'menu-logo' %>
-                <span class='header-item'>一時お預かり</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to sightings_path, class:'header-link' do %>
-                <%= image_tag 'sightings.png', class:'menu-logo' %>
-                <span class='header-item'>目撃情報</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to user_path(@user), class:'header-link' do %>
-                <%= image_tag 'my-account.png', class:'menu-logo' %>
-                <span class='header-item'>マイページ</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to rooms_path(@room), class:'header-link' do %>
-                <%= image_tag 'dm.png', class:'menu-logo' %>
-                <span class='header-item'>DM</span>
-              <% end %>
-            </li>
-            <li>
-            <%= link_to information_path, class:'header-link' do %>
-              <i class="fa-solid fa-pen"></i>投稿する
-            <% end %>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
   <% else %>
     <div class="header-menu">
+      <button type="button" class="hamburger"><span></span></button>
       <div class='ham-menu'>
-        <input type="checkbox" id='ham-button'>
-        <label for='ham-button' class='ham-btn'><span></span></label>
         <div class='ham-item'>
-          <ul>
-            <li>
-              <%= link_to new_user_session_path, class:'header-link' do %>
-                <%= image_tag 'login.png', class:'menu-logo' %>
-                <span class='header-item'>ログイン</span>
+          <nav class="nav">
+            <ul>
+              <li>
+                <%= link_to new_user_session_path, class:'header-link' do %>
+                  <%= image_tag 'login.png', class:'menu-logo' %>
+                  <span class='nav-item'>ログイン</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_registration_path, class:'header-link' do %>
+                  <%= image_tag 'new-account.png', class:'menu-logo' %>
+                  <span class='nav-item'>新規登録</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to ambles_path, class:'header-link' do %>
+                  <%= image_tag 'lost-dog.png', class:'menu-logo' %>
+                  <span class='nav-item'>探しています</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to protects_path, class:'header-link' do %>
+                  <%= image_tag 'rescued-dog.png', class:'menu-logo' %>
+                  <span class='nav-item'>保護しました</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to transferred_protects_path, class:'header-link' do %>
+                  <%= image_tag 'temporarily-rescued.png', class:'menu-logo' %>
+                  <span class='nav-item'>一時お預かり</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to sightings_path, class:'header-link' do %>
+                  <%= image_tag 'sightings.png', class:'menu-logo' %>
+                  <span class='nav-item'>目撃情報</span>
+                <% end %>
+              </li>
+              <li>
+              <%= link_to information_path, class:'header-link' do %>
+                <i class="fa-solid fa-pen"></i>投稿する
               <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_registration_path, class:'header-link' do %>
-                <%= image_tag 'new-account.png', class:'menu-logo' %>
-                <span class='header-item'>新規登録</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to ambles_path, class:'header-link' do %>
-                <%= image_tag 'lost-dog.png', class:'menu-logo' %>
-                <span class='header-item'>探しています</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to protects_path, class:'header-link' do %>
-                <%= image_tag 'rescued-dog.png', class:'menu-logo' %>
-                <span class='header-item'>保護しました</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to transferred_protects_path, class:'header-link' do %>
-                <%= image_tag 'temporarily-rescued.png', class:'menu-logo' %>
-                <span class='header-item'>一時お預かり</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to sightings_path, class:'header-link' do %>
-                <%= image_tag 'sightings.png', class:'menu-logo' %>
-                <span class='header-item'>目撃情報</span>
-              <% end %>
-            </li>
-            <li>
-            <%= link_to information_path, class:'header-link' do %>
-              <i class="fa-solid fa-pen"></i>投稿する
-            <% end %>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
   <% end %>
+  <div class='mask'></div>
 </div>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "layouts/hamburger" %>
+<% end %>

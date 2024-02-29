@@ -9,14 +9,22 @@ class ProtectsController < ApplicationController
     @user = current_user
     @protect = Protect.all
     if params[:search].present?
-      @protect = @protect.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?', "%#{params[:search]}%",
+      @protect = @protect.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?
+                                or age LIKE ? or municipalities LIKE ? or area LIKE ?',
+                                "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%",
                                 "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
     end
     @protect = @protect.where(prefecture: params[:prefecture]) if params[:prefecture].present?
     @protect = @protect.where(size: params[:size]) if params[:size].present?
-    return unless params[:start_date].present? && params[:end_date].present?
+    return unless params[:start_date].present? || params[:end_date].present?
 
-    @protect = @protect.where(date: params[:start_date]..params[:end_date])
+    @protect = if params[:start_date].present? && params[:end_date].present?
+                 @protect.where(date: params[:start_date]..params[:end_date])
+               elsif params[:start_date].present?
+                 @protect.where(date: params[:start_date]..)
+               else
+                 @protect.where(date: ..params[:end_date])
+               end
   end
 
   def show
@@ -81,14 +89,22 @@ class ProtectsController < ApplicationController
     @user = current_user
     @protect = Protect.where(transferred: true)
     if params[:search].present?
-      @protect = @protect.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?', "%#{params[:search]}%",
+      @protect = @protect.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?
+                                or age LIKE ? or municipalities LIKE ? or area LIKE ?',
+                                "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%",
                                 "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
     end
     @protect = @protect.where(prefecture: params[:prefecture]) if params[:prefecture].present?
     @protect = @protect.where(size: params[:size]) if params[:size].present?
-    return unless params[:start_date].present? && params[:end_date].present?
+    return unless params[:start_date].present? || params[:end_date].present?
 
-    @protect = @protect.where(date: params[:start_date]..params[:end_date])
+    @protect = if params[:start_date].present? && params[:end_date].present?
+                 @protect.where(date: params[:start_date]..params[:end_date])
+               elsif params[:start_date].present?
+                 @protect.where(date: params[:start_date]..)
+               else
+                 @protect.where(date: ..params[:end_date])
+               end
   end
 
   private

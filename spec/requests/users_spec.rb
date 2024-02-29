@@ -59,7 +59,7 @@ RSpec.describe 'Users' do
   describe 'POST /users/sign_in' do
     it '有効なユーザーでログインに成功すること' do
       post user_session_path, params: { user: { email: user.email, password: user.password } }
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to user_path(user)
     end
 
     it '無効なユーザーでログインに失敗すること' do
@@ -110,15 +110,15 @@ RSpec.describe 'Users' do
       expect(response.body).to include user.email
     end
 
-    it 'ダイレクトメッセージが表示されていないこと' do
-      expect(response.body).not_to include "ダイレクトメッセージ"
+    it 'メッセージが表示されていないこと' do
+      expect(response.body).not_to include "メッセージ"
     end
 
-    it '異なるユーザーであればダイレクトメッセージが表示されていること' do
+    it '異なるユーザーであればメッセージが表示されていること' do
       sign_out user
       sign_in other_user
       get user_path(user.id)
-      expect(response.body).to include "ダイレクトメッセージ"
+      expect(response.body).to include "メッセージ"
     end
   end
 
@@ -185,6 +185,23 @@ RSpec.describe 'Users' do
       it 'エラーが表示されること' do
         expect(response.body).to include '更新に失敗しました。'
       end
+    end
+  end
+
+  describe 'DELETE /users' do
+    before do
+      sign_in user
+    end
+
+    it 'アカウントが削除されること' do
+      expect do
+        delete user_registration_path
+      end.to change(User, :count).by(-1)
+    end
+
+    it 'リダイレクトすること' do
+      delete user_registration_path
+      expect(response).to redirect_to root_path
     end
   end
 end

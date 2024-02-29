@@ -2,7 +2,8 @@
 <div class='devise-form'>
   <h2 class='devise-title'>ー ログイン ー</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), local:true, data: { turbo: false }) do |f| %>
+
     <div class="field">
       <i class="fa-solid fa-envelope"></i>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-form", placeholder: "メールアドレス" %>
@@ -10,7 +11,8 @@
 
     <div class="field">
       <i class="fa-solid fa-key"></i>
-      <%= f.password_field :password, autocomplete: "new-password", class: "input-form", placeholder: "パスワード" %>
+      <%= f.password_field :password, id: "password", autocomplete: "new-password", class: "input-password", placeholder: "パスワード" %>
+      <i id="eye" class="fa-solid fa-eye-slash"></i>
     </div>
 
     <div class="field">
@@ -24,3 +26,7 @@
     </div>
   <% end %>
 </div>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "passwords/session" %>
+<% end %>

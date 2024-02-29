@@ -25,9 +25,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    @user = current_user
+    @user.delete
+    flash[:notice] = t('flash.notices.delete')
+    redirect_to :root
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -51,12 +54,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(_resource)
+    root_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  # アカウント編集後のリダイレクト先
+  def after_update_path_for(resource)
+    user_path(resource)
+  end
 end

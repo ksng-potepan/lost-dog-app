@@ -9,13 +9,23 @@ class AmblesController < ApplicationController
     @user = current_user
     @amble = Amble.all
     if params[:search].present?
-      @amble = @amble.where('name LIKE ? or breed LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+      @amble = @amble.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?
+                            or age LIKE ? or municipalities LIKE ? or area LIKE ?',
+                            "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%",
+                            "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
     end
     @amble = @amble.where(prefecture: params[:prefecture]) if params[:prefecture].present?
     @amble = @amble.where(size: params[:size]) if params[:size].present?
-    return unless params[:start_date].present? && params[:end_date].present?
+    @amble = @amble.where(gender: params[:gender]) if params[:gender].present?
+    return unless params[:start_date].present? || params[:end_date].present?
 
-    @amble = @amble.where(date: params[:start_date]..params[:end_date])
+    @amble = if params[:start_date].present? && params[:end_date].present?
+               @amble.where(date: params[:start_date]..params[:end_date])
+             elsif params[:start_date].present?
+               @amble.where(date: params[:start_date]..)
+             else
+               @amble.where(date: ..params[:end_date])
+             end
   end
 
   def show

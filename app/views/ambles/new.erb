@@ -1,117 +1,243 @@
-<div class="board-form">
-  <h2 class="board-title">ー 迷子時の情報 ー</h2>
-
-
-  <%= form_with model: @amble, local:true, data: { turbo: false } do |f| %>
-    <%= render 'layouts/error_messages', object: f.object %>
-
-    <div class="field-area">
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-calendar-days">迷子になった日付け<span class="asterisk">*</span></i></p>
-        <%= f.date_field :date, class: "board-item-input", value: @amble.date %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-calendar-days">迷子になった時間</i></p>
-        <%= f.text_field :time, class: "board-item-input",  placeholder: "00:00、何時ごろなど", value: @amble.time %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-location-dot">迷子になった場所<span class="asterisk">*</span></i></p>
-        <%= f.select :prefecture, Adress.adress_areas.keys, value: @amble.prefecture %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-location-dot">市町村</i></p>
-        <%= f.text_field :municipalities, class: "board-item-input", placeholder: "地番は入力しないでください。", value: @amble.municipalities %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-street-view">迷子になった付近</i></p>
-        <%= f.text_field :area, class: "board-item-input", placeholder: "〇〇公園、〇〇駅", value: @amble.area %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-tree">迷子になった状況</i></p>
-        <%= f.text_area :situation, class: "board-item-textarea", placeholder: "５０文字以内で記入してください", value: @amble.situation %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-flag">届出済みの機関</i></p>
-        <%= f.text_field :notification, class: "board-item-input", placeholder: "保健所・警察署・愛護センターなど", value: @amble.notification %>
-      </div>
-
-      <h2 class="board-title">ー 犬の情報 ー<i class="fa-solid fa-dog"></i></h2>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond"></i>犬の写真</i></p>
-        <i class="fa-solid fa-camera"></i>
-        <%= f.file_field :image %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">犬の名前<span class="asterisk">*</span></i></p>
-        <%= f.text_field :name, class: "board-item-input", value: @amble.name %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">犬種</i></p>
-        <%= f.text_field :breed, class: "board-item-input", value: @amble.breed %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">性別<span class="asterisk">*</span></i></p>
-        <%= f.radio_button :gender, :male %>
-        <%= f.label :sex_male, "オス" %>
-
-        <%= f.radio_button :gender, :famale %>
-        <%= f.label :sex_famale, "メス" %>
-
-        <%= f.radio_button :gender, :unknown %>
-        <%= f.label :sex_unknown, "不明" %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">大きさ<span class="asterisk">*</span></i></p>
-        <%= f.radio_button :size, :large %>
-        <%= f.label :sex_large, "大型犬" %>
-
-        <%= f.radio_button :size, :medium %>
-        <%= f.label :sex_medium, "中型犬" %>
-
-        <%= f.radio_button :size, :small %>
-        <%= f.label :sex_small, "小型犬" %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">毛色</i></p>
-        <%= f.text_field :color, class: "board-item-input", value: @amble.color %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">年齢</i></p>
-        <%= f.text_field :age, class: "board-item-input", placeholder: "〇〇才または小犬/成犬など", value: @amble.age %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">犬の特徴</i></p>
-        <%= f.text_area :features, class: "board-item-textarea", placeholder: "５０文字以内で記入してください", value: @amble.features %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">鑑札札(首輪など)</i></p>
-        <%= f.select :tag, [['なし',0],['付いてる可能性あり',1]], { include_blank: true, selected: 0 } %>
-      </div>
-
-      <div class="board-item">
-        <p class="board-item-Label"><i class="fa-solid fa-diamond">マイクロチップ</i></p>
-        <%= f.select :chip, [['なし',0],['付いてる可能性あり',1]], { include_blank: true, selected: 0 } %>
-      </div>
-
-      <div class="board-actions">
-        <%= f.submit "登録する" %>
-        <%= link_to "記入をキャンセルする", root_path, class:'link-button' %>
-      </div>
-    </div>
+<% provide(:title, "新規投稿 迷子犬") %>
+<%= form_with model: @amble, local:true, data: { turbo: false } do |f| %>
+  <% if @amble.errors.any? %>
   <% end %>
-</div>
+  <div class="form_area" id="form_amble">
+    <section class="property col">
+      <div class="board-form">
+        <h2 class="board-title">ー 迷子時の情報 ー</h2>
+        <div class="field-area">
+          <div class="board-item">
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-calendar-days"></i>
+            <%= f.date_field :date, class: "board-item-input", value: @amble.date %>
+            <div class="message">
+              <a href="#">
+                <% if @amble.errors.include?(:date) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @amble.errors.full_messages_for(:date).first %></span>
+                <% else %>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span class="remark">今日を含む前の日付を入力してください</span>
+                <% end %>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-clock"></i>
+            <%= f.text_field :time, class: "board-item-input", placeholder: "時間", value: @amble.time %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">00:00、何時ごろなど</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-location-dot"></i>
+            <%= f.select :prefecture, Adress.adress_areas.keys, value: @amble.prefecture %>
+            <div class="message">
+              <a href="#">
+                <% if @amble.errors.include?(:prefecture) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @amble.errors.full_messages_for(:prefecture).first %></span>
+                <% end %>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-location-dot"></i>
+            <%= f.text_field :municipalities, class: "board-item-input", placeholder: "市区町村", value: @amble.municipalities %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">地番は入力しないでください</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-location-dot"></i>
+            <%= f.text_field :area, class: "board-item-input", placeholder: "迷子になった付近", value: @amble.area %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">〇〇公園、〇〇駅など</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-regular fa-comment"></i>
+            <%= f.text_area :situation, class: "board-item-textarea", placeholder: "迷子になった状況", value: @amble.situation %>
+            <div class="message">
+              <a href="#">
+                <% if @amble.errors.include?(:situation) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @amble.errors.full_messages_for(:situation).first %></span>
+                <% else %>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span class="remark">５０文字以内で記入してください</span>
+                <% end %>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-bell"></i>
+            <%= f.text_field :notification, class: "board-item-input", placeholder: "届出済みの機関", value: @amble.notification %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">保健所・警察署・愛護センターなど</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-bell"></i>
+            <p class="board-item-Label">鑑札札(首輪など)</p>
+            <%= f.select :tag, [['なし',0],['付いてる可能性あり',1]], { include_blank: true, selected: 0 }, class: "board-item-select" %>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-bell"></i>
+            <p class="board-item-Label">マイクロチップ</p>
+            <%= f.select :chip, [['なし',0],['付いてる可能性あり',1]], { include_blank: true, selected: 0 }, class: "board-item-select" %>
+          </div>
+        </div>
+      </div>
+			<button type="button" class="btndesign" id="form_next">次へ</button>
+    </section>
+
+		<section class="personal col hidden">
+      <div class="board-form">
+        <h2 class="board-title">ー 犬の情報 ー</h2>
+        <div class="field-area">
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-regular fa-image"></i>
+            <p class="board-Label">写真</p>
+            <%= f.file_field :image %>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_field :name, class: "board-item-input", placeholder: "犬の名前", value: @amble.name %>
+            <div class="message">
+              <a href="#">
+                <% if @amble.errors.include?(:name) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @amble.errors.full_messages_for(:name).first %></span>
+                <% end %>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_field :breed, class: "board-item-input", placeholder: "犬種", value: @amble.breed %>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-paw"></i>
+            <p class="board-Label">性別</p>
+            <%= f.radio_button :gender, :male %>
+            <%= f.label :sex_male, "オス" %>
+
+            <%= f.radio_button :gender, :famale %>
+            <%= f.label :sex_famale, "メス" %>
+
+            <%= f.radio_button :gender, :unknown %>
+            <%= f.label :sex_unknown, "不明" %>
+            <div class="message">
+              <a href="#">
+                <% if @amble.errors.include?(:gender) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @amble.errors.full_messages_for(:gender).first %></span>
+                <% end %>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-paw"></i>
+            <p class="board-Label">大きさ</p>
+            <%= f.radio_button :size, :large %>
+            <%= f.label :sex_large, "大型犬" %>
+
+            <%= f.radio_button :size, :medium %>
+            <%= f.label :sex_medium, "中型犬" %>
+
+            <%= f.radio_button :size, :small %>
+            <%= f.label :sex_small, "小型犬" %>
+            <div class="message">
+              <a href="#">
+                <% if @amble.errors.include?(:size) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @amble.errors.full_messages_for(:size).first %></span>
+                <% end %>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_field :color, class: "board-item-input", placeholder: "毛色", value: @amble.color %>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_field :age, class: "board-item-input", placeholder: "年齢", value: @amble.age %>
+            <div class="message">
+              <a href="#">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="remark">〇〇才または小犬/成犬など"></span>
+              </a>
+            </div>
+          </div>
+
+          <div class="board-item">
+            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+            <%= f.text_area :features, class: "board-item-textarea", placeholder: "犬の特徴", value: @amble.features %>
+            <div class="message">
+              <a href="#">
+                <% if @amble.errors.include?(:features) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @amble.errors.full_messages_for(:features).first %></span>
+                <% else %>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span class="remark">５０文字以内で記入してください</span>
+                <% end %>
+              </a>
+          </div>
+        </div>
+        <div class="board-actions">
+          <%= f.submit "登録する" %>
+          <%= link_to "記入をキャンセルする", root_path, class:'link-button' %>
+        </div>
+      </div>
+      <p class="back" id="back"><i class="fa-solid fa-reply"></i>戻る</p>
+		</section>
+  </div>
+<% end %>
+
+  <% content_for :js do %>
+    <%= javascript_import_module_tag "ambles/step-form" %>
+  <% end %>

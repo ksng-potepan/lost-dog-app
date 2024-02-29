@@ -3,22 +3,23 @@ ja:
   activerecord:
     attributes:
       amble:
-        date: "日付け"
+        date: "日付"
         name: "犬の名前"
         size: "犬の大きさ"
         gender: "犬の性別"
         features: "犬の特徴"
+        prefecture: "都道府県"
         situation: "迷子になった状況"
       protect:
-        date: "日付け"
+        date: "日付"
         size: "犬の大きさ"
         gender: "犬の性別"
         features: "犬の特徴"
-        situation: "迷子になった状況"
+        situation: "保護した状況"
       sighting:
-        date: "日付け"
-        area: "迷子になった場所"
-        lat: "hoge"
+        date: "日付"
+        area: "場所"
+        lat: 'マーカー'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -118,7 +119,7 @@ ja:
       less_than: は%{count}より小さい値にしてください
       less_than_or_equal_to: は%{count}以下の値にしてください
       model_invalid: 'バリデーションに失敗しました: %{errors}'
-      not_a_number: マーカーを立ててください
+      not_a_number: を立ててください
       not_an_integer: は整数で入力してください
       odd: は奇数にしてください
       other_than: は%{count}以外の値にしてください
@@ -204,6 +205,7 @@ ja:
       create: 新規作成しました。
       update: 更新しました。
       destroy: 投稿を削除しました。
+      delete: ユーザーを削除しました。
     alerts:
       update_fail: 更新に失敗しました。
       create_fail: 新規作成に失敗しました。

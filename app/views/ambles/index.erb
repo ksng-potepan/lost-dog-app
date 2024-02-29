@@ -1,3 +1,4 @@
+<% provide(:title, "迷子犬 投稿一覧") %>
 <div class="search">
   <h2><i class="fa-solid fa-magnifying-glass">投稿を検索する</i></h2>
   <%= form_tag({controller:"ambles",action:"index"}, method: :get) do %>
@@ -6,13 +7,24 @@
       <li>都道府県を選択：<%= select_tag :prefecture, options_for_select(Adress.adress_areas.keys), include_blank: true %></li>
       <li>日付けを選択：<%= date_field_tag :start_date, "", placeholder: "開始日時", value: params[:start_date] %>〜
       <%= date_field_tag :end_date, "", value: Time.now.to_date %></li>
-      <li>大きさ：
-      <%= radio_button_tag :size, :large %>
-      <%= label :sex_large, "大型犬" %>
-      <%= radio_button_tag :size, :medium %>
-      <%= label :sex_medium, "中型犬" %>
-      <%= radio_button_tag :size, :small %>
-      <%= label :sex_small, "小型犬" %></li>
+      <li>
+        大きさ：
+        <%= radio_button_tag :size, :large %>
+        <%= label :sex_large, "大型犬" %>
+        <%= radio_button_tag :size, :medium %>
+        <%= label :sex_medium, "中型犬" %>
+        <%= radio_button_tag :size, :small %>
+        <%= label :sex_small, "小型犬" %>
+      </li>
+      <li>
+        性別：
+        <%= radio_button_tag :gender, :male %>
+        <%= label :sex_male, "オス" %>
+        <%= radio_button_tag :gender, :famale %>
+        <%= label :sex_famale, "メス" %>
+        <%= radio_button_tag :size, :unknown %>
+        <%= label :sex_unknown, "不明" %>
+      </li>
       <%= submit_tag '検索する' %>
   <% end %>
   <%= link_to "リセット", ambles_path, class:'link-button' %>

@@ -1,28 +1,71 @@
-<% provide(:title, "新規登録") %>
+<% provide(:title, "ユーザー/新規登録") %>
 <div class='devise-form'>
   <h2 class='devise-title'>ー 新規アカウント作成 ー</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), local:true, data: { turbo: false }) do |f| %>
+    <% if @user.errors.any? %>
+    <% end %>
 
     <div class="field">
-      <i class="fa-solid fa-user"></i>
+      <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-user"></i>
+      <div class="message">
+        <a href="#">
+          <% if @user.errors.include?(:username) %>
+            <div class='i-red'>
+              <i class="fa-solid fa-circle-exclamation i-red"></i>
+            </div>
+            <span class="remark error-message"><%= @user.errors.full_messages_for(:username).first %></span>
+          <% end %>
+        </a>
+      </div>
       <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "input-form", placeholder: "ユーザー名" %>
     </div>
 
     <div class="field">
-      <i class="fa-solid fa-envelope"></i>
+      <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-envelope"></i>
+      <div class="message">
+        <a href="#">
+          <% if @user.errors.include?(:email) %>
+            <div class='i-red'>
+              <i class="fa-solid fa-circle-exclamation i-red"></i>
+            </div>
+            <span class="remark error-message"><%= @user.errors.full_messages_for(:email).first %></span>
+          <% end %>
+        </a>
+      </div>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-form", placeholder: "メールアドレス" %>
     </div>
 
     <div class="field">
-      <i class="fa-solid fa-key"></i>
-      <%= f.password_field :password, autocomplete: "new-password", class: "input-form", placeholder: "パスワード" %>
+      <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-key"></i>
+      <div class="message">
+        <a href="#">
+          <% if @user.errors.include?(:password) %>
+            <div class='i-red'>
+              <i class="fa-solid fa-circle-exclamation i-red"></i>
+            </div>
+            <span class="remark error-message"><%= @user.errors.full_messages_for(:password).first %></span>
+          <% end %>
+        </a>
+      </div>
+      <%= f.password_field :password, id: "password", autocomplete: "new-password", class: "input-password", placeholder: "パスワード" %>
+      <i id="eye" class="fa-solid fa-eye-slash"></i>
     </div>
 
     <div class="field">
-      <i class="fa-solid fa-lock"></i>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-form", placeholder: "確認用パスワード" %>
+      <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-lock"></i>
+      <div class="message">
+        <a href="#">
+          <% if @user.errors.include?(:password_confirmation) %>
+            <div class='i-red'>
+              <i class="fa-solid fa-circle-exclamation i-red"></i>
+            </div>
+            <span class="remark error-message"><%= @user.errors.full_messages_for(:password_confirmation).first %></span>
+          <% end %>
+        </a>
+      </div>
+      <%= f.password_field :password_confirmation, id: "password-confirmation", autocomplete: "new-password", class: "input-password", placeholder: "確認用パスワード" %>
+      <i id="eye-confirmation" class="fa-solid fa-eye-slash"></i>
     </div>
 
     <div class="actions">
@@ -31,3 +74,7 @@
     </div>
   <% end %>
 </div>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "passwords/new" %>
+<% end %>

@@ -75,8 +75,8 @@ RSpec.describe 'Users' do
         expect(page).to have_content 'ログインしました。'
       end
 
-      it 'root_pathに遷移すること' do
-        expect(page).to have_current_path root_path
+      it 'user_path(user)に遷移すること' do
+        expect(page).to have_current_path user_path(user)
       end
 
       it 'ヘッダー内にログアウトリンクがあること' do
@@ -116,15 +116,15 @@ RSpec.describe 'Users' do
       end
 
       it '正常に編集できる場合' do
-        fill_in '新しいパスワード(６文字以上)', with: '111111'
+        fill_in '新しいパスワード', with: '111111'
         fill_in '確認用パスワード', with: '111111'
         fill_in '現在のパスワード', with: user.password
         click_button '更新する'
-        expect(page).to have_current_path(root_path)
+        expect(page).to have_current_path(user_path(user))
       end
 
       it '新しいパスワードが未記入で失敗する場合' do
-        fill_in '新しいパスワード(６文字以上)', with: nil
+        fill_in '新しいパスワード', with: nil
         fill_in '確認用パスワード', with: '111111'
         fill_in '現在のパスワード', with: user.password
         click_button '更新する'
@@ -132,7 +132,7 @@ RSpec.describe 'Users' do
       end
 
       it '現在のパスワードに正しくない値が記入され失敗する場合' do
-        fill_in '新しいパスワード(６文字以上)', with: '111111'
+        fill_in '新しいパスワード', with: '111111'
         fill_in '確認用パスワード', with: '111111'
         fill_in '現在のパスワード', with: '111222'
         click_button '更新する'
@@ -261,4 +261,121 @@ RSpec.describe 'Users' do
       end
     end
   end
+
+  describe 'アカウント削除について' do
+    before do
+      sign_in user
+      visit edit_user_registration_path
+      click_on 'アカウントを削除'
+    end
+
+    it '通知メッセージが表示されること' do
+      expect(page).to have_content 'ユーザーを削除しました。'
+    end
+
+    it 'root_pathに遷移すること' do
+      expect(page).to have_current_path root_path
+    end
+  end
+
+# rubocop:disable all
+  describe 'パスワード表示/非表示について', js: true do
+    context '新規登録画面' do
+      before do
+        visit new_user_registration_path
+      end
+
+      it 'fa-eye-slashが表示されていること' do
+        expect(page.all(".fa-eye-slash").count).to eq 2
+      end
+
+      it '#eye-confirmationをクリックでfa-eyeが表示されること' do
+        find_by_id('eye-confirmation').click
+        expect(page).to have_css('.fa-eye')
+      end
+
+      it '#eye-confirmationをクリックでtext typeに変わること' do
+        find_by_id('eye-confirmation').click
+        expect(page).to have_selector("input[type='text']")
+      end
+
+      it '#eye-confirmationをクリックでfa-eye-slashが表示されること' do
+        find_by_id('eye-confirmation').click
+        find_by_id('eye-confirmation').click
+        expect(page).to have_css('.fa-eye-slash')
+      end
+
+      it '#eye-confirmationをクリックでpassword typeに変わること' do
+        find_by_id('eye-confirmation').click
+        find_by_id('eye-confirmation').click
+        expect(page).to have_selector("input[type='password']")
+      end
+    end
+
+    context 'パスワード変更画面' do
+      before do
+        sign_in user
+        visit edit_user_registration_path
+      end
+
+      it 'fa-eye-slashが表示されていること' do
+        expect(page.all(".fa-eye-slash").count).to eq 3
+      end
+
+      it '#eye-currentをクリックでfa-eyeが表示されること' do
+        find_by_id('eye-current').click
+        expect(page).to have_css('.fa-eye')
+      end
+
+      it '#eye-currentをクリックでtext typeに変わること' do
+        find_by_id('eye-current').click
+        expect(page).to have_selector("input[type='text']")
+      end
+
+      it '#eye-currentをクリックでfa-eye-slashが表示されること' do
+        find_by_id('eye-current').click
+        find_by_id('eye-current').click
+        expect(page).to have_css('.fa-eye-slash')
+      end
+
+      it '#eye-currentをクリックでpassword typeに変わること' do
+        find_by_id('eye-current').click
+        find_by_id('eye-current').click
+        expect(page).to have_selector("input[type='password']")
+      end
+    end
+
+    context 'ログイン画面' do
+      before do
+        visit user_session_path
+      end
+
+      it 'fa-eye-slashが表示されていること' do
+        expect(page).to have_css('.fa-eye-slash')
+      end
+
+      it '#eyeをクリックでfa-eyeが表示されること' do
+        find_by_id('eye').click
+        expect(page).to have_css('.fa-eye')
+      end
+
+      it '#eyeをクリックでtext typeに変わること' do
+        find_by_id('eye').click
+        expect(page).to have_selector("input[type='text']")
+      end
+
+      it '#eyeをクリックでfa-eye-slashが表示されること' do
+        find_by_id('eye').click
+        find_by_id('eye').click
+        expect(page).to have_css('.fa-eye-slash')
+      end
+
+      it '#eyeをクリックでpassword typeに変わること' do
+        find_by_id('eye').click
+        find_by_id('eye').click
+        expect(page).to have_selector("input[type='password']")
+      end
+    end
+  end
+# rubocop:enable all
 end
