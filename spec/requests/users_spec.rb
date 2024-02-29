@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users' do
   let(:user) { create(:user) }
   let(:other_user) { create(:other_user) }
+  let(:guest_user) { create(:guest_user) }
 
   describe 'GET /users/sign_up' do
     it '新規登録画面の表示に成功すること' do
@@ -45,6 +46,48 @@ RSpec.describe 'Users' do
       it 'エラーが表示されること' do
         post user_registration_path, params: { user: attributes_for(:user, username: '') }
         expect(response.body).to include 'ユーザー名を入力してください'
+      end
+    end
+  end
+
+  describe 'POST /users/guest_sign_in' do
+    context 'ゲストが存在しない場合' do
+      it 'リクエストが成功すること' do
+        post users_guest_sign_in_path
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'ユーザーが登録されること' do
+        expect do
+          post users_guest_sign_in_path
+        end.to change(User, :count).by(1)
+      end
+
+      it 'リダイレクトすること' do
+        post users_guest_sign_in_path
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'ゲストが存在する場合' do
+      before do
+        create(:guest_user)
+      end
+
+      it '新たにゲストを作成しない' do
+        expect do
+          post users_guest_sign_in_path
+        end.not_to change(User, :count)
+      end
+
+      it 'ルートパスへリダイレクトする' do
+        post users_guest_sign_in_path
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'フラッシュメッセージを表示する' do
+        post users_guest_sign_in_path
+        expect(flash[:notice]).to eq('ゲストでログインしました')
       end
     end
   end
