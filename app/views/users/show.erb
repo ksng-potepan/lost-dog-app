@@ -14,7 +14,21 @@
     <th>ユーザー名：</th>
     <td><%= @target_user.username %></td>
   </tr>
-  <% if @target_user.id == @user.id %>
+  <% if @target_user.id == @user.id && @guest_user == @user %>
+    <% provide(:title, "ゲスト の マイページ") %>
+    <tr>
+      <th>メールアドレス：</th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>パスワード：</th>
+      <td>ゲストユーザーは変更できません。</td>
+    </tr>
+    <tr>
+      <th>設定：</th>
+      <td>ゲストユーザーは変更できません。</td>
+    </tr>
+  <% elsif @target_user.id == @user.id %>
     <% provide(:title, "#{@user.username} の マイページ") %>
     <tr>
       <th>メールアドレス：</th>

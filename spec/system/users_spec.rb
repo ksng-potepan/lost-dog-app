@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users' do
   let(:user) { create(:user) }
   let(:other_user) { create(:other_user) }
+  let(:guest_user) { create(:guest_user) }
 
   describe 'ユーザー新規登録について' do
     before do
@@ -258,6 +259,17 @@ RSpec.describe 'Users' do
 
       it 'ダイレクトメッセージの表示があること' do
         expect(page).to have_content '連絡をする'
+      end
+    end
+
+    context 'guest_userがサインインしている場合' do
+      before do
+        sign_in guest_user
+        visit user_path(guest_user)
+      end
+
+      it 'ゲストユーザーは変更できません。の表示があること' do
+        expect(page).to have_content 'ゲストユーザーは変更できません。'
       end
     end
   end

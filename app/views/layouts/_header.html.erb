@@ -68,6 +68,9 @@
           <nav class="nav">
             <ul>
               <li>
+                <%= button_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
+              </li>
+              <li>
                 <%= link_to new_user_session_path, class:'header-link' do %>
                   <%= image_tag 'login.png', class:'menu-logo' %>
                   <span class='nav-item'>ログイン</span>

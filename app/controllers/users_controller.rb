@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @guest_user =  User.find_by(email: 'guest@example.com')
     @target_user = User.find(params[:id])
     @current_entry = Entry.where(user_id: @user.id)
     @another_entry = Entry.where(user_id: @target_user.id)
