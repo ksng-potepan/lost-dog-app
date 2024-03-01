@@ -29,9 +29,18 @@
           <i class="fa-solid fa-trash">投稿を削除</i>
         <% end %>
       <% else %>
-        <%= a.user.username %>様</br>
-        <%= link_to user_path(a.user_id), class: "board-btn" do %>
-          <i class="fa-solid fa-envelope"></i>連絡をする
+        <%= link_to "#{a.user.username}様", user_path(a) %></br>
+        <% if @is_room == true %>
+          <%= link_to room_path(@room_id), class:'' do %>
+            <i class="fa-solid fa-envelope-open"></i>連絡をする
+          <% end %>
+        <% else %>
+          <%= form_for @room, data: { turbo: false } do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @amble_user.user.id %>
+            <% end %>
+            <button type="submit" class=""><i class="fa-regular fa-envelope"></i>連絡をする</button>
+          <% end %>
         <% end %>
       <% end %>
     </div>
