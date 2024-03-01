@@ -1,5 +1,5 @@
 <% provide(:title, "目撃情報 投稿一覧") %>
-<% @sighting.each do |sighting|%>
+<% @sightings.each do |sighting|%>
   <div id="easyModal<%= sighting.id %>" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -27,9 +27,18 @@
               <i class="fa-solid fa-trash">投稿を削除</i>
             <% end %>
           <% else %>
-            <%= sighting.user.username %>様
-            <%= link_to user_path(sighting.user_id) do %>
-              <i class="fa-solid fa-envelope"></i>連絡をする
+            <%= link_to "#{sighting.user.username}様", user_path(sighting) %></br>
+            <% if @is_room == true %>
+              <%= link_to room_path(@room_id), class:'' do %>
+                <i class="fa-solid fa-envelope-open"></i>連絡をする
+              <% end %>
+            <% else %>
+              <%= form_for @room, data: { turbo: false } do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, value: @sighting_user.user.id %>
+                <% end %>
+                <button type="submit" class=""><i class="fa-regular fa-envelope"></i>連絡をする</button>
+              <% end %>
             <% end %>
           <% end %>
         </p>
@@ -82,7 +91,7 @@
     transitLayer.setMap(map);
 
     //複数マーカー ここから
-    <% @sighting.each do |sighting|%>
+    <% @sightings.each do |sighting|%>
       ( function() {
         let markerLatLng = { lat: <%= sighting.lat %>, lng: <%= sighting.lng %> }; // 緯度経度のデータ作成
         let marker = new google.maps.Marker({

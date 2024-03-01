@@ -30,6 +30,22 @@ class ProtectsController < ApplicationController
   def show
     @user = current_user
     @protect = Protect.where(id: params[:id])
+    @protect_user = Protect.find_by(id: params[:id])
+    @current_entry = Entry.where(user_id: @user.id)
+    @another_entry = Entry.where(user_id: @protect_user.user.id)
+
+    @current_entry.each do |current|
+      @another_entry.each do |another|
+        if current.room_id == another.room_id
+          @is_room = true
+          @room_id = current.room_id
+        end
+      end
+    end
+    return if @is_room
+
+    @room = Room.new
+    @entry = Entry.new
   end
 
   def new
