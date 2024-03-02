@@ -8,24 +8,6 @@ class SightingsController < ApplicationController
   def index
     @user = current_user
     @sightings = Sighting.all
-    @sightings.find_each do |sighting|
-      @sighting_user = sighting.user.id
-    end
-    @current_entry = Entry.where(user_id: @user.id)
-    @another_entry = Entry.where(user_id: @sighting_user)
-
-    @current_entry.each do |current|
-      @another_entry.each do |another|
-        if current.room_id == another.room_id
-          @is_room = true
-          @room_id = current.room_id
-        end
-      end
-    end
-    return if @is_room
-
-    @room = Room.new
-    @entry = Entry.new
   end
 
   def show
