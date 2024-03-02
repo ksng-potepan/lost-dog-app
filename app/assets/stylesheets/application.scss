@@ -192,6 +192,16 @@ h1 {
   font-size: 22px;
 }
 
+.sightings-nil {
+  position: relative;
+  top: 500px;
+  left: 20%;
+}
+
+.post-nil {
+  margin-left: 150px;
+}
+
 @media screen and (max-width:1024px) {
   .top-logo {
     left: 50%;
@@ -207,6 +217,16 @@ h1 {
     top: 720px;
     left: 48%;
   }
+
+  .sightings-nil {
+    top: 550px;
+    left: 10%;
+  }
+
+  .post-nil {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 @media screen and (max-width:600px) {
@@ -217,6 +237,10 @@ h1 {
   h1 {
     top: 600px;
     left: 46%;
+  }
+
+  .sightings-nil {
+    top: 600px;
   }
 }
 
