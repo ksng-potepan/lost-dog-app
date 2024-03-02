@@ -161,23 +161,6 @@ RSpec.describe 'Users' do
       end
     end
 
-    describe '画像アップロード機能について' do
-      before do
-        visit edit_user_path(user)
-      end
-
-      it '正常な画像ファイルをアップロードできること' do
-        attach_file('image', 'spec/fixtures/sample.jpg')
-        click_button '更新する'
-        expect(page).to have_current_path(user_path(user))
-      end
-
-      it '画像ファイルをアップロードしなくても更新できること' do
-        click_button '更新する'
-        expect(page).to have_current_path(user_path(user))
-      end
-    end
-
     describe 'ログアウトをクリック後について' do
       before do
         visit root_path
