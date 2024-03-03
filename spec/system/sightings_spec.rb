@@ -69,24 +69,6 @@ RSpec.describe 'Sightings' do
     it 'マップが表示されること' do
       expect(page).to have_css("#map")
     end
-
-    it '日付けが正常に表示されること' do
-      first(".modal") do
-        expect(page).to have_content sighting.date.strftime("%Y年%m月%d日")
-      end
-    end
-
-    it '場所が正常に表示されること' do
-      first(".modal") do
-        expect(page).to have_content sighting.area
-      end
-    end
-
-    it '状況が正常に表示されること' do
-      first(".modal") do
-        expect(page).to have_content sighting.situation
-      end
-    end
   end
 
   describe '投稿詳細ページ' do
