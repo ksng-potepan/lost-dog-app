@@ -10,8 +10,8 @@
   </div>
   <div class="modal-body">
     <div class="modal-image">
-      <% if @user.image.attached? %>
-        <%= image_tag @user.image, :size => '200x200' %>
+      <% if @sighting.image.attached? %>
+        <%= image_tag @sighting.image, :size => '200x200' %>
       <% else %>
         <%= image_tag("default_user.png", :size => "200x200") %>
       <% end %>
