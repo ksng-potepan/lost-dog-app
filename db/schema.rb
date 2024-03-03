@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_04_063837) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_02_101048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_04_063837) do
     t.boolean "chip"
     t.datetime "date", null: false
     t.string "prefecture", null: false
-    t.string "municipalities"
+    t.string "municipalities", null: false
     t.string "area"
     t.text "situation"
     t.text "notification"
@@ -98,7 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_04_063837) do
     t.datetime "date", null: false
     t.string "time"
     t.string "prefecture", null: false
-    t.string "municipalities"
+    t.string "municipalities", null: false
     t.text "area"
     t.text "situation", null: false
     t.text "notification"
