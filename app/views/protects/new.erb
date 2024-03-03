@@ -52,12 +52,19 @@
           </div>
 
           <div class="board-item">
-            <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-location-dot"></i>
+            <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-location-dot"></i>
             <%= f.text_field :municipalities, class: "board-item-input", placeholder: "市区町村", value: @protect.municipalities %>
             <div class="message">
               <a href="#">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                <span class="remark">地番は入力しないでください</span>
+                <% if @protect.errors.include?(:municipalities) %>
+                  <div class='i-red'>
+                    <i class="fa-solid fa-circle-exclamation i-red"></i>
+                  </div>
+                  <span class="remark error-message"><%= @protect.errors.full_messages_for(:municipalities).first %></span>
+                <% else %>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span class="remark">地番は入力しないでください</span>
+                <% end %>
               </a>
             </div>
           </div>
