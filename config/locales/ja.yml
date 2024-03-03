@@ -9,12 +9,14 @@ ja:
         gender: "犬の性別"
         features: "犬の特徴"
         prefecture: "都道府県"
+        municipalities: "市区町村"
         situation: "迷子になった状況"
       protect:
         date: "日付"
         size: "犬の大きさ"
         gender: "犬の性別"
         features: "犬の特徴"
+        municipalities: "市区町村"
         situation: "保護した状況"
       sighting:
         date: "日付"

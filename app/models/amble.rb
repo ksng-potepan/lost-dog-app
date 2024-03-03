@@ -2,7 +2,7 @@ class Amble < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :name, :size, :gender, :date, presence: true
+  validates :name, :size, :gender, :date, :municipalities, presence: true
   validates :features, :situation, length: { maximum: 50 }
   validate :date_before_start
   validate :prefecture_cannot_be_zero
