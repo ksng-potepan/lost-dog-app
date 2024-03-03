@@ -39,6 +39,7 @@ RSpec.describe 'Ambles' do
       before do
         fill_in "amble_date", with: amble.date
         select amble.prefecture, from: 'amble_prefecture'
+        fill_in 'amble_municipalities', with: amble.municipalities
         fill_in 'amble_name', with: amble.name
         choose 'amble_gender_unknown'
         choose 'amble_size_small'

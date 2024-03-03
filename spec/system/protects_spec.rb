@@ -39,6 +39,7 @@ RSpec.describe 'Protects' do
       before do
         fill_in "protect_date", with: protect.date
         select protect.prefecture, from: 'protect_prefecture'
+        fill_in 'protect_municipalities', with: protect.municipalities
         fill_in 'protect_situation', with: protect.situation
         choose 'protect_gender_unknown'
         choose 'protect_size_small'
