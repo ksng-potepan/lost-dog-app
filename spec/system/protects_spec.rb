@@ -173,9 +173,9 @@ RSpec.describe 'Protects' do
       visit protects_path(protect)
     end
 
-    it '名前が正常に表示されること' do
+    it '犬種が正常に表示されること' do
       within('.index') do
-        expect(page).to have_content protect.name
+        expect(page).to have_content protect.breed
       end
     end
 
