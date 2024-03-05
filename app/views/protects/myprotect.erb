@@ -20,9 +20,6 @@
           <%= button_to protect_path(p), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
             <i class="fa-solid fa-trash">投稿を削除</i>
           <% end %>
-          <%= button_to protect_path(p), method: :delete, data: { turbo_confirm: "個人情報保護のため削除します。" } do %>
-            <i class="fa-solid fa-circle-check">解決しました</i>
-          <% end %>
         </div>
 
         <table class="amble-index-table">
