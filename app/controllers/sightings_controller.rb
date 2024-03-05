@@ -36,6 +36,11 @@ class SightingsController < ApplicationController
     @sighting = Sighting.new
   end
 
+  def edit
+    @user = current_user
+    @sighting = Sighting.find(params[:id])
+  end
+
   def create
     @user = current_user
     @sighting = Sighting.new(sighting_params)
@@ -46,6 +51,19 @@ class SightingsController < ApplicationController
     else
       flash.now[:alert] = t('flash.alerts.create_fail')
       render :new
+    end
+  end
+
+  def update
+    @user = current_user
+    @sighting = Sighting.find(params[:id])
+    @sighting.user_id = current_user.id
+    if @sighting.update(sighting_params)
+      flash[:notice] = t('flash.notices.update')
+      redirect_to sighting_path(@sighting)
+    else
+      flash.now[:alert] = t('flash.alerts.update_fail')
+      render :edit
     end
   end
 
