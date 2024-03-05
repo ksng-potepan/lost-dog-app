@@ -20,9 +20,6 @@
           <%= button_to protect_path(p), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
             <i class="fa-solid fa-trash">投稿を削除</i>
           <% end %>
-          <%= button_to protect_path(p), method: :delete, data: { turbo_confirm: "個人情報保護のため削除します。" } do %>
-            <i class="fa-solid fa-circle-check">解決しました</i>
-          <% end %>
         </div>
 
         <table class="amble-index-table">
@@ -32,11 +29,11 @@
           </tr>
           <tr>
             <th>保護日時：</th>
-            <td><%= l p.date %>|<%= p.time %></td>
+            <td><%= l p.date %><%= p.time %></td>
           </tr>
           <tr>
             <th>保護場所：</th>
-            <td><%= p.prefecture %>|<%= p.municipalities %>|<%= p.area %></td>
+            <td><%= p.prefecture %><%= p.municipalities %><%= p.area %></td>
           </tr>
           <tr>
             <th>保護状況：</th>

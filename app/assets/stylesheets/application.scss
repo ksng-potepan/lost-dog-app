@@ -442,6 +442,7 @@ h1 {
   background: #B7B7B7;
   box-sizing: border-box;
   border-right: 1px solid #545353;
+  max-width: 220px;
 }
 
 .header-logo {
@@ -489,6 +490,7 @@ h1 {
     width: 100%;
     height: 50px;
     border: 1px solid #545353;
+    max-width: none;
   }
 
   .header-logo {

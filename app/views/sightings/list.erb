@@ -1,34 +1,38 @@
-<% @sighting.each do |sighting|%>
-  <% provide(:title, "#{sighting.user.username} の 目撃情報一覧") %>
-  <div id="easyModal<%= sighting.id %>" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>目撃情報の詳細</h2>
-        <span class="modalClose">×</span>
-      </div>
-      <div class="modal-body">
-        <div class="modal-image">
-          <% if @user.image.attached? %>
-            <%= image_tag @user.image, :size => '200x200' %>
-          <% else %>
-            <%= image_tag("default_user.png", :size => "200x200") %>
-          <% end %>
+<% if @sighting.present? %>
+  <% @sighting.each do |sighting|%>
+    <% provide(:title, "#{sighting.user.username} の 目撃情報一覧") %>
+    <div id="easyModal<%= sighting.id %>" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>目撃情報の詳細</h2>
+          <span class="modalClose">×</span>
         </div>
-        <h3>日時：</h3>
-        <p><%= l sighting.date %></p>
-        <p><%= sighting.time %></p>
-        <h3>場所：</h3>
-        <p><%= sighting.area %></p>
-        <h3>状況：</h3>
-        <p><%= sighting.situation %></p>
-        <p>
-          <%= link_to user_path(sighting.user_id) do %>
-            <i class="fa-solid fa-envelope"></i>連絡をする
-          <% end %>
-        </p>
+        <div class="modal-body">
+          <div class="modal-image">
+            <% if @user.image.attached? %>
+              <%= image_tag @user.image, :size => '200x200' %>
+            <% else %>
+              <%= image_tag("default_user.png", :size => "200x200") %>
+            <% end %>
+          </div>
+          <h3>日時：</h3>
+          <p><%= l sighting.date %></p>
+          <p><%= sighting.time %></p>
+          <h3>場所：</h3>
+          <p><%= sighting.area %></p>
+          <h3>状況：</h3>
+          <p><%= sighting.situation %></p>
+          <p>
+            <%= link_to user_path(sighting.user.id) do %>
+              <i class="fa-solid fa-envelope"></i>連絡をする
+            <% end %>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
+<% else %>
+  <h2 class="sightings-nil"><i class="fa-solid fa-signs-post"></i>投稿はありません</h2>
 <% end %>
 
 <div class="sighting-map-index">

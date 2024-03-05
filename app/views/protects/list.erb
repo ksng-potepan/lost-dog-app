@@ -1,5 +1,6 @@
 <h2 class="title">ー 自分の投稿一覧 ー</h2>
 <div class="index">
+<% if @protect.present? %>
   <% @protect.each do |p| %>
     <% provide(:title, "#{p.user.username} の 保護犬一覧") %>
     <div class="amble-index">
@@ -26,11 +27,11 @@
         </tr>
         <tr>
           <th>保護日時：</th>
-          <td><%= l p.date %>|<%= p.time %></td>
+          <td><%= l p.date %><%= p.time %></td>
         </tr>
         <tr>
           <th>保護場所：</th>
-          <td><%= p.prefecture %>|<%= p.municipalities %>|<%= p.area %></td>
+          <td><%= p.prefecture %><%= p.municipalities %><%= p.area %></td>
         </tr>
         <tr>
           <th>保護状況：</th>
@@ -39,4 +40,7 @@
       </table>
     </div>
   <% end %>
+<% else %>
+  <h2 class="post-nil"><i class="fa-solid fa-signs-post"></i>投稿はありません</h2>
+<% end %>
 </div>

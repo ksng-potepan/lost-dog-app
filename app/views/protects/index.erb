@@ -41,16 +41,16 @@
 
       <table class="amble-index-table">
         <tr>
-          <th>名前：</th>
-          <td><%= protect.name %></td>
+          <th>犬種：</th>
+          <td><%= protect.breed %></td>
         </tr>
         <tr>
           <th>保護日時：</th>
-          <td><%= l protect.date %>|<%= protect.time %></td>
+          <td><%= l protect.date %><%= protect.time %></td>
         </tr>
         <tr>
           <th>保護場所：</th>
-          <td><%= protect.prefecture %>|<%= protect.municipalities %>|<%= protect.area %></td>
+          <td><%= protect.prefecture %><%= protect.municipalities %><%= protect.area %></td>
         </tr>
         <tr>
           <th>保護状況：</th>

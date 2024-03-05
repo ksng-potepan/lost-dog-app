@@ -33,7 +33,7 @@
           <i class="fa-solid fa-trash">投稿を削除</i>
         <% end %>
       <% else %>
-        <%= link_to "#{p.user.username}様", user_path(p) %></br>
+        <%= link_to "#{p.user.username}様", user_path(p.user.id) %></br>
         <% if @is_room == true %>
           <%= link_to room_path(@room_id), class:'' do %>
             <i class="fa-solid fa-envelope-open"></i>連絡をする

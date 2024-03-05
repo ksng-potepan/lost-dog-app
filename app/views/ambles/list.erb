@@ -1,5 +1,6 @@
 <h2 class="title">ー 投稿一覧 ー</h2>
 <div class="index">
+<% if @amble.present? %>
   <% @amble.each do |a| %>
     <% provide(:title, "#{a.user.username} の 迷子犬一覧") %>
     <div class="amble-index">
@@ -26,11 +27,11 @@
         </tr>
         <tr>
           <th>迷子の日時：</th>
-          <td><%= l a.date %>|<%= a.time %></td>
+          <td><%= l a.date %><%= a.time %></td>
         </tr>
         <tr>
           <th>迷子の場所：</th>
-          <td><%= a.prefecture %>|<%= a.municipalities %>|<%= a.area %></td>
+          <td><%= a.prefecture %><%= a.municipalities %><%= a.area %></td>
         </tr>
         <tr>
           <th>迷子の状況：</th>
@@ -39,4 +40,7 @@
       </table>
     </div>
   <% end %>
+<% else %>
+  <h2 class="post-nil"><i class="fa-solid fa-signs-post"></i>投稿はありません</h2>
+<% end %>
 </div>
