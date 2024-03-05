@@ -1,0 +1,162 @@
+<% provide(:title, "編集 目撃情報") %>
+<div class="sighting-form">
+  <h2 class="board-title">ー 目撃情報を編集する ー</h2>
+  <%= form_with model: @sighting, local:true, data: { turbo: false } do |f| %>
+    <% if @sighting.errors.any? %>
+    <% end %>
+
+    <div class="sighting-area">
+      <div class="board-item">
+        <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-location-dot"></i>
+        <%= f.text_field :area, class: "board-item-input", placeholder: "目撃した付近", value: @sighting.area %>
+        <div class="message">
+          <a href="#">
+            <% if @sighting.errors.include?(:area) %>
+              <div class='i-red'>
+                <i class="fa-solid fa-circle-exclamation i-red"></i>
+              </div>
+              <span class="remark error-message"><%= @sighting.errors.full_messages_for(:area).first %></span>
+            <% else %>
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span class="remark">〇〇公園、〇〇駅など</span>
+            <% end %>
+          </a>
+        </div>
+      </div>
+
+      <div class="board-item">
+        <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-calendar-days"></i>
+        <%= f.date_field :date, class: "board-item-input", value: @sighting.date.strftime("%Y-%m-%d") %>
+        <div class="message">
+          <a href="#">
+            <% if @sighting.errors.include?(:date) %>
+              <div class='i-red'>
+                <i class="fa-solid fa-circle-exclamation i-red"></i>
+              </div>
+              <span class="remark error-message"><%= @sighting.errors.full_messages_for(:date).first %></span>
+            <% else %>
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span class="remark">今日を含む前の日付を入力してください</span>
+            <% end %>
+          </a>
+        </div>
+      </div>
+
+      <div class="board-item">
+        <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-clock"></i>
+        <%= f.text_field :time, class: "board-item-input", placeholder: "時間", value: @sighting.time %>
+        <div class="message">
+          <a href="#">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span class="remark">00:00、何時ごろなど</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="board-item">
+        <span class="Form-Item-Label-Any">任意</span><i class="fa-solid fa-paw"></i>
+        <%= f.text_area :time, class: "board-item-input", placeholder: "特徴や状況", value: @sighting.situation %>
+        <div class="message">
+          <a href="#">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span class="remark">１００文字以内で記入してください</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="board-item">
+        <span class="Form-Item-Label-Any">任意</span><i class="fa-regular fa-image"></i>
+        <p class="board-Label">写真</p>
+        <%= f.file_field :image %>
+      </div>
+
+      <%= f.hidden_field :lat, value: @sighting.lat, id: :lat %>
+      <%= f.hidden_field :lng, value: @sighting.lng, id: :lng %>
+
+      <div class="board-actions">
+        <%= f.submit "登録する" %>
+        <%= link_to "記入をキャンセルする", root_path, class:'link-button' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="sighting-map">
+  <h2>Map</h2>
+
+  <input id="address" type="textbox">
+  <input type="button" value="検索" onclick="codeAddress()">
+  <div class="message error-mark">
+    <a href="#">
+      <% if @sighting.errors.include?(:lat) %>
+        <div class='i-red'>
+          <i class="fa-solid fa-circle-exclamation i-red"></i>
+        </div>
+        <span class="remark error-message"><%= @sighting.errors.full_messages_for(:lat).first %></span>
+      <% end %>
+    </a>
+  </div>
+  <p>検索をしてマーカーを立ててください。<p>
+  <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+  <div id='map'></div>
+</div>
+
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: <%= @sighting.lat %>, lng: <%= @sighting.lng %>},
+    zoom: 15,
+  });
+
+    marker = new google.maps.Marker({
+    position:  {lat: <%= @sighting.lat %>, lng: <%= @sighting.lng %>},
+    map: map
+  });
+}
+
+//検索後のマップ作成
+let geocoder
+let aft
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+        //マーカーが複数できないようにする
+        if (aft == true){
+            marker.setMap(null);
+        }
+
+        //新しくマーカーを作成する
+        map.setCenter(results[0].geometry.location);
+            marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            draggable: true	// ドラッグ可能にする
+        });
+
+        //二度目以降か判断
+        aft = true
+
+        //検索した時に緯度経度を入力する
+        document.getElementById('lat').value = results[0].geometry.location.lat();
+        document.getElementById('lng').value = results[0].geometry.location.lng();
+
+        // マーカーのドロップ（ドラッグ終了）時のイベント
+        google.maps.event.addListener( marker, 'dragend', function(ev){
+            // イベントの引数evの、プロパティ.latLngが緯度経度
+            document.getElementById('lat').value = ev.latLng.lat();
+            document.getElementById('lng').value = ev.latLng.lng();
+        });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAP_API']%>&callback=initMap" async defer></script>
