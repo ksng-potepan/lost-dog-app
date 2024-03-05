@@ -23,6 +23,7 @@
           <h3>状況：</h3>
           <p><%= sighting.situation %></p>
           <p>
+            <i class="fa-solid fa-pen"><%= link_to "編集する", edit_sighting_path(sighting) %></i>
             <%= button_to sighting_path(sighting), method: :delete, data: { turbo: false } do %>
               <i class="fa-solid fa-trash">投稿を削除</i>
             <% end %>
