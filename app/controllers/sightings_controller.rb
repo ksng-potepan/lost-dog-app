@@ -7,7 +7,7 @@ class SightingsController < ApplicationController
 
   def index
     @user = current_user
-    @sightings = Sighting.all
+    @sightings = Sighting.all.page(params[:page]).per(10)
     if params[:search].present?
       @sightings = @sightings.where('time LIKE ? or area LIKE ? or situation LIKE ?',
                                     "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
