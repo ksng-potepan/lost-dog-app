@@ -1,6 +1,6 @@
-<% provide(:title, "新規投稿 目撃情報") %>
+<% provide(:title, "編集 目撃情報") %>
 <div class="sighting-form">
-  <h2 class="board-title">ー 目撃情報 ー</h2>
+  <h2 class="board-title">ー 目撃情報を編集する ー</h2>
   <%= form_with model: @sighting, local:true, data: { turbo: false } do |f| %>
     <% if @sighting.errors.any? %>
     <% end %>
@@ -26,7 +26,7 @@
 
       <div class="board-item">
         <span class="Form-Item-Label-Required">必須</span><i class="fa-solid fa-calendar-days"></i>
-        <%= f.date_field :date, class: "board-item-input", value: @sighting.date %>
+        <%= f.date_field :date, class: "board-item-input", value: @sighting.date.strftime("%Y-%m-%d") %>
         <div class="message">
           <a href="#">
             <% if @sighting.errors.include?(:date) %>
@@ -70,8 +70,8 @@
         <%= f.file_field :image %>
       </div>
 
-      <%= f.hidden_field :lat,:value =>"緯度", id: :lat %>
-      <%= f.hidden_field :lng,:value =>"経度", id: :lng %>
+      <%= f.hidden_field :lat, value: @sighting.lat, id: :lat %>
+      <%= f.hidden_field :lng, value: @sighting.lng, id: :lng %>
 
       <div class="board-actions">
         <%= f.submit "登録する" %>
@@ -109,8 +109,13 @@ function initMap(){
   geocoder = new google.maps.Geocoder()
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center:  {lat: 35.6803997, lng:139.7690174},  //東京
+    center:  {lat: <%= @sighting.lat %>, lng: <%= @sighting.lng %>},
     zoom: 15,
+  });
+
+    marker = new google.maps.Marker({
+    position:  {lat: <%= @sighting.lat %>, lng: <%= @sighting.lng %>},
+    map: map
   });
 }
 

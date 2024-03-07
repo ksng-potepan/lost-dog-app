@@ -22,9 +22,9 @@ RSpec.describe Sighting do
     end
 
     it "situationが100文字以下でなければ無効であること" do
-      sighting.situation = "a" * 101
+      sighting.situation = "a" * 51
       sighting.valid?
-      expect(sighting.errors[:situation]).to include("は100文字以内で入力してください")
+      expect(sighting.errors[:situation]).to include("は50文字以内で入力してください")
     end
   end
 

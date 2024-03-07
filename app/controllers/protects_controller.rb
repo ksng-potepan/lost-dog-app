@@ -7,7 +7,7 @@ class ProtectsController < ApplicationController
 
   def index
     @user = current_user
-    @protect = Protect.all
+    @protect = Protect.all.page(params[:page]).per(10)
     if params[:search].present?
       @protect = @protect.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?
                                 or age LIKE ? or municipalities LIKE ? or area LIKE ?',
@@ -103,7 +103,7 @@ class ProtectsController < ApplicationController
 
   def transferred
     @user = current_user
-    @protect = Protect.where(transferred: true)
+    @protect = Protect.where(transferred: true).page(params[:page]).per(10)
     if params[:search].present?
       @protect = @protect.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?
                                 or age LIKE ? or municipalities LIKE ? or area LIKE ?',

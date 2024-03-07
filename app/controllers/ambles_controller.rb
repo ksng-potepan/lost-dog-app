@@ -7,7 +7,7 @@ class AmblesController < ApplicationController
 
   def index
     @user = current_user
-    @amble = Amble.all
+    @amble = Amble.all.page(params[:page]).per(10)
     if params[:search].present?
       @amble = @amble.where('name LIKE ? or breed LIKE ? or color LIKE ? or features LIKE ?
                             or age LIKE ? or municipalities LIKE ? or area LIKE ?',

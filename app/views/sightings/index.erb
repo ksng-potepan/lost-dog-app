@@ -4,6 +4,47 @@
   <div id='map'></div>
 </div>
 
+<h2 class="total">合計：<%= @sightings.count %>件</h2>
+
+<div class="search">
+  <h2><i class="fa-solid fa-magnifying-glass">投稿を検索する</i></h2>
+  <%= form_tag({controller:"sightings",action:"index"}, method: :get) do %>
+    <ul>
+      <li><%= text_field_tag :search, "", placeholder: "キーワード検索" %></li>
+      <li>日付けを選択：<%= date_field_tag :start_date, "", placeholder: "開始日時", value: params[:start_date] %>〜
+      <%= date_field_tag :end_date, "", value: Time.now.to_date %></li>
+      <%= submit_tag '検索する' %>
+  <% end %>
+  <%= link_to "リセット", sightings_path, class:'link-button' %>
+</div>
+
+<div class="sighting-index">
+  <% @sightings.each do |sighting| %>
+    <div class="c-card c-card--row">
+      <%= link_to sighting_path(sighting) do %>
+        <div class="c-card__contents">
+          <h2 class="c-card__title"><%= l sighting.date %><%= sighting.time %></h2>
+          <p class="c-card__text">
+            場所：<%= sighting.area %></br>
+            状況：<%= sighting.situation %></br>
+          </p>
+          <div class="c-card__thumbnail">
+            <% if sighting.image.attached? %>
+              <%= image_tag sighting.image, :size => '100x100' %>
+            <% else %>
+              <%= image_tag("default_user.png", :size => "100x100") %>
+            <% end %>
+          </div>
+          <ul class="c-card__info">
+          <li class="c-card__info-item">投稿日時：<%= sighting.created_at.strftime('%Y/%m/%d %H:%M') %></li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= paginate @sightings %>
+</div>
+
 <!-- js部分 -->
 <script>
   function initMap() {

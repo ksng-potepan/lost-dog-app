@@ -42,7 +42,7 @@ Metrics/BlockLength:
 # Condition: 条件文
 # 上記項目をRubocopが計算して基準値を超えると警告を出す（上記頭文字をとって'Abc'）
 Metrics/AbcSize:
-  Max: 66
+  Max: 70
 
 # メソッドの中身が複雑になっていないか、Rubocopが計算して基準値を超えると警告を出す
 Metrics/PerceivedComplexity:

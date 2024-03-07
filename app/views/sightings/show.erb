@@ -25,6 +25,7 @@
     <p><%= @sighting.situation %></p>
     <p>
       <% if @sighting.user_id == current_user.id %>
+        <i class="fa-solid fa-pen"><%= link_to "編集する", edit_sighting_path(@sighting) %></i>
         <%= button_to @sighting_path, method: :delete, data: { turbo: false } do %>
           <i class="fa-solid fa-trash">投稿を削除</i>
         <% end %>
