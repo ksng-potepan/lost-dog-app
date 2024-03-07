@@ -157,5 +157,61 @@ RSpec.describe 'Sightings' do
     it '投稿一覧ページの表示に成功すること' do
       expect(response).to have_http_status(:ok)
     end
+
+    context '検索した条件と一致する場合' do
+      it '時間と一致する投稿が表示されること' do
+        params[:search] = '正午'
+        get '/sightings'
+        expect(response.body).to include sighting.time
+      end
+
+      it '状況と一致する投稿が表示されること' do
+        params[:search] = '走って行った'
+        get '/sightings'
+        expect(response.body).to include sighting.situation
+      end
+
+      it '迷子になった付近と一致する投稿が表示されること' do
+        params[:search] = 'ハチ公前'
+        get '/sightings'
+        expect(response.body).to include sighting.area
+      end
+
+      it '日付で検索した場合、検索条件に一致するアムブルが表示されること' do
+        params[:start_date] = '2000/01/01'
+        params[:end_date] = '2000/12//31'
+        get '/sightings'
+        expect(response.body).to include sighting.date.strftime("%Y年%m月%d日")
+      end
+    end
+
+    context '検索した条件と一致しない場合' do
+      it '時間と一致する投稿が表示されること' do
+        params[:search] = '正午'
+        get '/sightings'
+        expect(response.body).not_to include('朝')
+      end
+
+      it '状況と一致する投稿が表示されること' do
+        params[:search] = '走って行った'
+        get '/sightings'
+        expect(response.body).not_to include('漁っていた')
+      end
+
+      it '迷子になった付近と一致する投稿が表示されること' do
+        params[:search] = 'ハチ公前'
+        get '/sightings'
+        expect(response.body).not_to include('大阪市')
+      end
+
+      it '日付で検索した場合、検索条件に一致するアムブルが表示されないこと' do
+        params[:start_date] = '2000/01/01'
+        params[:end_date] = '2000/12//31'
+        get '/sightings'
+        within('.sightings-index') do
+          expect(response.body).not_to include('2001年11月01日')
+        end
+      end
+    end
   end
 end

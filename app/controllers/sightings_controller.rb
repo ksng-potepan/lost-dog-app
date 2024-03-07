@@ -8,6 +8,19 @@ class SightingsController < ApplicationController
   def index
     @user = current_user
     @sightings = Sighting.all
+    if params[:search].present?
+      @sightings = @sightings.where('time LIKE ? or area LIKE ? or situation LIKE ?',
+                                    "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+    return unless params[:start_date].present? || params[:end_date].present?
+
+    @sightings = if params[:start_date].present? && params[:end_date].present?
+                   @sightings.where(date: params[:start_date]..params[:end_date])
+                 elsif params[:start_date].present?
+                   @sightings.where(date: params[:start_date]..)
+                 else
+                   @sightings.where(date: ..params[:end_date])
+                 end
   end
 
   def show

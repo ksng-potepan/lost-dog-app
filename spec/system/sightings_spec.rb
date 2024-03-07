@@ -145,7 +145,7 @@ RSpec.describe 'Sightings' do
 
     it '詳細へのリンクをクリックすると詳細ページに遷移すること' do
       within('.sighting-index') do
-      click_on sighting.date.strftime("%Y年%m月%d日")
+        click_on sighting.date.strftime("%Y年%m月%d日")
         expect(page).to have_current_path sighting_path(sighting), ignore_query: true
       end
     end
