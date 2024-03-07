@@ -4,6 +4,34 @@
   <div id='map'></div>
 </div>
 
+<h2 class="total">合計：<%= @sightings.count %>件</h2>
+
+<div class="sighting-index">
+  <% @sightings.each do |sighting| %>
+    <div class="c-card c-card--row">
+      <%= link_to sighting_path(sighting) do %>
+        <div class="c-card__contents">
+          <h2 class="c-card__title"><%= l sighting.date %><%= sighting.time %></h2>
+          <p class="c-card__text">
+            場所：<%= sighting.area %></br>
+            状況：<%= sighting.situation %></br>
+          </p>
+          <div class="c-card__thumbnail">
+            <% if sighting.image.attached? %>
+              <%= image_tag sighting.image, :size => '100x100' %>
+            <% else %>
+              <%= image_tag("default_user.png", :size => "100x100") %>
+            <% end %>
+          </div>
+          <ul class="c-card__info">
+          <li class="c-card__info-item">投稿日時：<%= sighting.created_at.strftime('%Y/%m/%d %H:%M') %></li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
 <!-- js部分 -->
 <script>
   function initMap() {

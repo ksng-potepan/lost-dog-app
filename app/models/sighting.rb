@@ -4,7 +4,7 @@ class Sighting < ApplicationRecord
 
   validates :lat, numericality: { greater_than: 0 }
   validates :area, presence: true
-  validates :situation, length: { maximum: 100 }
+  validates :situation, length: { maximum: 50 }
   validate :date_before_start
 
   def date_before_start

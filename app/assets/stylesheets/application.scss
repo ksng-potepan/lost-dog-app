@@ -2004,6 +2004,53 @@ caption {
   margin-left: 61%;
 }
 
+.sighting-index {
+  margin-left: 20%;
+}
+
+.c-card.c-card--row {
+  max-width: 400px;
+  border: 1px solid #8497a5;
+  margin: 10px;
+}
+
+.c-card.c-card--row .c-card__contents {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+  gap: 10px 0;
+
+  grid-template-areas:
+    "pict title"
+    "pict text"
+    "pict info";
+}
+
+.c-card.c-card--row .c-card__thumbnail {
+  grid-area: pict;
+  margin: 15px 20px;
+}
+
+.c-card.c-card--row .c-card__title {
+  grid-area: title;
+  margin: 0.3rem 0 0 0;
+  font-size: 1.4rem;
+  background-color: #8497a5;
+}
+
+.c-card.c-card--row .c-card__text {
+  grid-area: text;
+  margin: 0;
+  font-size: 0.9rem;
+  background-color: #98b4ca5f;
+}
+
+.c-card.c-card--row .c-card__info {
+  grid-area: info;
+  margin: 0 0 0.3rem 0;
+  font-size: 0.9rem;
+}
+
 @media screen and (max-width:1024px) {
   .sighting-map {
     top: 70px;
@@ -2024,6 +2071,10 @@ caption {
   .sighting-show {
     top: -450px;
     margin-left: 45%;
+  }
+
+  .sighting-index {
+    margin-left: 20px;
   }
 }
 

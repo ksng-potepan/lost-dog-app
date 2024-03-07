@@ -112,6 +112,43 @@ RSpec.describe 'Sightings' do
     it 'マップが表示されること' do
       expect(page).to have_css("#map")
     end
+
+    it '日付けが正常に表示されること' do
+      first(".sighting-index") do
+        expect(page).to have_content sighting.date.strftime("%Y年%m月%d日")
+      end
+    end
+
+    it '場所が正常に表示されること' do
+      first(".sighting-index") do
+        expect(page).to have_content sighting.area
+      end
+    end
+
+    it '状況が正常に表示されること' do
+      first(".sighting-index") do
+        expect(page).to have_content sighting.situation
+      end
+    end
+
+    it '投稿日時が正常に表示されること' do
+      within('.sighting-index') do
+        expect(page).to have_content sighting.created_at.strftime("%Y/%m/%d %H:%M")
+      end
+    end
+
+    it "詳細へのリンクが貼られていること" do
+      within('.sighting-index') do
+        expect(page).to have_link sighting.date.strftime("%Y年%m月%d日")
+      end
+    end
+
+    it '詳細へのリンクをクリックすると詳細ページに遷移すること' do
+      within('.sighting-index') do
+      click_on sighting.date.strftime("%Y年%m月%d日")
+        expect(page).to have_current_path sighting_path(sighting), ignore_query: true
+      end
+    end
   end
 
   describe '投稿詳細ページ' do
