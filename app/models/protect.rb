@@ -4,8 +4,7 @@ class Protect < ApplicationRecord
 
   validates :date, :size, :gender, :situation, :municipalities, presence: true
   validates :features, :situation, length: { maximum: 50 }
-  validate :prefecture_cannot_be_zero
-
+  validates :prefecture, exclusion: { in: ['都道府県'] }
   validate :date_before_start
 
   def date_before_start
@@ -15,9 +14,5 @@ class Protect < ApplicationRecord
       errors.add(:date, "は今日を含む前の日付を登録してください。") unless
       date <= Date.current
     end
-  end
-
-  def prefecture_cannot_be_zero
-    errors.add(:prefecture, "選択してください") if prefecture == 0
   end
 end

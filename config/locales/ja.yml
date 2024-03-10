@@ -16,6 +16,7 @@ ja:
         size: "犬の大きさ"
         gender: "犬の性別"
         features: "犬の特徴"
+        prefecture: "都道府県"
         municipalities: "市区町村"
         situation: "保護した状況"
       sighting:
@@ -112,7 +113,7 @@ ja:
       empty: を入力してください
       equal_to: は%{count}にしてください
       even: は偶数にしてください
-      exclusion: は予約されています
+      exclusion: を選択してください
       greater_than: マーカーを立ててください
       greater_than_or_equal_to: は%{count}以上の値にしてください
       in: は%{count}の範囲に含めてください
