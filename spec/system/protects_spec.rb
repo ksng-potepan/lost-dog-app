@@ -146,6 +146,13 @@ RSpec.describe 'Protects' do
           expect(page).to have_current_path protects_path, ignore_query: true
         end
       end
+
+      it '「はい」ボタンで削除ができること' do
+        within('.modal-body') do
+          find(".confirm-yes").click
+          expect(page).to have_current_path protects_path, ignore_query: true
+        end
+      end
     end
 
     context '他人の投稿の場合' do

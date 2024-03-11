@@ -130,7 +130,7 @@ RSpec.describe 'Ambles' do
       visit amble_path(amble)
     end
 
-    it 'ambleの値が取得できていること' do
+    it 'ambleの値が取得できていること', js: true do
       expected.each do |value|
         expect(page).to have_content amble[value] && ""
       end
@@ -147,6 +147,13 @@ RSpec.describe 'Ambles' do
       it '削除できambles_pathに遷移すること' do
         within('.board-user') do
           click_on '投稿を削除'
+          expect(page).to have_current_path ambles_path, ignore_query: true
+        end
+      end
+
+      it '「はい」ボタンで削除ができること' do
+        within('.modal-body') do
+          find(".confirm-yes").click
           expect(page).to have_current_path ambles_path, ignore_query: true
         end
       end
@@ -234,7 +241,6 @@ RSpec.describe 'Ambles' do
   describe 'ステップフォーム', js: true do
     before do
       visit new_amble_path
-      sleep 10
     end
 
     it 'フォームが表示されていることを確認' do
