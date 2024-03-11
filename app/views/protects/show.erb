@@ -32,6 +32,21 @@
         <%= button_to protect_path(p), method: :delete, class: "board-btn" do %>
           <i class="fa-solid fa-trash">投稿を削除</i>
         <% end %>
+        <%= button_tag id: "delete-btn", class: "board-btn", data: { turbo: false } do %>
+          <i class="fa-solid fa-check">解決しました</i>
+        <% end %>
+        <div id="confirmation-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>解決されましたか？</h2>
+            </div>
+            <div class="modal-body">
+              個人情報保護法に基づき、この情報は削除されます。</br>
+              <button id="confirm-yes"><%= button_to 'はい', protect_path(p), method: :delete, class: "confirm-yes" %></button>
+              <button id="confirm-no">キャンセル</button>
+            </div>
+          </div>
+        </div>
       <% else %>
         <%= link_to "#{p.user.username}様", user_path(p.user.id) %></br>
         <% if @is_room == true %>
@@ -86,4 +101,8 @@
       </li>
     </ul>
   </div>
+<% end %>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "protects/modal" %>
 <% end %>

@@ -20,6 +20,21 @@
           <%= button_to amble_path(a), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
             <i class="fa-solid fa-trash">投稿を削除</i>
           <% end %>
+          <%= button_tag id: "delete-btn", class: "board-btn", data: { turbo: false } do %>
+            <i class="fa-solid fa-check">解決しました</i>
+          <% end %>
+          <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>解決されましたか？</h2>
+              </div>
+              <div class="modal-body">
+                個人情報保護法に基づき、この情報は削除されます。</br>
+                <button id="confirm-yes"><%= button_to 'はい', amble_path(a), method: :delete, class: "confirm-yes" %></button>
+                <button id="confirm-no">キャンセル</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <table class="amble-index-table">
@@ -46,3 +61,7 @@
     <h2 class="post-nil"><i class="fa-solid fa-signs-post"></i>投稿はありません</h2>
   <% end %>
 </div>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "ambles/modal" %>
+<% end %>
