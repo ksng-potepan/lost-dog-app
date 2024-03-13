@@ -149,16 +149,10 @@ i::before {
 
 h1 {
   position: absolute;
-  top: 15%;
-  left: 80%;
-  transform: translate(-50%, -50%);
-  width: 255px;
-  margin-left: 20px;
-  padding-top: 3px;
-  padding-left: 20px;
+  top: 220px;
+  left: 76%;
   font-size: 25px;
 }
-
 
 .top-new {
   position: absolute;
@@ -197,20 +191,28 @@ h1 {
   margin-left: 150px;
 }
 
+@media screen and (max-width:1280px) {
+  h1 {
+    top: 110px;
+    left: 73%;
+  }
+}
+
 @media screen and (max-width:1024px) {
   .top-logo {
+    top: 370px;
     left: 50%;
   }
 
   .top-new {
-    top: 130%;
+    top: 940px;
     left: 50%;
     padding-bottom: 30px;
   }
 
   h1 {
-    top: 720px;
-    left: 48%;
+    top: 660px;
+    left: 38%;
   }
 
   .sightings-nil {
@@ -226,12 +228,18 @@ h1 {
 
 @media screen and (max-width:600px) {
   .top-logo {
+    top: 280px;
     width: 380px;
   }
 
   h1 {
-    top: 600px;
-    left: 46%;
+    top: 480px;
+    left: 25%;
+  }
+
+  .top-new {
+    top: 750px;
+    left: 52%;
   }
 
   .sightings-nil {
@@ -351,7 +359,8 @@ h1 {
   }
 
   .information-link {
-    left: 50%;
+    top: 600px;
+    left: 51%;
   }
 
   .info-amble-link {
@@ -391,6 +400,8 @@ h1 {
 @media screen and (max-width:600px) {
   .information-link {
     width: 300px;
+    top: 430px;
+    left: 55%;
   }
 
   .info-amble-link {
@@ -957,11 +968,8 @@ div.form_area .col {
   font-size: 18px;
   font-weight: bold;
   padding: 0px 5px;
-  margin: 10px;
   border-radius: 10px;
-  position: relative;
-  top: -60px;
-  left: 60%;
+  margin-left: 450px;
 }
 
 .back {
@@ -1148,7 +1156,7 @@ div.form_area .col {
     margin-left: auto;
     padding: 0 20px;
     width: 90%;
-    height: 600px;
+    height: 530px;
   }
 
   .board-Label {
@@ -1160,12 +1168,20 @@ div.form_area .col {
     font-size: 10px;
   }
 
+  .btndesign {
+    margin-top: 10px;
+    margin-left: 240px;
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
   .protect-back {
     font-size: 13px;
   }
 
   .second-back {
-    top: 42px;
+    top: -1px;
+    left: -20px;
     font-size: 13px;
   }
 
@@ -1215,7 +1231,7 @@ div.form_area .col {
 
 @media screen and (max-width:600px) {
   .back {
-    top: 20px;
+    top: 0px;
   }
 }
 
@@ -1312,7 +1328,7 @@ caption {
 
 .board-situation {
   position: relative;
-  top: -40px;
+  top: -37px;
   left: 80px;
   width: 200px;
   height: 230px;
@@ -1329,12 +1345,12 @@ caption {
 
 .board-situation li:nth-child(4) {
   position: absolute;
-  top: 120px;
+  top: 111px;
 }
 
 .board-features {
   position: relative;
-  top: 25px;
+  top: 26px;
   left: 100px;
   width: 450px;
   height: 130px;

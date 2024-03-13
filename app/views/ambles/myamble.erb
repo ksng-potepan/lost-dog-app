@@ -17,7 +17,7 @@
           <%= l a.created_at %></br>
           <%= link_to "【詳細を見る】", amble_path(a) %>
           <%= link_to "【編集する】", edit_amble_path(a) %>
-          <%= button_to amble_path(a), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
+          <%= button_to amble_path(a), class: "board-btn", method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
             <i class="fa-solid fa-trash">投稿を削除</i>
           <% end %>
           <%= button_tag id: "delete-btn", class: "board-btn", data: { turbo: false } do %>

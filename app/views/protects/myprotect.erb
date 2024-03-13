@@ -17,7 +17,7 @@
           <%= l p.created_at %></br>
           <%= link_to "【詳細を見る】", protect_path(p) %>
           <%= link_to "【編集する】", edit_protect_path(p) %>
-          <%= button_to protect_path(p), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
+          <%= button_to protect_path(p), class: "board-btn", method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
             <i class="fa-solid fa-trash">投稿を削除</i>
           <% end %>
           <%= button_tag id: "delete-btn", class: "board-btn", data: { turbo: false } do %>
