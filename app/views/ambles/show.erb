@@ -45,8 +45,9 @@
         </div>
       <% else %>
         <%= link_to "#{a.user.username}様", user_path(a.user.id) %></br>
+        <i class="fa-solid fa-user"><%= link_to "プロフィールを見る", user_path(a.user.id) %></i>
         <% if @is_room == true %>
-          <%= link_to room_path(@room_id), class:'' do %>
+          <%= link_to room_path(@room_id), class:'board-btn' do %>
             <i class="fa-solid fa-envelope-open"></i>連絡をする
           <% end %>
         <% else %>
@@ -54,7 +55,7 @@
             <%= fields_for @entry do |e| %>
               <%= e.hidden_field :user_id, value: @amble_user.user.id %>
             <% end %>
-            <button type="submit" class=""><i class="fa-regular fa-envelope"></i>連絡をする</button>
+            <button type="submit" class="board-btn"><i class="fa-regular fa-envelope"></i>連絡をする</button>
           <% end %>
         <% end %>
       <% end %>
