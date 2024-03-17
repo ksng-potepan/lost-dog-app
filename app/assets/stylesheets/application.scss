@@ -149,7 +149,7 @@ i::before {
 
 h1 {
   position: absolute;
-  top: 220px;
+  top: 180px;
   left: 76%;
   font-size: 25px;
 }
@@ -191,10 +191,10 @@ h1 {
   margin-left: 150px;
 }
 
-@media screen and (max-width:1280px) {
+@media screen and (max-width:1600px) {
   h1 {
-    top: 110px;
-    left: 73%;
+    top: 100px;
+    left: 74%;
   }
 }
 
@@ -212,7 +212,7 @@ h1 {
 
   h1 {
     top: 660px;
-    left: 38%;
+    left: 37%;
   }
 
   .sightings-nil {
